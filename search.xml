@@ -4,62 +4,6 @@
   
     
     <entry>
-      <title>从零开始的 C++ 学习之旅</title>
-      <link href="/CPP_lesson/"/>
-      <url>/CPP_lesson/</url>
-      
-        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><div class="note warning flat"><p>本文将介绍 C++ 的相关历史背景、编译环境、IDE以及介绍 C++ 相关基础语法、数据结构与算法的知识点。</p></div><div class="note warning flat"><p>在阅读过程中有任何问题都可以发布到评论区，有价值的问题将会放到文章末尾Q&amp;A之中！</p></div><h1 id="C-的发展经历"><a href="#C-的发展经历" class="headerlink" title="C++ 的发展经历"></a>C++ 的发展经历</h1><div class="note success no-icon flat"><p><strong>C++<strong>（</strong>C Plus Plus</strong>）是一种高级语言，它是由 <strong>Bjarne Stroustrup</strong> 于 <strong>1979</strong> 年在贝尔实验室开始设计开发的。C++ 进一步扩充和完善了 C 语言，是一种<strong>面向对象</strong>的程序设计语言。</p></div><div class="note info flat"><p>同时，在<strong>信息学奥林匹克竞赛</strong>【以下简称<strong>信奥赛</strong>】中，C++ 是<strong>唯一可以使用</strong>的语言。</p></div><h1 id="C-的标准库"><a href="#C-的标准库" class="headerlink" title="C++ 的标准库"></a>C++ 的标准库</h1><div class="note success no-icon flat"><p>在 C++ 的发展过程中，经历过五次<strong>标准化</strong>的过程。</p><p>1998 年制定 <strong>C++98</strong> 作为第一个 C++ 标准</p><p>2003 年制定 <strong>C++03</strong> 作为第二个 C++ 标准</p><p>2011 年制定 <strong>C++11</strong> 作为第三个 C++ 标准</p><p>2014 年制定 <strong>C++14</strong> 作为第四个 C++ 标准</p><p>2017 年制定 <strong>C++17</strong> 作为第五个 C++ 标准</p><p>C++17 也是现如今 C++ 编码所使用的一个标准。</p></div>]]></content>
-      
-      
-      <categories>
-          
-          <category> 信奥赛 </category>
-          
-          <category> C++ </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C++ 基础语法 </tag>
-            
-            <tag> C++ 基础算法 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>C++ 语法基础课</title>
-      <link href="/C-lesson/"/>
-      <url>/C-lesson/</url>
-      
-        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><div class="note warning flat"><p>本文记录 C++ 基础语法。</p></div><div class="note warning flat"><p>在阅读过程中有任何问题都可以发布到评论区，有价值的问题将会放到文章末尾Q&amp;A之中！</p></div><h1 id="第一段-C-代码"><a href="#第一段-C-代码" class="headerlink" title="第一段 C++ 代码"></a>第一段 C++ 代码</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;Hello, world!&quot;</span> &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>]]></content>
-      
-      
-      <categories>
-          
-          <category> 信奥赛 </category>
-          
-          <category> C++ </category>
-          
-      </categories>
-      
-      
-        <tags>
-            
-            <tag> C++ 基础语法 </tag>
-            
-        </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
       <title>高精度运算</title>
       <link href="/High_Accuracy/"/>
       <url>/High_Accuracy/</url>
@@ -83,19 +27,6 @@
             <tag> C++ 基础算法 </tag>
             
         </tags>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>Hello World</title>
-      <link href="/hello-world/"/>
-      <url>/hello-world/</url>
-      
-        <content type="html"><![CDATA[<h1 id="now"><a href="#now" class="headerlink" title="now"></a>now</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure><h1 id="2"><a href="#2" class="headerlink" title="2"></a>2</h1><p>Welcome to <a href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p><h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/writing.html">Writing</a></p><h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/server.html">Server</a></p><h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/generating.html">Generating</a></p><h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure><p>More info: <a href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p><h1 id="一些网站"><a href="#一些网站" class="headerlink" title="一些网站"></a>一些网站</h1><blockquote><p>公布呼和浩特市校外培训机构审批权责及流程</p><p><a href="http://jyj.huhhot.gov.cn/zwgk/tzgg/202301/t20230130_1473376.html">http://jyj.huhhot.gov.cn/zwgk/tzgg/202301/t20230130_1473376.html</a></p></blockquote>]]></content>
-      
-      
       
     </entry>
     
