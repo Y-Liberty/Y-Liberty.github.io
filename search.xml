@@ -254,19 +254,6 @@
     </entry>
     
     
-    
-    <entry>
-      <title>note 标签外挂</title>
-      <link href="/Untitled/"/>
-      <url>/Untitled/</url>
-      
-        <content type="html"><![CDATA[<div class="note no-icon flat"><p>默認 提示塊標籤 浅灰色</p></div><div class="note default no-icon flat"><p>default 提示塊標籤 灰色</p></div><div class="note primary no-icon flat"><p>primary 提示塊標籤 紫色</p></div><div class="note success no-icon flat"><p>success 提示塊標籤 绿色</p></div><div class="note info no-icon flat"><p>info 提示塊標籤 蓝色</p></div><div class="note warning no-icon flat"><p>warning 提示塊標籤 橙色</p></div><div class="note danger no-icon flat"><p>danger 提示塊標籤 红色</p></div><div class="note flat"><p>默認 提示塊標籤</p></div><div class="note default flat"><p>default 提示塊標籤</p></div><div class="note primary flat"><p>primary 提示塊標籤</p></div><div class="note success flat"><p>success 提示塊標籤</p></div><div class="note info flat"><p>info 提示塊標籤</p></div><div class="note warning flat"><p>warning 提示塊標籤</p></div><div class="note danger flat"><p>danger 提示塊標籤</p></div>]]></content>
-      
-      
-      
-    </entry>
-    
-    
   
   
 </search>
