@@ -1,0 +1,2040 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>C++ 动态规划 - 背包问题专题 | 壹零贰肆</title><meta name="keywords" content="C++,算法,动态规划,背包问题"><meta name="author" content="小布老师"><meta name="copyright" content="小布老师"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="C++ 动态规划 - 背包问题专题"><meta name="application-name" content="C++ 动态规划 - 背包问题专题"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="C++ 动态规划 - 背包问题专题"><meta property="og:url" content="https://blog.1024code.top/CPP_DP_knapsack/index.html"><meta property="og:site_name" content="壹零贰肆"><meta property="og:description" content="C++ 动态规划 - 背包问题专题前言背包问题是动态规划中的经典问题，在算法竞赛和实际应用中都非常重要。本文将详细介绍各种背包问题的解法，包括01背包、完全背包、多重背包、分组背包等。 前置知识：  建议先阅读 动态规划算法基础，了解动态规划的基本概念和分析方法    本文导航：  📦 背包问题概"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://blog.1024code.top/img/default_cover.jpg"><meta property="article:author" content="小布老师"><meta property="article:tag" content="壹零贰肆, 呼和浩特, 少儿编程"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blog.1024code.top/img/default_cover.jpg"><meta name="description" content="C++ 动态规划 - 背包问题专题前言背包问题是动态规划中的经典问题，在算法竞赛和实际应用中都非常重要。本文将详细介绍各种背包问题的解法，包括01背包、完全背包、多重背包、分组背包等。 前置知识：  建议先阅读 动态规划算法基础，了解动态规划的基本概念和分析方法    本文导航：  📦 背包问题概"><link rel="shortcut icon" href="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg"><link rel="canonical" href="https://blog.1024code.top/CPP_DP_knapsack/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 好好休息","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.y-liberty.cn/',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":80,"languages":{"author":"作者: 小布老师","link":"链接: ","source":"来源: 壹零贰肆","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '壹零贰肆',
+  title: 'C++ 动态规划 - 背包问题专题',
+  postAI: '',
+  pageFillDescription: 'C++ 动态规划 - 背包问题专题, 前言, 背包问题概述, 1. 什么是背包问题, 2. 背包问题的分类, 01背包问题, 1. 问题描述, 2. 问题分析, 方法一：常规分析方法, 方法二：闫氏DP分析法, 3. 算法实现, 3.1 二维DP实现, 3.2 一维DP优化（空间优化）, 正序遍历的问题, 逆序遍历的正确性, 对比表格, 详细原理说明, 代码对比, 4. 完整示例, 5. 时间复杂度分析, 完全背包问题, 1. 问题描述, 2. 问题分析, 方法一：常规分析方法, 方法二：闫氏DP分析法, 3. 算法实现, 3.1 二维DP实现（朴素版本）, 3.2 二维DP优化版本, 3.3 一维DP优化（空间优化）, 逆序遍历的问题, 正序遍历的正确性, 对比表格, 详细原理说明, 代码对比, 01背包 vs 完全背包的遍历顺序对比, 4. 01背包与完全背包的对比, 5. 完整示例, 6. 时间复杂度分析, 多重背包问题, 1. 问题描述, 2. 问题分析, 方法一：常规分析方法, 方法二：闫氏DP分析法, 3. 算法实现, 3.1 朴素实现（三层循环）, 为什么不能像完全背包一样省略第三重循环？, 3.2 二进制优化, 4. 完整示例, 5. 时间复杂度分析, 分组背包问题, 1. 问题描述, 2. 问题分析, 方法一：常规分析方法, 方法二：闫氏DP分析法, 3. 算法实现, 3.1 二维DP实现, 3.2 一维DP优化（空间优化）, 正序遍历的问题, 逆序遍历的正确性, 对比表格, 详细原理说明, 代码对比, 分组背包 vs 01背包的遍历顺序对比, 4. 完整示例, 5. 时间复杂度分析, 四种背包问题的对比, 总结, 01背包和完全背包的核心区别, QampA动态规划背包问题专题前言背包问题是动态规划中的经典问题在算法竞赛和实际应用中都非常重要本文将详细介绍各种背包问题的解法包括背包完全背包多重背包分组背包等前置知识建议先阅读动态规划算法基础了解动态规划的基本概念和分析方法本文导航背包问题概述什么是背包问题背包问题基础背包每种物品最多选次完全背包问题每种物品可以选无限次多重背包问题每种物品有数量限制分组背包问题物品分组每组最多选个四种背包问题对比总结与记忆技巧练习题推荐巩固所学知识背包问题概述什么是背包问题背包问题是一类组合优化的完全问题问题可以描述为给定一组物品每种物品都有自己的重量和价值在限定的总重量内如何选择物品使得总价值最大背包问题的基本要素物品每个物品有重量体积和价值背包容量背包能承受的最大重量体积目标在不超过容量的前提下使总价值最大背包问题的分类背包类型特点典型问题背包每种物品最多选次基础背包问题完全背包每种物品可以选无限次硬币问题多重背包每种物品有数量限制物品有库存限制分组背包物品分组每组最多选个课程选择问题混合背包混合多种背包类型综合问题二维费用背包有两个容量限制体积重量限制背包问题问题描述背包问题有个物品和一个容量为的背包每个物品只能使用一次第个物品的体积是价值是求解将哪些物品装入背包可使这些物品的总体积不超过背包容量且总价值最大特点每种物品只有选或不选两种状态或因此称为背包问题分析方法一常规分析方法常规分析方法是最常用的动态规划分析方法通过以下步骤进行第一步状态定义表示前个物品在容量为的背包中能获得的最大价值第二步状态转移方程对于第个物品有两种选择不选第个物品选第个物品需要容量足够状态转移方程第三步初始状态没有物品价值为容量为价值为方法二闫氏分析法闫氏分析法是由算法竞赛教练闫学灿总结的一种系统化的动态规划分析方法这种方法通过集合的角度来理解动态规划使问题分析更加清晰和系统化第一步状态表示集合表示所有只考虑前个物品且总体积不超过的选法集合属性集合中所有方案的最大价值第二步状态计算将集合划分为两个子集不选第个物品只考虑前个物品总体积不超过对应集合价值选第个物品只考虑前个物品总体积不超过然后加上第个物品的价值对应集合价值状态转移方程算法实现二维实现表示前个物品容量为时的最大价值个物品背包容量为表示体积表示价值状态转移不选第个物品选第个物品需要容量足够代码说明表示前个物品容量为时的最大价值外层循环遍历物品内层循环遍历容量对于每个状态考虑选或不选当前物品一维优化空间优化观察状态转移方程只依赖于即当前状态只依赖于上一行的状态因此可以使用滚动数组优化将二维数组压缩为一维数组关键点需要逆序遍历容量避免覆盖未使用的状态表示容量为时的最大价值状态转移一维优化关键逆序遍历容量避免覆盖未使用的状态表示不选第个物品表示选第个物品为什么需要逆序遍历这是背包一维优化的关键点理解这一点非常重要正序遍历的问题如果使用正序遍历从到会发生什么示例有个物品体积价值背包容量正序遍历过程错误示例步骤更新前更新后说明正确选择个物品正确选择个物品错误选择了个物品问题分析当时已经被更新为表示已经选择了个物品然后这相当于在已经选择个物品的基础上又选择了个物品总共选择了个违反了背包每种物品最多选次的规则逆序遍历的正确性使用逆序遍历从到可以避免这个问题逆序遍历过程正确示例步骤更新前更新后说明正确选择个物品正确选择个物品正确选择个物品正确性分析当时还是未被更新使用的是上一轮前个物品的状态这表示只选择了个物品符合背包的要求逆序遍历保证了总是来自上一轮的状态对比表格正序遍历逆序遍历对比以物品体积价值为例容量正序遍历逆序遍历更新前关键区别正序时已经被更新为导致物品被选择了次逆序时还是未更新保证物品只被选择次详细原理说明状态转移方程回顾关键理解表示容量为时的最大价值应该是不包含当前物品的状态在背包中每个物品只能选一次所以必须来自前个物品的状态逆序遍历的工作原理从大到小遍历容量状态更新顺序先更新大容量再更新小容量状态依赖关系更新时还没有被当前物品更新过保证正确性始终是前个物品的状态正序遍历的错误原因从小到大遍历容量状态更新顺序先更新小容量再更新大容量状态依赖问题更新时可能已经被当前物品更新过导致错误同一物品可能被选择多次代码对比错误写法正序遍历正序遍历当较大时可能已经被当前物品更新过正确写法逆序遍历逆序遍历始终是前个物品的状态空间复杂度优化从优化到完整示例题目有个物品背包容量为物品信息如下物品体积价值求解过程使用二维状态转移表如下答案最大价值为选择物品和物品时间复杂度分析时间复杂度需要遍历个物品每个物品需要遍历个容量空间复杂度二维一维完全背包问题问题描述完全背包问题有个物品和一个容量为的背包每个物品可以使用无限次第个物品的体积是价值是求解将哪些物品装入背包可使这些物品的总体积不超过背包容量且总价值最大特点每种物品可以选择次次次无限次问题分析方法一常规分析方法常规分析方法是最常用的动态规划分析方法通过以下步骤进行第一步状态定义表示前个物品在容量为的背包中能获得的最大价值第二步状态转移方程对于第个物品可以选择次次次直到容量不够为止朴素思路三层循环优化思路观察发现状态转移方程与背包的区别背包完全背包注意完全背包使用的是当前物品可以继续选而背包使用的是当前物品只能选一次方法二闫氏分析法闫氏分析法是由算法竞赛教练闫学灿总结的一种系统化的动态规划分析方法这种方法通过集合的角度来理解动态规划使问题分析更加清晰和系统化第一步状态表示集合表示所有只考虑前个物品且总体积不超过的选法集合属性集合中所有方案的最大价值第二步状态计算将集合按选择第个物品的个数进行划分不选第个物品选个第个物品选个第个物品选个第个物品优化通过数学推导可以优化为算法实现二维实现朴素版本表示前个物品容量为时的最大价值状态转移三层循环版本枚举选择第个物品的个数时间复杂度其中是每个物品最多能选择的个数效率较低二维优化版本状态转移优化版本不选第个物品选第个物品可以选多个优化说明使用而不是这样可以在当前物品已经选择的基础上继续选择实现无限次的效果一维优化空间优化与背包类似完全背包也可以使用一维数组优化关键点需要正序遍历容量允许同一物品被选择多次表示容量为时的最大价值状态转移一维优化关键正序遍历容量允许同一物品选择多次表示不选第个物品或已经选过表示再选一个第个物品为什么需要正序遍历这是完全背包一维优化的关键点与背包的逆序遍历形成鲜明对比逆序遍历的问题如果使用逆序遍历从到会发生什么示例有个物品体积价值背包容量逆序遍历过程错误示例对于完全背包步骤更新前更新后说明正确选择个物品正确选择个物品正确选择个物品问题分析当时还是未被更新使用的是上一轮的状态这表示只选择了个物品无法实现无限次选择违反了完全背包每种物品可以选无限次的规则正序遍历的正确性使用正序遍历从到可以实现无限次选择正序遍历过程正确示例步骤更新前更新后说明正确选择个物品正确选择个物品正确选择个物品正确性分析当时已经被更新为表示已经选择了个物品这表示在已经选择个物品的基础上又选择了个物品总共选择了个符合完全背包每种物品可以选无限次的要求正序遍历保证了可能包含当前物品允许继续选择对比表格逆序遍历正序遍历对比以物品体积价值为例完全背包容量逆序遍历错误正序遍历正确更新前关键区别逆序时还是未更新只能选择个物品无法实现无限次正序时已经被更新为可以在已选择的基础上继续选择实现无限次更详细的示例容量为容量正序遍历过程说明选择个物品选择个物品在基础上再选个选择个物品在基础上再选个详细原理说明状态转移方程回顾关键理解表示容量为时的最大价值应该是可以包含当前物品的状态在完全背包中每个物品可以选无限次所以可以来自前个物品的状态包括当前物品正序遍历的工作原理从小到大遍历容量状态更新顺序先更新小容量再更新大容量状态依赖关系更新时可能已经被当前物品更新过实现无限次可以包含当前物品允许在已选择的基础上继续选择逆序遍历的错误原因对于完全背包从大到小遍历容量状态更新顺序先更新大容量再更新小容量状态依赖问题更新时还没有被当前物品更新过导致错误只能选择次无法实现无限次选择代码对比错误写法逆序遍历对于完全背包逆序遍历背包的写法始终是前个物品的状态无法实现无限次正确写法正序遍历完全背包正序遍历可能包含当前物品允许继续选择背包完全背包的遍历顺序对比背包类型遍历顺序原因效果背包逆序从到必须是前个物品的状态每个物品最多选次完全背包正序从到可以包含当前物品每个物品可以选无限次记忆技巧背包逆序倒着来避免重复完全背包正序顺着来允许重复背包与完全背包的对比特性背包完全背包物品选择每种物品最多选次每种物品可以选无限次状态转移一维遍历逆序从到正序从到原因避免同一物品被选多次允许同一物品被选多次记忆技巧背包逆序倒着来避免重复完全背包正序顺着来允许重复完整示例题目有种物品背包容量为物品信息如下物品体积价值求解过程使用一维状态转移过程物品体积价值物品体积价值物品体积价值答案最大价值为选择个物品或选择个物品和个物品等时间复杂度分析时间复杂度朴素版本为每个物品最多能选择的个数优化版本空间复杂度二维一维多重背包问题问题描述多重背包问题有个物品和一个容量为的背包第种物品最多有件可用每件体积是价值是求解将哪些物品装入背包可使这些物品的总体积不超过背包容量且总价值最大特点每种物品有数量限制既不是背包只能选次也不是完全背包可以选无限次问题分析方法一常规分析方法常规分析方法是最常用的动态规划分析方法通过以下步骤进行第一步状态定义表示前种物品在容量为的背包中能获得的最大价值第二步状态转移方程对于第种物品可以选择件件件最多件状态转移方程其中方法二闫氏分析法闫氏分析法是由算法竞赛教练闫学灿总结的一种系统化的动态规划分析方法这种方法通过集合的角度来理解动态规划使问题分析更加清晰和系统化第一步状态表示集合表示所有只考虑前种物品且总体积不超过的选法集合属性集合中所有方案的最大价值第二步状态计算将集合按选择第种物品的个数进行划分不选第种物品选件第种物品选件第种物品选件第种物品且算法实现朴素实现三层循环体积价值数量表示前种物品容量为时的最大价值状态转移三层循环枚举选择第种物品的个数到代码说明外层循环遍历物品种类中层循环遍历容量内层循环枚举选择当前物品的个数时间复杂度其中是每种物品的平均数量为什么不能像完全背包一样省略第三重循环关键差别在的含义完全背包只受容量限制可以顺着容量不断追加当前物品因此正序遍历也不会超限多重背包同时受件数限制展开会额外出现最后一项提示库存已经耗尽一旦省去第三层枚举就等同默认还能继续拿把多重背包错写成完全背包朴素实现里的第三层是维护已用件数的唯一信息想提速只能换一种表达方式比如二进制拆分把有限件数拆成若干个物品再按背包逆序转移既保留数量约束又能把复杂度从降到二进制优化二进制优化是多重背包问题的重要优化方法核心思想是将每种物品的件物品按照的幂次进行分组转化为背包问题原理任何正整数都可以表示为的幂次之和二进制表示例如这样可以将件物品拆分成个新物品每个新物品只能选一次转化为背包问题需要开大一些因为二进制拆分后物品数量会增加拆分后的物品一维数组拆分后的物品数量体积价值数量二进制拆分新物品的体积原物品体积新物品的价值原物品价值的幂次处理剩余部分更新物品数量转化为背包问题逆序遍历背包二进制拆分示例假设第种物品有件可以拆分为件体积价值件体积价值件体积价值这样可以用这个新物品组合出件原物品的所有可能优化效果时间复杂度从优化到空间复杂度完整示例题目有种物品背包容量为物品信息如下物品体积价值数量求解过程使用二进制优化后物品拆分物品件拆分为件和件物品件拆分为件件件物品件拆分为件转化为背包问题求解时间复杂度分析朴素版本需要枚举每种物品的每种数量选择二进制优化版本将每种物品拆分为个新物品转化为背包问题空间复杂度一维分组背包问题问题描述分组背包问题有组物品和一个容量为的背包每组物品有若干个同一组内的物品最多只能选一个第组物品中第个物品的体积是价值是求解将哪些物品装入背包可使这些物品的总体积不超过背包容量且总价值最大特点物品分组每组内最多选一个但不同组之间可以任意选择问题分析方法一常规分析方法常规分析方法是最常用的动态规划分析方法通过以下步骤进行第一步状态定义表示前组物品在容量为的背包中能获得的最大价值第二步状态转移方程对于第组物品有两种选择不选第组的任何物品选第组的第个物品需要容量足够状态转移方程其中遍历第组的所有物品方法二闫氏分析法闫氏分析法是由算法竞赛教练闫学灿总结的一种系统化的动态规划分析方法这种方法通过集合的角度来理解动态规划使问题分析更加清晰和系统化第一步状态表示集合表示所有只考虑前组物品且总体积不超过的选法集合属性集合中所有方案的最大价值第二步状态计算将集合按是否选择第组物品进行划分不选第组的任何物品选第组的第个物品选第组的第个物品选第组的第个物品算法实现二维实现表示前组物品容量为时的最大价值第组第个物品的体积价值第组物品个数第组物品的个数读入第组第个物品的体积和价值状态转移不选第组的任何物品遍历第组的所有物品选择其中一个代码说明外层循环遍历组中层循环遍历容量内层循环遍历当前组内的所有物品对于每组最多只能选择一个物品一维优化空间优化分组背包也可以使用一维数组优化但需要注意容量需要逆序遍历因为每组内最多只能选一个物品类似于背包第组第个物品的体积价值第组物品个数一维数组状态转移一维优化关键逆序遍历容量保证每组最多选一个类似背包遍历第组的所有物品为什么需要逆序遍历这是分组背包一维优化的关键点与背包类似但需要特别注意循环顺序正序遍历的问题如果使用正序遍历从到会发生什么示例有组物品第组包含个物品物品体积价值物品体积价值背包容量正序遍历过程错误示例对于分组背包假设当前处理第组正序遍历容量步骤处理物品更新前更新后说明物品正确选择物品物品正确选择物品物品正确选择物品物品错误选择了个物品物品错误选择了物品和物品问题分析当时处理物品已经被更新为表示已经选择了物品这表示在已经选择物品的基础上又选择了物品违反了每组最多选一个物品的规则当时处理物品已经被更新为表示已经选择了物品这表示选择了物品和物品同样违反了规则逆序遍历的正确性使用逆序遍历从到可以确保每组最多只选一个物品逆序遍历过程正确示例步骤处理物品更新前更新后说明物品正确选择物品物品正确选择物品更优物品正确选择物品物品正确选择物品更优物品正确选择物品物品正确选择物品更优物品正确选择物品正确性分析当时处理物品还是未被当前组更新使用的是前组的状态然后处理物品还是最终只选择了物品符合每组最多选一个的规则逆序遍历保证了在处理第组的物品时使用的是前组的状态对比表格正序遍历逆序遍历对比以第组个物品为例分组背包第组物品物品体积价值物品体积价值容量正序遍历错误逆序遍历正确处理过程最终值物品物品物品物品物品关键区别正序时已经被更新为已选物品导致可以再选物品违反规则逆序时还是未更新使用的是前组的状态确保每组最多选一个错误示例详细说明正序遍历处理物品此时表示已经选择了物品再选物品就违反了每组最多选一个的规则正确结果应该是选择物品价值更高详细原理说明状态转移方程回顾关键理解表示容量为时的最大价值应该是前组的状态不能包含当前组的任何物品在分组背包中每组最多只能选一个物品所以必须来自前组的状态逆序遍历的工作原理从大到小遍历容量状态更新顺序先更新大容量再更新小容量状态依赖关系更新时还没有被当前组的物品更新过确保每组最多选一个来自前组保证当前组最多只选一个物品正序遍历的错误原因对于分组背包从小到大遍历容量状态更新顺序先更新小容量再更新大容量状态依赖问题更新时可能已经被当前组的其他物品更新过导致错误可能在同一组内选择多个物品违反每组最多选一个的规则循环顺序的重要性分组背包一维优化的正确循环顺序外层遍历组中层逆序遍历容量内层遍历组内物品为什么内层循环在容量循环内部如果内层循环在容量循环外部会导致同一组内的物品在不同容量下重复选择将内层循环放在容量循环内部确保对于每个容量只从当前组中选择一个最优物品代码对比错误写法正序遍历对于分组背包正序遍历可能已被当前组的其他物品更新导致同一组选多个错误写法内层循环位置错误内层循环在外层这样会导致同一组内的物品在不同容量下重复选择正确写法逆序遍历分组背包逆序遍历容量内层循环在容量循环内部来自前组确保每组最多选一个分组背包背包的遍历顺序对比背包类型遍历顺序原因效果背包逆序从到必须是前个物品的状态每个物品最多选次分组背包逆序从到必须是前组的状态每组最多选个物品相同点都使用逆序遍历都是为了确保最多选一次的限制不同点背包每个物品独立逆序保证每个物品最多选次分组背包每组内多个物品逆序内层循环保证每组最多选个物品记忆技巧背包逆序倒着来避免重复分组背包逆序内层循环倒着来每组选一个循环顺序说明外层遍历组从到中层逆序遍历容量从到内层遍历当前组内的物品从到完整示例题目有组物品背包容量为物品信息如下第组个物品物品体积价值物品体积价值第组个物品物品体积价值物品体积价值第组个物品物品体积价值求解思路每组最多选一个物品可以选第组的物品第组的物品第组的物品总价值时间复杂度分析时间复杂度个组每组最多个物品容量需要遍历所有组所有容量每组内所有物品空间复杂度二维一维四种背包问题的对比背包类型物品选择限制状态转移一维遍历时间复杂度背包每种物品最多选次逆序完全背包每种物品可以选无限次正序多重背包每种物品最多选次三层循环或二进制优化逆序优化后或分组背包每组最多选个物品遍历组内所有物品逆序记忆技巧逆序背包多重背包优化后分组背包正序完全背包总结背包和完全背包的核心区别物品选择限制背包每种物品最多选次完全背包每种物品可以选无限次状态转移方程背包完全背包一维遍历顺序背包逆序遍历从到完全背包正序遍历从到理解要点背包的表示前个物品的状态保证当前物品只选一次完全背包的表示前个物品的状态允许当前物品继续选择',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-26 16:45:19',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.1024code.top/" title="首页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="首页"/><span class="back-menu-item-text">首页</span></a><a class="back-menu-item" href="https://blog.1024code.top/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="http://oj.1024code.top/" title="刷题平台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="刷题平台"/><span class="back-menu-item-text">刷题平台</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">壹零贰肆</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 1.05rem;">C++<sup>2</sup></a><a href="/tags/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 1.05rem;">C++ 基础语法<sup>8</sup></a><a href="/tags/C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.05rem;">C++ 数据结构<sup>1</sup></a><a href="/tags/C-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.05rem;">C++ 算法与数据结构<sup>3</sup></a><a href="/tags/CPP-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.05rem;">CPP 算法与数据结构<sup>1</sup></a><a href="/tags/PyCharm-%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">PyCharm 教程<sup>1</sup></a><a href="/tags/Python-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 1.05rem;">Python 基础语法<sup>5</sup></a><a href="/tags/Python-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.05rem;">Python 环境配置<sup>1</sup></a><a href="/tags/Python-%E8%BF%9B%E9%98%B6%E5%BA%94%E7%94%A8/" style="font-size: 1.05rem;">Python 进阶应用<sup>1</sup></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.05rem;">动态规划<sup>2</sup></a><a href="/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" style="font-size: 1.05rem;">搜索算法<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.05rem;">算法<sup>2</sup></a><a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">背包问题<sup>1</sup></a><a href="/tags/%E8%8B%B1%E6%89%8D%E8%AE%A1%E5%88%92/" style="font-size: 1.05rem;">英才计划<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">四月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/03/"><span class="card-archive-list-date">三月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/02/"><span class="card-archive-list-date">二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url">算法学习</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/C/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>C++</span></a><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>算法</span></a><a class="article-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>动态规划</span></a><a class="article-meta__tags" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>背包问题</span></a></span></div></div><h1 class="post-title" itemprop="name headline">C++ 动态规划 - 背包问题专题</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-02-04T16:00:00.000Z" title="发表于 2025-02-05 00:00:00">2025-02-05</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-11-26T08:45:19.657Z" title="更新于 2025-11-26 16:45:19">2025-11-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">11.7k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>48分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="C++ 动态规划 - 背包问题专题"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为内蒙古呼和浩特"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>内蒙古呼和浩特</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_cover.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.1024code.top/CPP_DP_knapsack/"><header><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url">算法学习</a><a href="/tags/C/" tabindex="-1" itemprop="url">C++</a><a href="/tags/%E7%AE%97%E6%B3%95/" tabindex="-1" itemprop="url">算法</a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" tabindex="-1" itemprop="url">动态规划</a><a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" tabindex="-1" itemprop="url">背包问题</a><h1 id="CrawlerTitle" itemprop="name headline">C++ 动态规划 - 背包问题专题</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">小布老师</span><time itemprop="dateCreated datePublished" datetime="2025-02-04T16:00:00.000Z" title="发表于 2025-02-05 00:00:00">2025-02-05</time><time itemprop="dateCreated datePublished" datetime="2025-11-26T08:45:19.657Z" title="更新于 2025-11-26 16:45:19">2025-11-26</time></header><h1 id="C-动态规划-背包问题专题"><a href="#C-动态规划-背包问题专题" class="headerlink" title="C++ 动态规划 - 背包问题专题"></a>C++ 动态规划 - 背包问题专题</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><div class="note info no-icon flat"><p>背包问题是动态规划中的经典问题，在算法竞赛和实际应用中都非常重要。本文将详细介绍各种背包问题的解法，包括01背包、完全背包、多重背包、分组背包等。</p>
+<p><strong>前置知识：</strong></p>
+<ul>
+<li>建议先阅读 <a href="./C++_%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80.md">动态规划算法基础</a>，了解动态规划的基本概念和分析方法</li>
+</ul>
+</div>
+
+<div class="note success no-icon flat"><p><strong>本文导航：</strong></p>
+<ul>
+<li>📦 背包问题概述：什么是背包问题</li>
+<li>🎯 01背包问题：基础背包，每种物品最多选1次</li>
+<li>♾️ 完全背包问题：每种物品可以选无限次</li>
+<li>🔢 多重背包问题：每种物品有数量限制</li>
+<li>📚 分组背包问题：物品分组，每组最多选1个</li>
+<li>📊 四种背包问题对比：总结与记忆技巧</li>
+<li>💡 练习题推荐：巩固所学知识</li>
+</ul>
+</div>
+
+<hr>
+<h2 id="背包问题概述"><a href="#背包问题概述" class="headerlink" title="背包问题概述"></a>背包问题概述</h2><h3 id="1-什么是背包问题"><a href="#1-什么是背包问题" class="headerlink" title="1. 什么是背包问题"></a>1. 什么是背包问题</h3><div class="note success no-icon flat"><p><strong>背包问题</strong>是一类组合优化的NP完全问题，问题可以描述为：给定一组物品，每种物品都有自己的重量和价值，在限定的总重量内，如何选择物品使得总价值最大。</p>
+<p><strong>背包问题的基本要素：</strong></p>
+<ul>
+<li><strong>物品</strong>：每个物品有重量（体积）和价值</li>
+<li><strong>背包容量</strong>：背包能承受的最大重量（体积）</li>
+<li><strong>目标</strong>：在不超过容量的前提下，使总价值最大</li>
+</ul>
+</div>
+
+<h3 id="2-背包问题的分类"><a href="#2-背包问题的分类" class="headerlink" title="2. 背包问题的分类"></a>2. 背包问题的分类</h3><table>
+<thead>
+<tr>
+<th>背包类型</th>
+<th>特点</th>
+<th>典型问题</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>01背包</strong></td>
+<td>每种物品最多选1次</td>
+<td>基础背包问题</td>
+</tr>
+<tr>
+<td><strong>完全背包</strong></td>
+<td>每种物品可以选无限次</td>
+<td>硬币问题</td>
+</tr>
+<tr>
+<td><strong>多重背包</strong></td>
+<td>每种物品有数量限制</td>
+<td>物品有库存限制</td>
+</tr>
+<tr>
+<td><strong>分组背包</strong></td>
+<td>物品分组，每组最多选1个</td>
+<td>课程选择问题</td>
+</tr>
+<tr>
+<td><strong>混合背包</strong></td>
+<td>混合多种背包类型</td>
+<td>综合问题</td>
+</tr>
+<tr>
+<td><strong>二维费用背包</strong></td>
+<td>有两个容量限制</td>
+<td>体积+重量限制</td>
+</tr>
+</tbody></table>
+<hr>
+<h1 id="01背包问题"><a href="#01背包问题" class="headerlink" title="01背包问题"></a>01背包问题</h1><h2 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h2><div class="note warning no-icon flat"><p><strong>01背包问题</strong>：有N个物品和一个容量为V的背包。每个物品只能使用<strong>一次</strong>。第i个物品的体积是 <code>v[i]</code>，价值是 <code>w[i]</code>。</p>
+<p><strong>求解</strong>：将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+<p><strong>特点</strong>：每种物品只有选或不选两种状态（0或1，因此称为01背包）</p>
+</div>
+
+<h2 id="2-问题分析"><a href="#2-问题分析" class="headerlink" title="2. 问题分析"></a>2. 问题分析</h2><h3 id="方法一：常规分析方法"><a href="#方法一：常规分析方法" class="headerlink" title="方法一：常规分析方法"></a>方法一：常规分析方法</h3><div class="note info no-icon flat"><p>常规分析方法是最常用的动态规划分析方法，通过以下步骤进行：</p>
+</div>
+
+<p><strong>第一步：状态定义</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><code>dp[i][j]</code> 表示前i个物品，在容量为j的背包中能获得的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态转移方程</strong></p>
+<div class="note warning no-icon flat"><p>对于第i个物品，有两种选择：</p>
+<ol>
+<li><strong>不选第i个物品</strong>：<code>dp[i][j] = dp[i-1][j]</code></li>
+<li><strong>选第i个物品</strong>：需要容量足够，<code>dp[i][j] = dp[i-1][j-v[i]] + w[i]</code></li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>状态转移方程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i])  (j &gt;= v[i])</span><br><span class="line">dp[i][j] = dp[i-1][j]  (j &lt; v[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<p><strong>第三步：初始状态</strong></p>
+<div class="note info no-icon flat"><ul>
+<li><code>dp[0][j] = 0</code>（没有物品，价值为0）</li>
+<li><code>dp[i][0] = 0</code>（容量为0，价值为0）</li>
+</ul>
+</div>
+
+<h3 id="方法二：闫氏DP分析法"><a href="#方法二：闫氏DP分析法" class="headerlink" title="方法二：闫氏DP分析法"></a>方法二：闫氏DP分析法</h3><div class="note info no-icon flat"><p>闫氏DP分析法是由算法竞赛教练闫学灿（yxc）总结的一种系统化的动态规划分析方法。这种方法通过<strong>集合</strong>的角度来理解动态规划，使问题分析更加清晰和系统化。</p>
+</div>
+
+<p><strong>第一步：状态表示</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><strong>集合</strong>：<code>dp[i][j]</code> 表示所有只考虑前i个物品，且总体积不超过j的选法集合</li>
+<li><strong>属性</strong>：集合中所有方案的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态计算</strong></p>
+<div class="note warning no-icon flat"><p>将集合 <code>dp[i][j]</code> 划分为两个子集：</p>
+<ol>
+<li><p><strong>不选第i个物品</strong>：只考虑前i-1个物品，总体积不超过j</p>
+<ul>
+<li>对应集合：<code>dp[i-1][j]</code></li>
+<li>价值：<code>dp[i-1][j]</code></li>
+</ul>
+</li>
+<li><p><strong>选第i个物品</strong>：只考虑前i-1个物品，总体积不超过 <code>j-v[i]</code>，然后加上第i个物品的价值</p>
+<ul>
+<li>对应集合：<code>dp[i-1][j-v[i]]</code></li>
+<li>价值：<code>dp[i-1][j-v[i]] + w[i]</code></li>
+</ul>
+</li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>状态转移方程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<h2 id="3-算法实现"><a href="#3-算法实现" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h2><h3 id="3-1-二维DP实现"><a href="#3-1-二维DP实现" class="headerlink" title="3.1 二维DP实现"></a>3.1 二维DP实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> f[N][N];  <span class="comment">// f[i][j] 表示前i个物品，容量为j时的最大价值</span></span><br><span class="line"><span class="type">int</span> n, m;     <span class="comment">// n个物品，背包容量为m</span></span><br><span class="line"><span class="type">int</span> v[N], w[N];  <span class="comment">// v[i]表示体积，w[i]表示价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">1</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="comment">// 不选第i个物品</span></span><br><span class="line">            f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 选第i个物品（需要容量足够）</span></span><br><span class="line">            <span class="keyword">if</span> (j &gt;= v[i]) &#123;</span><br><span class="line">                f[i][j] = <span class="built_in">max</span>(f[i][j], f[i - <span class="number">1</span>][j - v[i]] + w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon flat"><p><strong>代码说明：</strong></p>
+<ul>
+<li><code>f[i][j]</code> 表示前i个物品，容量为j时的最大价值</li>
+<li>外层循环遍历物品，内层循环遍历容量</li>
+<li>对于每个状态，考虑选或不选当前物品</li>
+</ul>
+</div>
+
+<h3 id="3-2-一维DP优化（空间优化）"><a href="#3-2-一维DP优化（空间优化）" class="headerlink" title="3.2 一维DP优化（空间优化）"></a>3.2 一维DP优化（空间优化）</h3><div class="note info no-icon flat"><p>观察状态转移方程：<code>dp[i][j]</code> 只依赖于 <code>dp[i-1][...]</code>，即当前状态只依赖于上一行的状态。</p>
+<p>因此可以使用<strong>滚动数组</strong>优化，将二维数组压缩为一维数组。</p>
+<p><strong>关键点</strong>：需要<strong>逆序</strong>遍历容量j，避免覆盖未使用的状态。</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> f[N];  <span class="comment">// f[j] 表示容量为j时的最大价值</span></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> v[N], w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】一维优化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 【关键】逆序遍历容量，避免覆盖未使用的状态</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= v[i]; j--) &#123;</span><br><span class="line">            <span class="comment">// f[j] 表示不选第i个物品</span></span><br><span class="line">            <span class="comment">// f[j - v[i]] + w[i] 表示选第i个物品</span></span><br><span class="line">            f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么需要逆序遍历？</strong></p>
+<div class="note danger no-icon flat"><p>这是01背包一维优化的<strong>关键点</strong>，理解这一点非常重要！</p>
+</div>
+
+<h3 id="正序遍历的问题"><a href="#正序遍历的问题" class="headerlink" title="正序遍历的问题"></a>正序遍历的问题</h3><div class="note warning no-icon flat"><p>如果使用<strong>正序遍历</strong>（j从v[i]到m），会发生什么？</p>
+</div>
+
+<div class="note info no-icon flat"><p><strong>示例</strong>：有1个物品，体积v[1]&#x3D;2，价值w[1]&#x3D;3，背包容量m&#x3D;4</p>
+<p><strong>正序遍历过程</strong>（错误示例）：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>j</th>
+<th>f[j] 更新前</th>
+<th>f[j-v[1]]</th>
+<th>f[j] 更新后</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>f[2]&#x3D;0</td>
+<td>f[0]&#x3D;0</td>
+<td>f[2]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>f[3]&#x3D;0</td>
+<td>f[1]&#x3D;0</td>
+<td>f[3]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>f[4]&#x3D;0</td>
+<td>f[2]&#x3D;3</td>
+<td>f[4]&#x3D;max(0, 3+3)&#x3D;6</td>
+<td>❌ <strong>错误</strong>：选择了2个物品1！</td>
+</tr>
+</tbody></table>
+<p><strong>问题分析</strong>：</p>
+<ul>
+<li>当j&#x3D;4时，<code>f[2]</code>已经被更新为3（表示已经选择了1个物品1）</li>
+<li>然后 <code>f[4] = max(f[4], f[2] + w[1]) = max(0, 3+3) = 6</code></li>
+<li>这相当于在已经选择1个物品1的基础上，又选择了1个物品1，总共选择了2个</li>
+<li><strong>违反了01背包”每种物品最多选1次”的规则</strong></li>
+</ul>
+</div>
+
+<h3 id="逆序遍历的正确性"><a href="#逆序遍历的正确性" class="headerlink" title="逆序遍历的正确性"></a>逆序遍历的正确性</h3><div class="note info no-icon flat"><p>使用<strong>逆序遍历</strong>（j从m到v[i]），可以避免这个问题。</p>
+<p><strong>逆序遍历过程</strong>（正确示例）：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>j</th>
+<th>f[j] 更新前</th>
+<th>f[j-v[1]]</th>
+<th>f[j] 更新后</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>4</td>
+<td>f[4]&#x3D;0</td>
+<td>f[2]&#x3D;0</td>
+<td>f[4]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>f[3]&#x3D;0</td>
+<td>f[1]&#x3D;0</td>
+<td>f[3]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>f[2]&#x3D;0</td>
+<td>f[0]&#x3D;0</td>
+<td>f[2]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+</tbody></table>
+<p><strong>正确性分析</strong>：</p>
+<ul>
+<li>当j&#x3D;4时，<code>f[2]</code>还是0（未被更新），使用的是<strong>上一轮</strong>（前i-1个物品）的状态</li>
+<li><code>f[4] = max(f[4], f[2] + w[1]) = max(0, 0+3) = 3</code></li>
+<li>这表示只选择了1个物品1，符合01背包的要求</li>
+<li>逆序遍历保证了 <code>f[j-v[i]]</code> 总是来自上一轮的状态</li>
+</ul>
+</div>
+
+<h3 id="对比表格"><a href="#对比表格" class="headerlink" title="对比表格"></a>对比表格</h3><div class="note warning no-icon flat"><p><strong>正序遍历 vs 逆序遍历对比</strong>（以物品1，体积2，价值3为例）：</p>
+<table>
+<thead>
+<tr>
+<th>容量j</th>
+<th>正序遍历</th>
+<th>逆序遍历</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>f[j]更新前</td>
+<td>f[j-v[1]]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>f[0]&#x3D;0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>f[1]&#x3D;0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>f[2]&#x3D;<strong>3</strong> ❌</td>
+</tr>
+</tbody></table>
+<p><strong>关键区别</strong>：</p>
+<ul>
+<li><strong>正序</strong>：j&#x3D;4时，f[2]已经被更新为3，导致物品1被选择了2次</li>
+<li><strong>逆序</strong>：j&#x3D;4时，f[2]还是0（未更新），保证物品1只被选择1次</li>
+</ul>
+</div>
+
+<h3 id="详细原理说明"><a href="#详细原理说明" class="headerlink" title="详细原理说明"></a>详细原理说明</h3><div class="note info no-icon flat"><p><strong>状态转移方程回顾</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[j] = max(f[j], f[j - v[i]] + w[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>关键理解</strong>：</p>
+<ul>
+<li><code>f[j]</code> 表示容量为j时的最大价值</li>
+<li><code>f[j - v[i]]</code> 应该是<strong>不包含当前物品i</strong>的状态</li>
+<li>在01背包中，每个物品只能选一次，所以 <code>f[j - v[i]]</code> 必须来自<strong>前i-1个物品</strong>的状态</li>
+</ul>
+</div>
+
+<div class="note warning no-icon flat"><p><strong>逆序遍历的工作原理</strong>：</p>
+<ol>
+<li><strong>从大到小遍历容量</strong>：j &#x3D; m, m-1, …, v[i]</li>
+<li><strong>状态更新顺序</strong>：先更新大容量，再更新小容量</li>
+<li><strong>状态依赖关系</strong>：更新 <code>f[j]</code> 时，<code>f[j - v[i]]</code> 还没有被当前物品更新过</li>
+<li><strong>保证正确性</strong>：<code>f[j - v[i]]</code> 始终是前i-1个物品的状态</li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>正序遍历的错误原因</strong>：</p>
+<ol>
+<li><strong>从小到大遍历容量</strong>：j &#x3D; v[i], v[i]+1, …, m</li>
+<li><strong>状态更新顺序</strong>：先更新小容量，再更新大容量</li>
+<li><strong>状态依赖问题</strong>：更新 <code>f[j]</code> 时，<code>f[j - v[i]]</code> 可能已经被当前物品更新过</li>
+<li><strong>导致错误</strong>：同一物品可能被选择多次</li>
+</ol>
+</div>
+
+<h3 id="代码对比"><a href="#代码对比" class="headerlink" title="代码对比"></a>代码对比</h3><div class="note danger no-icon flat"><p><strong>错误写法（正序遍历）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = v[i]; j &lt;= m; j++) &#123;  <span class="comment">// ❌ 正序遍历</span></span><br><span class="line">        f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        <span class="comment">// 当j较大时，f[j-v[i]]可能已经被当前物品更新过</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>正确写法（逆序遍历）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= v[i]; j--) &#123;  <span class="comment">// ✅ 逆序遍历</span></span><br><span class="line">        f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        <span class="comment">// f[j-v[i]]始终是前i-1个物品的状态</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>空间复杂度优化</strong>：从 O(n×V) 优化到 O(V)</p>
+</div>
+
+<h2 id="4-完整示例"><a href="#4-完整示例" class="headerlink" title="4. 完整示例"></a>4. 完整示例</h2><div class="note info no-icon flat"><p><strong>题目</strong>：有4个物品，背包容量为5。物品信息如下：</p>
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th>体积</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>4</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>5</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note success no-icon flat"><p><strong>求解过程</strong>：</p>
+<p>使用二维DP，状态转移表如下：</p>
+<table>
+<thead>
+<tr>
+<th>i\j</th>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>6</td>
+<td>6</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>6</td>
+<td>8</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>2</td>
+<td>4</td>
+<td>6</td>
+<td>6</td>
+<td>8</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note success no-icon flat"><p><strong>答案</strong>：最大价值为8（选择物品1和物品3）</p>
+</div>
+
+<h2 id="5-时间复杂度分析"><a href="#5-时间复杂度分析" class="headerlink" title="5. 时间复杂度分析"></a>5. 时间复杂度分析</h2><div class="note warning no-icon flat"><ul>
+<li><strong>时间复杂度</strong>：O(n×V)<ul>
+<li>需要遍历n个物品，每个物品需要遍历V个容量</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：<ul>
+<li>二维DP：O(n×V)</li>
+<li>一维DP：O(V)</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="完全背包问题"><a href="#完全背包问题" class="headerlink" title="完全背包问题"></a>完全背包问题</h1><h2 id="1-问题描述-1"><a href="#1-问题描述-1" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h2><div class="note warning no-icon flat"><p><strong>完全背包问题</strong>：有N个物品和一个容量为V的背包。每个物品可以使用<strong>无限次</strong>。第i个物品的体积是 <code>v[i]</code>，价值是 <code>w[i]</code>。</p>
+<p><strong>求解</strong>：将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+<p><strong>特点</strong>：每种物品可以选择0次、1次、2次…无限次</p>
+</div>
+
+<h2 id="2-问题分析-1"><a href="#2-问题分析-1" class="headerlink" title="2. 问题分析"></a>2. 问题分析</h2><h3 id="方法一：常规分析方法-1"><a href="#方法一：常规分析方法-1" class="headerlink" title="方法一：常规分析方法"></a>方法一：常规分析方法</h3><div class="note info no-icon flat"><p>常规分析方法是最常用的动态规划分析方法，通过以下步骤进行：</p>
+</div>
+
+<p><strong>第一步：状态定义</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><code>dp[i][j]</code> 表示前i个物品，在容量为j的背包中能获得的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态转移方程</strong></p>
+<div class="note warning no-icon flat"><p>对于第i个物品，可以选择0次、1次、2次…直到容量不够为止。</p>
+</div>
+
+<div class="note info no-icon flat"><p><strong>朴素思路</strong>（三层循环）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i], dp[i-1][j-2*v[i]] + 2*w[i], ...)</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>优化思路</strong>：<br>观察发现，<code>dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])</code></p>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>状态转移方程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])  (j &gt;= v[i])</span><br><span class="line">dp[i][j] = dp[i-1][j]  (j &lt; v[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note warning no-icon flat"><p><strong>与01背包的区别</strong>：</p>
+<ul>
+<li>01背包：<code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i])</code></li>
+<li>完全背包：<code>dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])</code></li>
+</ul>
+<p>注意：完全背包使用的是 <code>dp[i][j-v[i]]</code>（当前物品可以继续选），而01背包使用的是 <code>dp[i-1][j-v[i]]</code>（当前物品只能选一次）</p>
+</div>
+
+<h3 id="方法二：闫氏DP分析法-1"><a href="#方法二：闫氏DP分析法-1" class="headerlink" title="方法二：闫氏DP分析法"></a>方法二：闫氏DP分析法</h3><div class="note info no-icon flat"><p>闫氏DP分析法是由算法竞赛教练闫学灿（yxc）总结的一种系统化的动态规划分析方法。这种方法通过<strong>集合</strong>的角度来理解动态规划，使问题分析更加清晰和系统化。</p>
+</div>
+
+<p><strong>第一步：状态表示</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><strong>集合</strong>：<code>dp[i][j]</code> 表示所有只考虑前i个物品，且总体积不超过j的选法集合</li>
+<li><strong>属性</strong>：集合中所有方案的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态计算</strong></p>
+<div class="note warning no-icon flat"><p>将集合 <code>dp[i][j]</code> 按选择第i个物品的个数k进行划分：</p>
+<ul>
+<li><strong>不选第i个物品</strong>：<code>dp[i-1][j]</code></li>
+<li><strong>选1个第i个物品</strong>：<code>dp[i-1][j-v[i]] + w[i]</code></li>
+<li><strong>选2个第i个物品</strong>：<code>dp[i-1][j-2*v[i]] + 2*w[i]</code></li>
+<li><strong>选k个第i个物品</strong>：<code>dp[i-1][j-k*v[i]] + k*w[i]</code>（k*v[i] &lt;&#x3D; j）</li>
+</ul>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>优化</strong>：通过数学推导，可以优化为：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<h2 id="3-算法实现-1"><a href="#3-算法实现-1" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h2><h3 id="3-1-二维DP实现（朴素版本）"><a href="#3-1-二维DP实现（朴素版本）" class="headerlink" title="3.1 二维DP实现（朴素版本）"></a>3.1 二维DP实现（朴素版本）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> f[N][N];  <span class="comment">// f[i][j] 表示前i个物品，容量为j时的最大价值</span></span><br><span class="line"><span class="type">int</span> v[N], w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】三层循环版本</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="comment">// 枚举选择第i个物品的个数k</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k * v[i] &lt;= j; k++) &#123;</span><br><span class="line">                f[i][j] = <span class="built_in">max</span>(f[i][j], f[i - <span class="number">1</span>][j - k * v[i]] + k * w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note warning no-icon flat"><p><strong>时间复杂度</strong>：O(n×V×k)，其中k是每个物品最多能选择的个数，效率较低。</p>
+</div>
+
+<h3 id="3-2-二维DP优化版本"><a href="#3-2-二维DP优化版本" class="headerlink" title="3.2 二维DP优化版本"></a>3.2 二维DP优化版本</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> f[N][N];</span><br><span class="line"><span class="type">int</span> v[N], w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】优化版本</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="comment">// 不选第i个物品</span></span><br><span class="line">            f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 选第i个物品（可以选多个）</span></span><br><span class="line">            <span class="keyword">if</span> (j &gt;= v[i]) &#123;</span><br><span class="line">                f[i][j] = <span class="built_in">max</span>(f[i][j], f[i][j - v[i]] + w[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note success no-icon flat"><p><strong>优化说明</strong>：</p>
+<ul>
+<li>使用 <code>f[i][j - v[i]]</code> 而不是 <code>f[i-1][j - v[i]]</code></li>
+<li>这样可以在当前物品已经选择的基础上继续选择，实现”无限次”的效果</li>
+</ul>
+</div>
+
+<h3 id="3-3-一维DP优化（空间优化）"><a href="#3-3-一维DP优化（空间优化）" class="headerlink" title="3.3 一维DP优化（空间优化）"></a>3.3 一维DP优化（空间优化）</h3><div class="note info no-icon flat"><p>与01背包类似，完全背包也可以使用一维数组优化。</p>
+<p><strong>关键点</strong>：需要<strong>正序</strong>遍历容量j，允许同一物品被选择多次。</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">1010</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> f[N];  <span class="comment">// f[j] 表示容量为j时的最大价值</span></span><br><span class="line"><span class="type">int</span> v[N], w[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n, m;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】一维优化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 【关键】正序遍历容量，允许同一物品选择多次</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = v[i]; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="comment">// f[j] 表示不选第i个物品（或已经选过）</span></span><br><span class="line">            <span class="comment">// f[j - v[i]] + w[i] 表示再选一个第i个物品</span></span><br><span class="line">            f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么需要正序遍历？</strong></p>
+<div class="note danger no-icon flat"><p>这是完全背包一维优化的<strong>关键点</strong>，与01背包的逆序遍历形成鲜明对比！</p>
+</div>
+
+<h3 id="逆序遍历的问题"><a href="#逆序遍历的问题" class="headerlink" title="逆序遍历的问题"></a>逆序遍历的问题</h3><div class="note warning no-icon flat"><p>如果使用<strong>逆序遍历</strong>（j从m到v[i]），会发生什么？</p>
+<p><strong>示例</strong>：有1个物品，体积v[1]&#x3D;2，价值w[1]&#x3D;3，背包容量m&#x3D;4</p>
+</div>
+
+<div class="note info no-icon flat"><p><strong>逆序遍历过程</strong>（错误示例，对于完全背包）：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>j</th>
+<th>f[j] 更新前</th>
+<th>f[j-v[1]]</th>
+<th>f[j] 更新后</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>4</td>
+<td>f[4]&#x3D;0</td>
+<td>f[2]&#x3D;0</td>
+<td>f[4]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>f[3]&#x3D;0</td>
+<td>f[1]&#x3D;0</td>
+<td>f[3]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>2</td>
+<td>f[2]&#x3D;0</td>
+<td>f[0]&#x3D;0</td>
+<td>f[2]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>问题分析</strong>：</p>
+<ul>
+<li>当j&#x3D;4时，<code>f[2]</code>还是0（未被更新），使用的是<strong>上一轮</strong>的状态</li>
+<li><code>f[4] = max(f[4], f[2] + w[1]) = max(0, 0+3) = 3</code></li>
+<li>这表示只选择了1个物品1，<strong>无法实现”无限次”选择</strong></li>
+<li><strong>违反了完全背包”每种物品可以选无限次”的规则</strong></li>
+</ul>
+</div>
+
+<h3 id="正序遍历的正确性"><a href="#正序遍历的正确性" class="headerlink" title="正序遍历的正确性"></a>正序遍历的正确性</h3><div class="note success no-icon flat"><p>使用<strong>正序遍历</strong>（j从v[i]到m），可以实现”无限次”选择。</p>
+</div>
+
+<div class="note info no-icon flat"><p><strong>正序遍历过程</strong>（正确示例）：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>j</th>
+<th>f[j] 更新前</th>
+<th>f[j-v[1]]</th>
+<th>f[j] 更新后</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>f[2]&#x3D;0</td>
+<td>f[0]&#x3D;0</td>
+<td>f[2]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>f[3]&#x3D;0</td>
+<td>f[1]&#x3D;0</td>
+<td>f[3]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择1个物品1</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>f[4]&#x3D;0</td>
+<td>f[2]&#x3D;3</td>
+<td>f[4]&#x3D;max(0, 3+3)&#x3D;6</td>
+<td>✅ <strong>正确</strong>：选择2个物品1！</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note success no-icon flat"><p><strong>正确性分析</strong>：</p>
+<ul>
+<li>当j&#x3D;4时，<code>f[2]</code>已经被更新为3（表示已经选择了1个物品1）</li>
+<li><code>f[4] = max(f[4], f[2] + w[1]) = max(0, 3+3) = 6</code></li>
+<li>这表示在已经选择1个物品1的基础上，又选择了1个物品1，总共选择了2个</li>
+<li><strong>符合完全背包”每种物品可以选无限次”的要求</strong></li>
+<li>正序遍历保证了 <code>f[j-v[i]]</code> 可能包含当前物品，允许继续选择</li>
+</ul>
+</div>
+
+<h3 id="对比表格-1"><a href="#对比表格-1" class="headerlink" title="对比表格"></a>对比表格</h3><div class="note warning no-icon flat"><p><strong>逆序遍历 vs 正序遍历对比</strong>（以物品1，体积2，价值3为例，完全背包）：</p>
+<table>
+<thead>
+<tr>
+<th>容量j</th>
+<th>逆序遍历（错误）</th>
+<th>正序遍历（正确）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>f[j]更新前</td>
+<td>f[j-v[1]]</td>
+</tr>
+<tr>
+<td>2</td>
+<td>0</td>
+<td>f[0]&#x3D;0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>0</td>
+<td>f[1]&#x3D;0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>0</td>
+<td>f[2]&#x3D;0 ❌</td>
+</tr>
+</tbody></table>
+<p><strong>关键区别</strong>：</p>
+<ul>
+<li><strong>逆序</strong>：j&#x3D;4时，f[2]还是0（未更新），只能选择1个物品1，无法实现无限次</li>
+<li><strong>正序</strong>：j&#x3D;4时，f[2]已经被更新为3，可以在已选择的基础上继续选择，实现无限次</li>
+</ul>
+<p><strong>更详细的示例</strong>（容量为6）：</p>
+<table>
+<thead>
+<tr>
+<th>容量j</th>
+<th>正序遍历过程</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>2</td>
+<td>f[2] &#x3D; max(0, f[0]+3) &#x3D; 3</td>
+<td>选择1个物品1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>f[4] &#x3D; max(0, f[2]+3) &#x3D; max(0, 3+3) &#x3D; 6</td>
+<td>选择2个物品1（在f[2]基础上再选1个）</td>
+</tr>
+<tr>
+<td>6</td>
+<td>f[6] &#x3D; max(0, f[4]+3) &#x3D; max(0, 6+3) &#x3D; 9</td>
+<td>选择3个物品1（在f[4]基础上再选1个）</td>
+</tr>
+</tbody></table>
+</div>
+
+<h3 id="详细原理说明-1"><a href="#详细原理说明-1" class="headerlink" title="详细原理说明"></a>详细原理说明</h3><div class="note info no-icon flat"><p><strong>状态转移方程回顾</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[j] = max(f[j], f[j - v[i]] + w[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>关键理解</strong>：</p>
+<ul>
+<li><code>f[j]</code> 表示容量为j时的最大价值</li>
+<li><code>f[j - v[i]]</code> 应该是<strong>可以包含当前物品i</strong>的状态</li>
+<li>在完全背包中，每个物品可以选无限次，所以 <code>f[j - v[i]]</code> 可以来自<strong>前i个物品</strong>的状态（包括当前物品）</li>
+</ul>
+</div>
+
+<div class="note warning no-icon flat"><p><strong>正序遍历的工作原理</strong>：</p>
+<ol>
+<li><strong>从小到大遍历容量</strong>：j &#x3D; v[i], v[i]+1, …, m</li>
+<li><strong>状态更新顺序</strong>：先更新小容量，再更新大容量</li>
+<li><strong>状态依赖关系</strong>：更新 <code>f[j]</code> 时，<code>f[j - v[i]]</code> 可能已经被当前物品更新过</li>
+<li><strong>实现无限次</strong>：<code>f[j - v[i]]</code> 可以包含当前物品，允许在已选择的基础上继续选择</li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>逆序遍历的错误原因</strong>（对于完全背包）：</p>
+<ol>
+<li><strong>从大到小遍历容量</strong>：j &#x3D; m, m-1, …, v[i]</li>
+<li><strong>状态更新顺序</strong>：先更新大容量，再更新小容量</li>
+<li><strong>状态依赖问题</strong>：更新 <code>f[j]</code> 时，<code>f[j - v[i]]</code> 还没有被当前物品更新过</li>
+<li><strong>导致错误</strong>：只能选择1次，无法实现无限次选择</li>
+</ol>
+</div>
+
+<h3 id="代码对比-1"><a href="#代码对比-1" class="headerlink" title="代码对比"></a>代码对比</h3><div class="note danger no-icon flat"><p><strong>错误写法（逆序遍历，对于完全背包）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= v[i]; j--) &#123;  <span class="comment">// ❌ 逆序遍历（01背包的写法）</span></span><br><span class="line">        f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        <span class="comment">// f[j-v[i]]始终是前i-1个物品的状态，无法实现无限次</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>正确写法（正序遍历，完全背包）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = v[i]; j &lt;= m; j++) &#123;  <span class="comment">// ✅ 正序遍历</span></span><br><span class="line">        f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        <span class="comment">// f[j-v[i]]可能包含当前物品，允许继续选择</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="01背包-vs-完全背包的遍历顺序对比"><a href="#01背包-vs-完全背包的遍历顺序对比" class="headerlink" title="01背包 vs 完全背包的遍历顺序对比"></a>01背包 vs 完全背包的遍历顺序对比</h3><div class="note success no-icon flat"><table>
+<thead>
+<tr>
+<th>背包类型</th>
+<th>遍历顺序</th>
+<th>原因</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>01背包</strong></td>
+<td><strong>逆序</strong>（j从m到v[i]）</td>
+<td><code>f[j-v[i]]</code>必须是前i-1个物品的状态</td>
+<td>每个物品最多选1次</td>
+</tr>
+<tr>
+<td><strong>完全背包</strong></td>
+<td><strong>正序</strong>（j从v[i]到m）</td>
+<td><code>f[j-v[i]]</code>可以包含当前物品</td>
+<td>每个物品可以选无限次</td>
+</tr>
+</tbody></table>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li><strong>01背包</strong>：逆序（倒着来，避免重复）</li>
+<li><strong>完全背包</strong>：正序（顺着来，允许重复）</li>
+</ul>
+</div>
+
+<h2 id="4-01背包与完全背包的对比"><a href="#4-01背包与完全背包的对比" class="headerlink" title="4. 01背包与完全背包的对比"></a>4. 01背包与完全背包的对比</h2><div class="note warning no-icon flat"><table>
+<thead>
+<tr>
+<th>特性</th>
+<th>01背包</th>
+<th>完全背包</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>物品选择</strong></td>
+<td>每种物品最多选1次</td>
+<td>每种物品可以选无限次</td>
+</tr>
+<tr>
+<td><strong>状态转移</strong></td>
+<td><code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i])</code></td>
+<td><code>dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])</code></td>
+</tr>
+<tr>
+<td><strong>一维DP遍历</strong></td>
+<td><strong>逆序</strong>（j从m到v[i]）</td>
+<td><strong>正序</strong>（j从v[i]到m）</td>
+</tr>
+<tr>
+<td><strong>原因</strong></td>
+<td>避免同一物品被选多次</td>
+<td>允许同一物品被选多次</td>
+</tr>
+</tbody></table>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li>01背包：逆序（倒着来，避免重复）</li>
+<li>完全背包：正序（顺着来，允许重复）</li>
+</ul>
+</div>
+
+<h2 id="5-完整示例"><a href="#5-完整示例" class="headerlink" title="5. 完整示例"></a>5. 完整示例</h2><div class="note info no-icon flat"><p><strong>题目</strong>：有3种物品，背包容量为5。物品信息如下：</p>
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th>体积</th>
+<th>价值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>1</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>2</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>4</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note success no-icon flat"><p><strong>求解过程</strong>：</p>
+<p>使用一维DP，状态转移过程：</p>
+<ul>
+<li><p>i&#x3D;1（物品1，体积1，价值2）：</p>
+<ul>
+<li>j&#x3D;1: f[1] &#x3D; max(0, f[0]+2) &#x3D; 2</li>
+<li>j&#x3D;2: f[2] &#x3D; max(2, f[1]+2) &#x3D; 4</li>
+<li>j&#x3D;3: f[3] &#x3D; max(4, f[2]+2) &#x3D; 6</li>
+<li>j&#x3D;4: f[4] &#x3D; max(6, f[3]+2) &#x3D; 8</li>
+<li>j&#x3D;5: f[5] &#x3D; max(8, f[4]+2) &#x3D; 10</li>
+</ul>
+</li>
+<li><p>i&#x3D;2（物品2，体积2，价值3）：</p>
+<ul>
+<li>j&#x3D;2: f[2] &#x3D; max(4, f[0]+3) &#x3D; 4</li>
+<li>j&#x3D;3: f[3] &#x3D; max(6, f[1]+3) &#x3D; 6</li>
+<li>j&#x3D;4: f[4] &#x3D; max(8, f[2]+3) &#x3D; 8</li>
+<li>j&#x3D;5: f[5] &#x3D; max(10, f[3]+3) &#x3D; 10</li>
+</ul>
+</li>
+<li><p>i&#x3D;3（物品3，体积3，价值4）：</p>
+<ul>
+<li>j&#x3D;3: f[3] &#x3D; max(6, f[0]+4) &#x3D; 6</li>
+<li>j&#x3D;4: f[4] &#x3D; max(8, f[1]+4) &#x3D; 8</li>
+<li>j&#x3D;5: f[5] &#x3D; max(10, f[2]+4) &#x3D; 10</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<div class="note success no-icon flat"><p><strong>答案</strong>：最大价值为10（选择5个物品1，或选择2个物品1和1个物品3等）</p>
+</div>
+
+<h2 id="6-时间复杂度分析"><a href="#6-时间复杂度分析" class="headerlink" title="6. 时间复杂度分析"></a>6. 时间复杂度分析</h2><div class="note warning no-icon flat"><ul>
+<li><strong>时间复杂度</strong>：<ul>
+<li>朴素版本：O(n×V×k)，k为每个物品最多能选择的个数</li>
+<li>优化版本：O(n×V)</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：<ul>
+<li>二维DP：O(n×V)</li>
+<li>一维DP：O(V)</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="多重背包问题"><a href="#多重背包问题" class="headerlink" title="多重背包问题"></a>多重背包问题</h1><h2 id="1-问题描述-2"><a href="#1-问题描述-2" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h2><div class="note warning no-icon flat"><p><strong>多重背包问题</strong>：有N个物品和一个容量为V的背包。第i种物品最多有 <code>s[i]</code> 件可用，每件体积是 <code>v[i]</code>，价值是 <code>w[i]</code>。</p>
+<p><strong>求解</strong>：将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+<p><strong>特点</strong>：每种物品有数量限制，既不是01背包（只能选1次），也不是完全背包（可以选无限次）</p>
+</div>
+
+<h2 id="2-问题分析-2"><a href="#2-问题分析-2" class="headerlink" title="2. 问题分析"></a>2. 问题分析</h2><h3 id="方法一：常规分析方法-2"><a href="#方法一：常规分析方法-2" class="headerlink" title="方法一：常规分析方法"></a>方法一：常规分析方法</h3><div class="note info no-icon flat"><p>常规分析方法是最常用的动态规划分析方法，通过以下步骤进行：</p>
+</div>
+
+<p><strong>第一步：状态定义</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><code>dp[i][j]</code> 表示前i种物品，在容量为j的背包中能获得的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态转移方程</strong></p>
+<div class="note warning no-icon flat"><p>对于第i种物品，可以选择0件、1件、2件…最多 <code>s[i]</code> 件。</p>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>状态转移方程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i], dp[i-1][j-2*v[i]] + 2*w[i], ..., dp[i-1][j-k*v[i]] + k*w[i])</span><br><span class="line">其中 k = min(s[i], j/v[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="方法二：闫氏DP分析法-2"><a href="#方法二：闫氏DP分析法-2" class="headerlink" title="方法二：闫氏DP分析法"></a>方法二：闫氏DP分析法</h3><div class="note info no-icon flat"><p>闫氏DP分析法是由算法竞赛教练闫学灿（yxc）总结的一种系统化的动态规划分析方法。这种方法通过<strong>集合</strong>的角度来理解动态规划，使问题分析更加清晰和系统化。</p>
+</div>
+
+<p><strong>第一步：状态表示</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><strong>集合</strong>：<code>dp[i][j]</code> 表示所有只考虑前i种物品，且总体积不超过j的选法集合</li>
+<li><strong>属性</strong>：集合中所有方案的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态计算</strong></p>
+<div class="note warning no-icon flat"><p>将集合 <code>dp[i][j]</code> 按选择第i种物品的个数k进行划分：</p>
+<ul>
+<li><strong>不选第i种物品</strong>：<code>dp[i-1][j]</code></li>
+<li><strong>选1件第i种物品</strong>：<code>dp[i-1][j-v[i]] + w[i]</code></li>
+<li><strong>选2件第i种物品</strong>：<code>dp[i-1][j-2*v[i]] + 2*w[i]</code></li>
+<li><strong>选k件第i种物品</strong>：<code>dp[i-1][j-k*v[i]] + k*w[i]</code>（k &lt;&#x3D; s[i] 且 k*v[i] &lt;&#x3D; j）</li>
+</ul>
+</div>
+
+<h2 id="3-算法实现-2"><a href="#3-算法实现-2" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h2><h3 id="3-1-朴素实现（三层循环）"><a href="#3-1-朴素实现（三层循环）" class="headerlink" title="3.1 朴素实现（三层循环）"></a>3.1 朴素实现（三层循环）</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> v[N], w[N], s[N];  <span class="comment">// v[i]体积，w[i]价值，s[i]数量</span></span><br><span class="line"><span class="type">int</span> f[N][N];  <span class="comment">// f[i][j] 表示前i种物品，容量为j时的最大价值</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; v[i] &gt;&gt; w[i] &gt;&gt; s[i];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】三层循环</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="comment">// 枚举选择第i种物品的个数k（0到s[i]）</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt;= s[i] &amp;&amp; k * v[i] &lt;= j; k++) &#123;</span><br><span class="line">                f[i][j] = <span class="built_in">max</span>(f[i][j], f[i - <span class="number">1</span>][j - v[i] * k] + w[i] * k);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon flat"><p><strong>代码说明：</strong></p>
+<ul>
+<li>外层循环遍历物品种类</li>
+<li>中层循环遍历容量</li>
+<li>内层循环枚举选择当前物品的个数k</li>
+<li>时间复杂度：O(n×V×s)，其中s是每种物品的平均数量</li>
+</ul>
+</div>
+
+<h3 id="为什么不能像完全背包一样省略第三重循环？"><a href="#为什么不能像完全背包一样省略第三重循环？" class="headerlink" title="为什么不能像完全背包一样省略第三重循环？"></a>为什么不能像完全背包一样省略第三重循环？</h3><div class="note info no-icon flat"><p><strong>关键差别在 <code>f[i][j-v]</code> 的含义。</strong></p>
+<ul>
+<li><p><strong>完全背包</strong>：<code>f[i][j-v]</code> 只受容量限制，可以顺着容量不断追加当前物品，因此正序遍历也不会超限。  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f[i][j] = <span class="built_in">max</span>(f[i<span class="number">-1</span>][j], f[i<span class="number">-1</span>][j-v]+w, f[i<span class="number">-1</span>][j<span class="number">-2</span>v]+<span class="number">2</span>w, f[i<span class="number">-1</span>][j<span class="number">-3</span>v]+<span class="number">3</span>w,.., f[i<span class="number">-1</span>][j-kv]+kw)</span><br><span class="line">f[i][j-v] = <span class="built_in">max</span>(         f[i<span class="number">-1</span>][j-v],   f[i<span class="number">-1</span>][j<span class="number">-2</span>v]+w,  f[i<span class="number">-1</span>][j<span class="number">-3</span>v]+<span class="number">2</span>w,.., f[i<span class="number">-1</span>][j-kv]+(k<span class="number">-1</span>)w)</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>多重背包</strong>：<code>f[i][j-v]</code> 同时受件数 <code>S</code> 限制，展开会额外出现“最后一项” <code>f[i-1][j-(S+1)v] + S w</code>，提示库存已经耗尽：  </p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">f[i,j] = <span class="built_in">max</span>(f[i<span class="number">-1</span>,j], f[i<span class="number">-1</span>,j-v]+w, f[i<span class="number">-1</span>,j<span class="number">-2</span>v]+<span class="number">2</span>w,.., f[i<span class="number">-1</span>,j-sv] + sw ) </span><br><span class="line">f[i,j-v] = <span class="built_in">max</span>(        f[i<span class="number">-1</span>,j-v],   f[i<span class="number">-1</span>,j<span class="number">-2</span>v]+w,.., f[i<span class="number">-1</span>,j-sv]+(s<span class="number">-1</span>)w, f[i<span class="number">-1</span>,j-(s+<span class="number">1</span>)v]+sw )</span><br></pre></td></tr></table></figure>
+<p>一旦省去第三层 <code>k</code> 枚举，就等同默认还能继续拿，把多重背包错写成完全背包。</p>
+</li>
+</ul>
+</div>
+
+<div class="note warning no-icon flat"><p>朴素实现里的第三层 <code>for (int k = 0; k &lt;= s[i] &amp;&amp; k * v[i] &lt;= j; k++)</code> 是维护“已用件数”的唯一信息。想提速只能换一种表达方式（比如二进制拆分，把有限件数拆成若干个 01 物品，再按 01 背包逆序转移），既保留数量约束，又能把复杂度从 <code>O(nVs)</code> 降到 <code>O(nVlog s)</code>。</p>
+</div>
+
+<h3 id="3-2-二进制优化"><a href="#3-2-二进制优化" class="headerlink" title="3.2 二进制优化"></a>3.2 二进制优化</h3><div class="note info no-icon flat"><p><strong>二进制优化</strong>是多重背包问题的重要优化方法。核心思想是：将每种物品的s[i]件物品，按照2的幂次进行分组，转化为01背包问题。</p>
+<p><strong>原理</strong>：任何正整数都可以表示为2的幂次之和（二进制表示），例如：</p>
+<ul>
+<li>7 &#x3D; 1 + 2 + 4</li>
+<li>10 &#x3D; 2 + 8</li>
+<li>13 &#x3D; 1 + 4 + 8</li>
+</ul>
+<p>这样可以将s[i]件物品拆分成 log(s[i]) 个”新物品”，每个新物品只能选一次，转化为01背包问题。</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">12010</span>, M = <span class="number">2010</span>;  <span class="comment">// N需要开大一些，因为二进制拆分后物品数量会增加</span></span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> v[N], w[N];  <span class="comment">// 拆分后的物品</span></span><br><span class="line"><span class="type">int</span> f[M];  <span class="comment">// 一维DP数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    <span class="type">int</span> cnt = <span class="number">0</span>;  <span class="comment">// 拆分后的物品数量</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="type">int</span> a, b, s;  <span class="comment">// a体积，b价值，s数量</span></span><br><span class="line">        cin &gt;&gt; a &gt;&gt; b &gt;&gt; s;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 【二进制拆分】</span></span><br><span class="line">        <span class="type">int</span> k = <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span> (k &lt;= s) &#123;</span><br><span class="line">            cnt++;</span><br><span class="line">            v[cnt] = a * k;  <span class="comment">// 新物品的体积 = 原物品体积 × k</span></span><br><span class="line">            w[cnt] = b * k;  <span class="comment">// 新物品的价值 = 原物品价值 × k</span></span><br><span class="line">            s -= k;</span><br><span class="line">            k *= <span class="number">2</span>;  <span class="comment">// 2的幂次：1, 2, 4, 8, ...</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 处理剩余部分</span></span><br><span class="line">        <span class="keyword">if</span> (s &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            cnt++;</span><br><span class="line">            v[cnt] = a * s;</span><br><span class="line">            w[cnt] = b * s;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    n = cnt;  <span class="comment">// 更新物品数量</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【转化为01背包问题】</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= v[i]; j--) &#123;  <span class="comment">// 逆序遍历（01背包）</span></span><br><span class="line">            f[j] = <span class="built_in">max</span>(f[j], f[j - v[i]] + w[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon flat"><p><strong>二进制拆分示例</strong>：</p>
+<p>假设第i种物品有7件（s[i] &#x3D; 7），可以拆分为：</p>
+<ul>
+<li>1件（k&#x3D;1）：体积v，价值w</li>
+<li>2件（k&#x3D;2）：体积2v，价值2w</li>
+<li>4件（k&#x3D;4）：体积4v，价值4w</li>
+</ul>
+<p>这样可以用这3个”新物品”组合出0-7件原物品的所有可能。</p>
+</div>
+
+<div class="note success no-icon flat"><p><strong>优化效果</strong>：</p>
+<ul>
+<li>时间复杂度：从 O(n×V×s) 优化到 O(n×V×log(s))</li>
+<li>空间复杂度：O(V)</li>
+</ul>
+</div>
+
+<h2 id="4-完整示例-1"><a href="#4-完整示例-1" class="headerlink" title="4. 完整示例"></a>4. 完整示例</h2><div class="note info no-icon flat"><p><strong>题目</strong>：有3种物品，背包容量为10。物品信息如下：</p>
+<table>
+<thead>
+<tr>
+<th>物品</th>
+<th>体积</th>
+<th>价值</th>
+<th>数量</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>2</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>3</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>1</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note success no-icon flat"><p><strong>求解过程</strong>：</p>
+<p>使用二进制优化后，物品拆分：</p>
+<ul>
+<li>物品1（2件）：拆分为 1件(2,3) 和 1件(2,3)</li>
+<li>物品2（3件）：拆分为 1件(3,4)、1件(3,4)、1件(3,4)</li>
+<li>物品3（1件）：拆分为 1件(4,5)</li>
+</ul>
+<p>转化为01背包问题求解。</p>
+</div>
+
+<h2 id="5-时间复杂度分析-1"><a href="#5-时间复杂度分析-1" class="headerlink" title="5. 时间复杂度分析"></a>5. 时间复杂度分析</h2><div class="note warning no-icon flat"><ul>
+<li><strong>朴素版本</strong>：O(n×V×s)<ul>
+<li>需要枚举每种物品的每种数量选择</li>
+</ul>
+</li>
+<li><strong>二进制优化版本</strong>：O(n×V×log(s))<ul>
+<li>将每种物品拆分为log(s)个新物品</li>
+<li>转化为01背包问题</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：O(V)（一维DP）</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="分组背包问题"><a href="#分组背包问题" class="headerlink" title="分组背包问题"></a>分组背包问题</h1><h2 id="1-问题描述-3"><a href="#1-问题描述-3" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h2><div class="note warning no-icon flat"><p><strong>分组背包问题</strong>：有N组物品和一个容量为V的背包。每组物品有若干个，<strong>同一组内的物品最多只能选一个</strong>。第i组物品中第j个物品的体积是 <code>v[i][j]</code>，价值是 <code>w[i][j]</code>。</p>
+<p><strong>求解</strong>：将哪些物品装入背包，可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+<p><strong>特点</strong>：物品分组，每组内最多选一个，但不同组之间可以任意选择</p>
+</div>
+
+<h2 id="2-问题分析-3"><a href="#2-问题分析-3" class="headerlink" title="2. 问题分析"></a>2. 问题分析</h2><h3 id="方法一：常规分析方法-3"><a href="#方法一：常规分析方法-3" class="headerlink" title="方法一：常规分析方法"></a>方法一：常规分析方法</h3><div class="note info no-icon flat"><p>常规分析方法是最常用的动态规划分析方法，通过以下步骤进行：</p>
+</div>
+
+<p><strong>第一步：状态定义</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><code>dp[i][j]</code> 表示前i组物品，在容量为j的背包中能获得的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态转移方程</strong></p>
+<div class="note warning no-icon flat"><p>对于第i组物品，有两种选择：</p>
+<ol>
+<li><strong>不选第i组的任何物品</strong>：<code>dp[i][j] = dp[i-1][j]</code></li>
+<li><strong>选第i组的第k个物品</strong>：<code>dp[i][j] = dp[i-1][j-v[i][k]] + w[i][k]</code>（需要容量足够）</li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>状态转移方程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i][0]] + w[i][0], dp[i-1][j-v[i][1]] + w[i][1], ..., dp[i-1][j-v[i][k]] + w[i][k])</span><br><span class="line">其中k遍历第i组的所有物品</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="方法二：闫氏DP分析法-3"><a href="#方法二：闫氏DP分析法-3" class="headerlink" title="方法二：闫氏DP分析法"></a>方法二：闫氏DP分析法</h3><div class="note info no-icon flat"><p>闫氏DP分析法是由算法竞赛教练闫学灿（yxc）总结的一种系统化的动态规划分析方法。这种方法通过<strong>集合</strong>的角度来理解动态规划，使问题分析更加清晰和系统化。</p>
+</div>
+
+<p><strong>第一步：状态表示</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><strong>集合</strong>：<code>dp[i][j]</code> 表示所有只考虑前i组物品，且总体积不超过j的选法集合</li>
+<li><strong>属性</strong>：集合中所有方案的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态计算</strong></p>
+<div class="note warning no-icon flat"><p>将集合 <code>dp[i][j]</code> 按是否选择第i组物品进行划分：</p>
+<ol>
+<li><strong>不选第i组的任何物品</strong>：<code>dp[i-1][j]</code></li>
+<li><strong>选第i组的第0个物品</strong>：<code>dp[i-1][j-v[i][0]] + w[i][0]</code></li>
+<li><strong>选第i组的第1个物品</strong>：<code>dp[i-1][j-v[i][1]] + w[i][1]</code></li>
+<li><strong>选第i组的第k个物品</strong>：<code>dp[i-1][j-v[i][k]] + w[i][k]</code></li>
+</ol>
+</div>
+
+<h2 id="3-算法实现-3"><a href="#3-算法实现-3" class="headerlink" title="3. 算法实现"></a>3. 算法实现</h2><h3 id="3-1-二维DP实现-1"><a href="#3-1-二维DP实现-1" class="headerlink" title="3.1 二维DP实现"></a>3.1 二维DP实现</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> f[N][N];  <span class="comment">// f[i][j] 表示前i组物品，容量为j时的最大价值</span></span><br><span class="line"><span class="type">int</span> v[N][N], w[N][N], s[N];  <span class="comment">// v[i][j]第i组第j个物品的体积，w[i][j]价值，s[i]第i组物品个数</span></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; s[i];  <span class="comment">// 第i组物品的个数</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; s[i]; j++) &#123;</span><br><span class="line">            cin &gt;&gt; v[i][j] &gt;&gt; w[i][j];  <span class="comment">// 读入第i组第j个物品的体积和价值</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= m; j++) &#123;</span><br><span class="line">            <span class="comment">// 不选第i组的任何物品</span></span><br><span class="line">            f[i][j] = f[i - <span class="number">1</span>][j];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 遍历第i组的所有物品，选择其中一个</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s[i]; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (j &gt;= v[i][k]) &#123;</span><br><span class="line">                    f[i][j] = <span class="built_in">max</span>(f[i][j], f[i - <span class="number">1</span>][j - v[i][k]] + w[i][k]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; f[n][m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note info no-icon flat"><p><strong>代码说明：</strong></p>
+<ul>
+<li>外层循环遍历组</li>
+<li>中层循环遍历容量</li>
+<li>内层循环遍历当前组内的所有物品</li>
+<li>对于每组，最多只能选择一个物品</li>
+</ul>
+</div>
+
+<h3 id="3-2-一维DP优化（空间优化）-1"><a href="#3-2-一维DP优化（空间优化）-1" class="headerlink" title="3.2 一维DP优化（空间优化）"></a>3.2 一维DP优化（空间优化）</h3><div class="note info no-icon flat"><p>分组背包也可以使用一维数组优化，但需要注意：<strong>容量需要逆序遍历</strong>，因为每组内最多只能选一个物品，类似于01背包。</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="type">const</span> <span class="type">int</span> N = <span class="number">110</span>;</span><br><span class="line"></span><br><span class="line"><span class="type">int</span> n, m;</span><br><span class="line"><span class="type">int</span> v[N][N], w[N][N], s[N];  <span class="comment">// v[i][j]第i组第j个物品的体积，w[i][j]价值，s[i]第i组物品个数</span></span><br><span class="line"><span class="type">int</span> f[N];  <span class="comment">// 一维DP数组</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    cin &gt;&gt; n &gt;&gt; m;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        cin &gt;&gt; s[i];</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt; s[i]; j++) &#123;</span><br><span class="line">            cin &gt;&gt; v[i][j] &gt;&gt; w[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 【状态转移】一维优化</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="comment">// 【关键】逆序遍历容量，保证每组最多选一个（类似01背包）</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= <span class="number">0</span>; j--) &#123;</span><br><span class="line">            <span class="comment">// 遍历第i组的所有物品</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s[i]; k++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (v[i][k] &lt;= j) &#123;</span><br><span class="line">                    f[j] = <span class="built_in">max</span>(f[j], f[j - v[i][k]] + w[i][k]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    cout &lt;&lt; f[m] &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>为什么需要逆序遍历？</strong></p>
+<div class="note danger no-icon flat"><p>这是分组背包一维优化的<strong>关键点</strong>，与01背包类似，但需要特别注意循环顺序！</p>
+</div>
+
+<h3 id="正序遍历的问题-1"><a href="#正序遍历的问题-1" class="headerlink" title="正序遍历的问题"></a>正序遍历的问题</h3><div class="note warning no-icon flat"><p>如果使用<strong>正序遍历</strong>（j从0到m），会发生什么？</p>
+<p><strong>示例</strong>：有1组物品（第1组），包含2个物品：</p>
+<ul>
+<li>物品1-0：体积v[1][0]&#x3D;2，价值w[1][0]&#x3D;3</li>
+<li>物品1-1：体积v[1][1]&#x3D;3，价值w[1][1]&#x3D;4</li>
+</ul>
+<p>背包容量m&#x3D;5</p>
+</div>
+
+<div class="note info no-icon flat"><p><strong>正序遍历过程</strong>（错误示例，对于分组背包）：</p>
+<p>假设当前处理第1组，正序遍历容量j：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>j</th>
+<th>处理物品</th>
+<th>f[j] 更新前</th>
+<th>f[j-v[1][k]]</th>
+<th>f[j] 更新后</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>2</td>
+<td>物品1-0</td>
+<td>f[2]&#x3D;0</td>
+<td>f[0]&#x3D;0</td>
+<td>f[2]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择物品1-0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>3</td>
+<td>物品1-0</td>
+<td>f[3]&#x3D;0</td>
+<td>f[1]&#x3D;0</td>
+<td>f[3]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择物品1-0</td>
+</tr>
+<tr>
+<td>3</td>
+<td>3</td>
+<td>物品1-1</td>
+<td>f[3]&#x3D;3</td>
+<td>f[0]&#x3D;0</td>
+<td>f[3]&#x3D;max(3, 0+4)&#x3D;4</td>
+<td>✅ 正确：选择物品1-1</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>物品1-0</td>
+<td>f[4]&#x3D;0</td>
+<td>f[2]&#x3D;3</td>
+<td>f[4]&#x3D;max(0, 3+3)&#x3D;6</td>
+<td>❌ <strong>错误</strong>：选择了2个物品1-0！</td>
+</tr>
+<tr>
+<td>5</td>
+<td>5</td>
+<td>物品1-0</td>
+<td>f[5]&#x3D;0</td>
+<td>f[3]&#x3D;4</td>
+<td>f[5]&#x3D;max(0, 4+3)&#x3D;7</td>
+<td>❌ <strong>错误</strong>：选择了物品1-1和物品1-0！</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>问题分析</strong>：</p>
+<ul>
+<li>当j&#x3D;4时，处理物品1-0，<code>f[2]</code>已经被更新为3（表示已经选择了物品1-0）</li>
+<li><code>f[4] = max(f[4], f[2] + w[1][0]) = max(0, 3+3) = 6</code></li>
+<li>这表示在已经选择物品1-0的基础上，又选择了物品1-0，<strong>违反了”每组最多选一个物品”的规则</strong></li>
+<li>当j&#x3D;5时，处理物品1-0，<code>f[3]</code>已经被更新为4（表示已经选择了物品1-1）</li>
+<li><code>f[5] = max(f[5], f[3] + w[1][0]) = max(0, 4+3) = 7</code></li>
+<li>这表示选择了物品1-1和物品1-0，<strong>同样违反了规则</strong></li>
+</ul>
+</div>
+
+<h3 id="逆序遍历的正确性-1"><a href="#逆序遍历的正确性-1" class="headerlink" title="逆序遍历的正确性"></a>逆序遍历的正确性</h3><div class="note success no-icon flat"><p>使用<strong>逆序遍历</strong>（j从m到0），可以确保每组最多只选一个物品。</p>
+</div>
+
+<div class="note info no-icon flat"><p><strong>逆序遍历过程</strong>（正确示例）：</p>
+<table>
+<thead>
+<tr>
+<th>步骤</th>
+<th>j</th>
+<th>处理物品</th>
+<th>f[j] 更新前</th>
+<th>f[j-v[1][k]]</th>
+<th>f[j] 更新后</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>1</td>
+<td>5</td>
+<td>物品1-0</td>
+<td>f[5]&#x3D;0</td>
+<td>f[3]&#x3D;0</td>
+<td>f[5]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择物品1-0</td>
+</tr>
+<tr>
+<td>2</td>
+<td>5</td>
+<td>物品1-1</td>
+<td>f[5]&#x3D;3</td>
+<td>f[2]&#x3D;0</td>
+<td>f[5]&#x3D;max(3, 0+4)&#x3D;4</td>
+<td>✅ 正确：选择物品1-1（更优）</td>
+</tr>
+<tr>
+<td>3</td>
+<td>4</td>
+<td>物品1-0</td>
+<td>f[4]&#x3D;0</td>
+<td>f[2]&#x3D;0</td>
+<td>f[4]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择物品1-0</td>
+</tr>
+<tr>
+<td>4</td>
+<td>4</td>
+<td>物品1-1</td>
+<td>f[4]&#x3D;3</td>
+<td>f[1]&#x3D;0</td>
+<td>f[4]&#x3D;max(3, 0+4)&#x3D;4</td>
+<td>✅ 正确：选择物品1-1（更优）</td>
+</tr>
+<tr>
+<td>5</td>
+<td>3</td>
+<td>物品1-0</td>
+<td>f[3]&#x3D;0</td>
+<td>f[1]&#x3D;0</td>
+<td>f[3]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择物品1-0</td>
+</tr>
+<tr>
+<td>6</td>
+<td>3</td>
+<td>物品1-1</td>
+<td>f[3]&#x3D;3</td>
+<td>f[0]&#x3D;0</td>
+<td>f[3]&#x3D;max(3, 0+4)&#x3D;4</td>
+<td>✅ 正确：选择物品1-1（更优）</td>
+</tr>
+<tr>
+<td>7</td>
+<td>2</td>
+<td>物品1-0</td>
+<td>f[2]&#x3D;0</td>
+<td>f[0]&#x3D;0</td>
+<td>f[2]&#x3D;max(0, 0+3)&#x3D;3</td>
+<td>✅ 正确：选择物品1-0</td>
+</tr>
+</tbody></table>
+</div>
+
+<div class="note success no-icon flat"><p><strong>正确性分析</strong>：</p>
+<ul>
+<li>当j&#x3D;5时，处理物品1-0，<code>f[3]</code>还是0（未被当前组更新），使用的是<strong>前0组</strong>的状态</li>
+<li><code>f[5] = max(f[5], f[3] + w[1][0]) = max(0, 0+3) = 3</code></li>
+<li>然后处理物品1-1，<code>f[2]</code>还是0，<code>f[5] = max(3, 0+4) = 4</code></li>
+<li><strong>最终f[5]&#x3D;4，只选择了物品1-1，符合”每组最多选一个”的规则</strong></li>
+<li>逆序遍历保证了在处理第i组的物品时，<code>f[j-v[i][k]]</code>使用的是<strong>前i-1组</strong>的状态</li>
+</ul>
+</div>
+
+<h3 id="对比表格-2"><a href="#对比表格-2" class="headerlink" title="对比表格"></a>对比表格</h3><div class="note warning no-icon flat"><p><strong>正序遍历 vs 逆序遍历对比</strong>（以第1组，2个物品为例，分组背包）：</p>
+<p><strong>第1组物品</strong>：</p>
+<ul>
+<li>物品1-0：体积2，价值3</li>
+<li>物品1-1：体积3，价值4</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>容量j</th>
+<th>正序遍历（错误）</th>
+<th>逆序遍历（正确）</th>
+</tr>
+</thead>
+<tbody><tr>
+<td></td>
+<td>处理过程</td>
+<td>f[j]最终值</td>
+</tr>
+<tr>
+<td>2</td>
+<td>物品1-0: f[2]&#x3D;max(0, f[0]+3)&#x3D;3</td>
+<td><strong>3</strong> ✅</td>
+</tr>
+<tr>
+<td>3</td>
+<td>物品1-0: f[3]&#x3D;max(0, f[1]+3)&#x3D;3<br>物品1-1: f[3]&#x3D;max(3, f[0]+4)&#x3D;4</td>
+<td><strong>4</strong> ✅</td>
+</tr>
+<tr>
+<td>4</td>
+<td>物品1-0: f[4]&#x3D;max(0, f[2]+3)&#x3D;6 ❌</td>
+<td><strong>6</strong> ❌</td>
+</tr>
+<tr>
+<td>5</td>
+<td>物品1-0: f[5]&#x3D;max(0, f[3]+3)&#x3D;7 ❌</td>
+<td><strong>7</strong> ❌</td>
+</tr>
+</tbody></table>
+<p><strong>关键区别</strong>：</p>
+<ul>
+<li><strong>正序</strong>：j&#x3D;4时，f[2]已经被更新为3（已选物品1-0），导致可以再选物品1-0，违反规则</li>
+<li><strong>逆序</strong>：j&#x3D;4时，f[2]还是0（未更新），使用的是前0组的状态，确保每组最多选一个</li>
+</ul>
+<p><strong>错误示例详细说明</strong>（正序遍历，j&#x3D;4）：</p>
+<ul>
+<li>处理物品1-0：<code>f[4] = max(0, f[2]+3) = max(0, 3+3) = 6</code></li>
+<li>此时f[2]&#x3D;3表示已经选择了物品1-0，再选物品1-0就违反了”每组最多选一个”的规则</li>
+<li><strong>正确结果应该是4</strong>（选择物品1-1，价值更高）</li>
+</ul>
+</div>
+
+<h3 id="详细原理说明-2"><a href="#详细原理说明-2" class="headerlink" title="详细原理说明"></a>详细原理说明</h3><div class="note info no-icon flat"><p><strong>状态转移方程回顾</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">f[j] = max(f[j], f[j - v[i][k]] + w[i][k])</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>关键理解</strong>：</p>
+<ul>
+<li><code>f[j]</code> 表示容量为j时的最大价值</li>
+<li><code>f[j - v[i][k]]</code> 应该是<strong>前i-1组</strong>的状态，不能包含当前组的任何物品</li>
+<li>在分组背包中，每组最多只能选一个物品，所以 <code>f[j - v[i][k]]</code> 必须来自<strong>前i-1组</strong>的状态</li>
+</ul>
+</div>
+
+<div class="note warning no-icon flat"><p><strong>逆序遍历的工作原理</strong>：</p>
+<ol>
+<li><strong>从大到小遍历容量</strong>：j &#x3D; m, m-1, …, 0</li>
+<li><strong>状态更新顺序</strong>：先更新大容量，再更新小容量</li>
+<li><strong>状态依赖关系</strong>：更新 <code>f[j]</code> 时，<code>f[j - v[i][k]]</code> 还没有被当前组的物品更新过</li>
+<li><strong>确保每组最多选一个</strong>：<code>f[j - v[i][k]]</code> 来自前i-1组，保证当前组最多只选一个物品</li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>正序遍历的错误原因</strong>（对于分组背包）：</p>
+<ol>
+<li><strong>从小到大遍历容量</strong>：j &#x3D; 0, 1, …, m</li>
+<li><strong>状态更新顺序</strong>：先更新小容量，再更新大容量</li>
+<li><strong>状态依赖问题</strong>：更新 <code>f[j]</code> 时，<code>f[j - v[i][k]]</code> 可能已经被当前组的其他物品更新过</li>
+<li><strong>导致错误</strong>：可能在同一组内选择多个物品，违反”每组最多选一个”的规则</li>
+</ol>
+</div>
+
+<p><strong>循环顺序的重要性</strong>：</p>
+<div class="note success no-icon flat"><p>分组背包一维优化的<strong>正确循环顺序</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;           <span class="comment">// 外层：遍历组</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= <span class="number">0</span>; j--) &#123;        <span class="comment">// 中层：逆序遍历容量</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s[i]; k++) &#123;  <span class="comment">// 内层：遍历组内物品</span></span><br><span class="line">            <span class="keyword">if</span> (v[i][k] &lt;= j) &#123;</span><br><span class="line">                f[j] = <span class="built_in">max</span>(f[j], f[j - v[i][k]] + w[i][k]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div>
+
+
+<div class="note info no-icon flat"><p><strong>为什么内层循环在容量循环内部？</strong></p>
+<ul>
+<li>如果内层循环在容量循环外部，会导致同一组内的物品在不同容量下重复选择</li>
+<li>将内层循环放在容量循环内部，确保对于每个容量j，只从当前组中选择一个最优物品</li>
+</ul>
+</div>
+
+<h3 id="代码对比-2"><a href="#代码对比-2" class="headerlink" title="代码对比"></a>代码对比</h3><div class="note danger no-icon flat"><p><strong>错误写法（正序遍历，对于分组背包）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= m; j++) &#123;  <span class="comment">// ❌ 正序遍历</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s[i]; k++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (v[i][k] &lt;= j) &#123;</span><br><span class="line">                f[j] = <span class="built_in">max</span>(f[j], f[j - v[i][k]] + w[i][k]);</span><br><span class="line">                <span class="comment">// f[j-v[i][k]]可能已被当前组的其他物品更新，导致同一组选多个</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>错误写法（内层循环位置错误）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s[i]; k++) &#123;  <span class="comment">// ❌ 内层循环在外层</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= v[i][k]; j--) &#123;</span><br><span class="line">            f[j] = <span class="built_in">max</span>(f[j], f[j - v[i][k]] + w[i][k]);</span><br><span class="line">            <span class="comment">// 这样会导致同一组内的物品在不同容量下重复选择</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note success no-icon flat"><p><strong>正确写法（逆序遍历，分组背包）</strong>：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> j = m; j &gt;= <span class="number">0</span>; j--) &#123;  <span class="comment">// ✅ 逆序遍历容量</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> k = <span class="number">0</span>; k &lt; s[i]; k++) &#123;  <span class="comment">// ✅ 内层循环在容量循环内部</span></span><br><span class="line">            <span class="keyword">if</span> (v[i][k] &lt;= j) &#123;</span><br><span class="line">                f[j] = <span class="built_in">max</span>(f[j], f[j - v[i][k]] + w[i][k]);</span><br><span class="line">                <span class="comment">// f[j-v[i][k]]来自前i-1组，确保每组最多选一个</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</div>
+
+<h3 id="分组背包-vs-01背包的遍历顺序对比"><a href="#分组背包-vs-01背包的遍历顺序对比" class="headerlink" title="分组背包 vs 01背包的遍历顺序对比"></a>分组背包 vs 01背包的遍历顺序对比</h3><div class="note success no-icon flat"><table>
+<thead>
+<tr>
+<th>背包类型</th>
+<th>遍历顺序</th>
+<th>原因</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>01背包</strong></td>
+<td><strong>逆序</strong>（j从m到v[i]）</td>
+<td><code>f[j-v[i]]</code>必须是前i-1个物品的状态</td>
+<td>每个物品最多选1次</td>
+</tr>
+<tr>
+<td><strong>分组背包</strong></td>
+<td><strong>逆序</strong>（j从m到0）</td>
+<td><code>f[j-v[i][k]]</code>必须是前i-1组的状态</td>
+<td>每组最多选1个物品</td>
+</tr>
+</tbody></table>
+<p><strong>相同点</strong>：</p>
+<ul>
+<li>都使用逆序遍历</li>
+<li>都是为了确保”最多选一次”的限制</li>
+</ul>
+<p><strong>不同点</strong>：</p>
+<ul>
+<li>01背包：每个物品独立，逆序保证每个物品最多选1次</li>
+<li>分组背包：每组内多个物品，逆序+内层循环保证每组最多选1个物品</li>
+</ul>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li><strong>01背包</strong>：逆序（倒着来，避免重复）</li>
+<li><strong>分组背包</strong>：逆序+内层循环（倒着来，每组选一个）</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><p><strong>循环顺序说明</strong>：</p>
+<ul>
+<li>外层：遍历组（i从1到n）</li>
+<li>中层：<strong>逆序</strong>遍历容量（j从m到0）</li>
+<li>内层：遍历当前组内的物品（k从0到s[i]-1）</li>
+</ul>
+</div>
+
+<h2 id="4-完整示例-2"><a href="#4-完整示例-2" class="headerlink" title="4. 完整示例"></a>4. 完整示例</h2><div class="note info no-icon flat"><p><strong>题目</strong>：有3组物品，背包容量为10。物品信息如下：</p>
+<p><strong>第1组</strong>（2个物品）：</p>
+<ul>
+<li>物品1-1：体积2，价值3</li>
+<li>物品1-2：体积3，价值4</li>
+</ul>
+<p><strong>第2组</strong>（2个物品）：</p>
+<ul>
+<li>物品2-1：体积4，价值5</li>
+<li>物品2-2：体积5，价值6</li>
+</ul>
+<p><strong>第3组</strong>（1个物品）：</p>
+<ul>
+<li>物品3-1：体积3，价值4</li>
+</ul>
+</div>
+
+<div class="note success no-icon flat"><p><strong>求解思路</strong>：</p>
+<ul>
+<li>每组最多选一个物品</li>
+<li>可以选第1组的物品1-1，第2组的物品2-1，第3组的物品3-1</li>
+<li>总价值 &#x3D; 3 + 5 + 4 &#x3D; 12</li>
+</ul>
+</div>
+
+<h2 id="5-时间复杂度分析-2"><a href="#5-时间复杂度分析-2" class="headerlink" title="5. 时间复杂度分析"></a>5. 时间复杂度分析</h2><div class="note warning no-icon flat"><ul>
+<li><strong>时间复杂度</strong>：O(n×V×s)<ul>
+<li>n个组，每组最多s个物品，容量V</li>
+<li>需要遍历所有组、所有容量、每组内所有物品</li>
+</ul>
+</li>
+<li><strong>空间复杂度</strong>：<ul>
+<li>二维DP：O(n×V)</li>
+<li>一维DP：O(V)</li>
+</ul>
+</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="四种背包问题的对比"><a href="#四种背包问题的对比" class="headerlink" title="四种背包问题的对比"></a>四种背包问题的对比</h1><div class="note success no-icon flat"><table>
+<thead>
+<tr>
+<th>背包类型</th>
+<th>物品选择限制</th>
+<th>状态转移</th>
+<th>一维DP遍历</th>
+<th>时间复杂度</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>01背包</strong></td>
+<td>每种物品最多选1次</td>
+<td><code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i])</code></td>
+<td><strong>逆序</strong></td>
+<td>O(n×V)</td>
+</tr>
+<tr>
+<td><strong>完全背包</strong></td>
+<td>每种物品可以选无限次</td>
+<td><code>dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])</code></td>
+<td><strong>正序</strong></td>
+<td>O(n×V)</td>
+</tr>
+<tr>
+<td><strong>多重背包</strong></td>
+<td>每种物品最多选s[i]次</td>
+<td>三层循环或二进制优化</td>
+<td><strong>逆序</strong>（优化后）</td>
+<td>O(n×V×s) 或 O(n×V×log(s))</td>
+</tr>
+<tr>
+<td><strong>分组背包</strong></td>
+<td>每组最多选1个物品</td>
+<td>遍历组内所有物品</td>
+<td><strong>逆序</strong></td>
+<td>O(n×V×s)</td>
+</tr>
+</tbody></table>
+<p><strong>记忆技巧</strong>：</p>
+<ul>
+<li><strong>逆序</strong>：01背包、多重背包（优化后）、分组背包</li>
+<li><strong>正序</strong>：完全背包</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><h2 id="01背包和完全背包的核心区别"><a href="#01背包和完全背包的核心区别" class="headerlink" title="01背包和完全背包的核心区别"></a>01背包和完全背包的核心区别</h2><div class="note success no-icon flat"><ol>
+<li><p><strong>物品选择限制</strong>：</p>
+<ul>
+<li>01背包：每种物品最多选1次</li>
+<li>完全背包：每种物品可以选无限次</li>
+</ul>
+</li>
+<li><p><strong>状态转移方程</strong>：</p>
+<ul>
+<li>01背包：<code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-v[i]] + w[i])</code></li>
+<li>完全背包：<code>dp[i][j] = max(dp[i-1][j], dp[i][j-v[i]] + w[i])</code></li>
+</ul>
+</li>
+<li><p><strong>一维DP遍历顺序</strong>：</p>
+<ul>
+<li>01背包：<strong>逆序</strong>遍历（j从m到v[i]）</li>
+<li>完全背包：<strong>正序</strong>遍历（j从v[i]到m）</li>
+</ul>
+</li>
+<li><p><strong>理解要点</strong>：</p>
+<ul>
+<li>01背包的 <code>dp[i-1][j-v[i]]</code> 表示”前i-1个物品”的状态，保证当前物品只选一次</li>
+<li>完全背包的 <code>dp[i][j-v[i]]</code> 表示”前i个物品”的状态，允许当前物品继续选择</li>
+</ul>
+</li>
+</ol>
+</div>
+
+<hr>
+<h1 id="Q-A"><a href="#Q-A" class="headerlink" title="Q&amp;A"></a>Q&amp;A</h1></article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">小布老师</div><div class="post-copyright__author_desc">少儿编程中心</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.1024code.top/CPP_DP_knapsack/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.1024code.top/CPP_DP_knapsack/')">C++ 动态规划 - 背包问题专题</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.1024code.top/CPP_DP_knapsack/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=C++ 动态规划 - 背包问题专题&amp;url=https://blog.1024code.top/CPP_DP_knapsack/&amp;pic=/img/default_cover.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.1024code.top" target="_blank">壹零贰肆</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/C/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>C++<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>算法<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>动态规划<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>背包问题<span class="tagsPageCount">1</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2025/11/16/6919704d5ae8f.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/CPP_DP/" title="C++ 动态规划算法基础"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-02-04</div><div class="title">C++ 动态规划算法基础</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2021/03/03/317b790a902ec.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">少儿编程、信息学奥赛</b>相关的问题和看法，还有<b style="color:#fff">算法</b>和<b style="color:#fff">数据结构</b>相关的知识。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">小布老师</h1><div class="author-info__desc">少儿编程中心</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Y-Liberty" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/444222985" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">这有关于少儿编程、信息学奥赛相关的问题和看法，还有算法和数据结构相关的知识。相信你可以在这里找到对你有用的知识和教程。</div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2025/10/02/68de44abb6934.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E4%B8%93%E9%A2%98"><span class="toc-number">1.</span> <span class="toc-text">C++ 动态规划 - 背包问题专题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E6%A6%82%E8%BF%B0"><span class="toc-number">1.2.</span> <span class="toc-text">背包问题概述</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E4%BB%80%E4%B9%88%E6%98%AF%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">1.2.1.</span> <span class="toc-text">1. 什么是背包问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%9A%84%E5%88%86%E7%B1%BB"><span class="toc-number">1.2.2.</span> <span class="toc-text">2. 背包问题的分类</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">2.</span> <span class="toc-text">01背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="toc-number">2.1.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">2.2.</span> <span class="toc-text">2. 问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">2.2.1.</span> <span class="toc-text">方法一：常规分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-number">2.2.2.</span> <span class="toc-text">方法二：闫氏DP分析法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.3.</span> <span class="toc-text">3. 算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BA%8C%E7%BB%B4DP%E5%AE%9E%E7%8E%B0"><span class="toc-number">2.3.1.</span> <span class="toc-text">3.1 二维DP实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%80%E7%BB%B4DP%E4%BC%98%E5%8C%96%EF%BC%88%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">2.3.2.</span> <span class="toc-text">3.2 一维DP优化（空间优化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.3.</span> <span class="toc-text">正序遍历的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-number">2.3.4.</span> <span class="toc-text">逆序遍历的正确性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E8%A1%A8%E6%A0%BC"><span class="toc-number">2.3.5.</span> <span class="toc-text">对比表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E"><span class="toc-number">2.3.6.</span> <span class="toc-text">详细原理说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AF%B9%E6%AF%94"><span class="toc-number">2.3.7.</span> <span class="toc-text">代码对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="toc-number">2.4.</span> <span class="toc-text">4. 完整示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">2.5.</span> <span class="toc-text">5. 时间复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">3.</span> <span class="toc-text">完全背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-1"><span class="toc-number">3.1.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-1"><span class="toc-number">3.2.</span> <span class="toc-text">2. 问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95-1"><span class="toc-number">3.2.1.</span> <span class="toc-text">方法一：常规分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95-1"><span class="toc-number">3.2.2.</span> <span class="toc-text">方法二：闫氏DP分析法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0-1"><span class="toc-number">3.3.</span> <span class="toc-text">3. 算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BA%8C%E7%BB%B4DP%E5%AE%9E%E7%8E%B0%EF%BC%88%E6%9C%B4%E7%B4%A0%E7%89%88%E6%9C%AC%EF%BC%89"><span class="toc-number">3.3.1.</span> <span class="toc-text">3.1 二维DP实现（朴素版本）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BA%8C%E7%BB%B4DP%E4%BC%98%E5%8C%96%E7%89%88%E6%9C%AC"><span class="toc-number">3.3.2.</span> <span class="toc-text">3.2 二维DP优化版本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-3-%E4%B8%80%E7%BB%B4DP%E4%BC%98%E5%8C%96%EF%BC%88%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96%EF%BC%89"><span class="toc-number">3.3.3.</span> <span class="toc-text">3.3 一维DP优化（空间优化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E9%97%AE%E9%A2%98"><span class="toc-number">3.3.4.</span> <span class="toc-text">逆序遍历的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%80%A7"><span class="toc-number">3.3.5.</span> <span class="toc-text">正序遍历的正确性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E8%A1%A8%E6%A0%BC-1"><span class="toc-number">3.3.6.</span> <span class="toc-text">对比表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E-1"><span class="toc-number">3.3.7.</span> <span class="toc-text">详细原理说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AF%B9%E6%AF%94-1"><span class="toc-number">3.3.8.</span> <span class="toc-text">代码对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85-vs-%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E7%9A%84%E9%81%8D%E5%8E%86%E9%A1%BA%E5%BA%8F%E5%AF%B9%E6%AF%94"><span class="toc-number">3.3.9.</span> <span class="toc-text">01背包 vs 完全背包的遍历顺序对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-01%E8%83%8C%E5%8C%85%E4%B8%8E%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">3.4.</span> <span class="toc-text">4. 01背包与完全背包的对比</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B"><span class="toc-number">3.5.</span> <span class="toc-text">5. 完整示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90"><span class="toc-number">3.6.</span> <span class="toc-text">6. 时间复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%A4%9A%E9%87%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">4.</span> <span class="toc-text">多重背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-2"><span class="toc-number">4.1.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-2"><span class="toc-number">4.2.</span> <span class="toc-text">2. 问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95-2"><span class="toc-number">4.2.1.</span> <span class="toc-text">方法一：常规分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95-2"><span class="toc-number">4.2.2.</span> <span class="toc-text">方法二：闫氏DP分析法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0-2"><span class="toc-number">4.3.</span> <span class="toc-text">3. 算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E6%9C%B4%E7%B4%A0%E5%AE%9E%E7%8E%B0%EF%BC%88%E4%B8%89%E5%B1%82%E5%BE%AA%E7%8E%AF%EF%BC%89"><span class="toc-number">4.3.1.</span> <span class="toc-text">3.1 朴素实现（三层循环）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E4%B8%8D%E8%83%BD%E5%83%8F%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E4%B8%80%E6%A0%B7%E7%9C%81%E7%95%A5%E7%AC%AC%E4%B8%89%E9%87%8D%E5%BE%AA%E7%8E%AF%EF%BC%9F"><span class="toc-number">4.3.2.</span> <span class="toc-text">为什么不能像完全背包一样省略第三重循环？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%BA%8C%E8%BF%9B%E5%88%B6%E4%BC%98%E5%8C%96"><span class="toc-number">4.3.3.</span> <span class="toc-text">3.2 二进制优化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B-1"><span class="toc-number">4.4.</span> <span class="toc-text">4. 完整示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-1"><span class="toc-number">4.5.</span> <span class="toc-text">5. 时间复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">5.</span> <span class="toc-text">分组背包问题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0-3"><span class="toc-number">5.1.</span> <span class="toc-text">1. 问题描述</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90-3"><span class="toc-number">5.2.</span> <span class="toc-text">2. 问题分析</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95-3"><span class="toc-number">5.2.1.</span> <span class="toc-text">方法一：常规分析方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95-3"><span class="toc-number">5.2.2.</span> <span class="toc-text">方法二：闫氏DP分析法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E7%AE%97%E6%B3%95%E5%AE%9E%E7%8E%B0-3"><span class="toc-number">5.3.</span> <span class="toc-text">3. 算法实现</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#3-1-%E4%BA%8C%E7%BB%B4DP%E5%AE%9E%E7%8E%B0-1"><span class="toc-number">5.3.1.</span> <span class="toc-text">3.1 二维DP实现</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-2-%E4%B8%80%E7%BB%B4DP%E4%BC%98%E5%8C%96%EF%BC%88%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96%EF%BC%89-1"><span class="toc-number">5.3.2.</span> <span class="toc-text">3.2 一维DP优化（空间优化）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%AD%A3%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E9%97%AE%E9%A2%98-1"><span class="toc-number">5.3.3.</span> <span class="toc-text">正序遍历的问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%86%E5%BA%8F%E9%81%8D%E5%8E%86%E7%9A%84%E6%AD%A3%E7%A1%AE%E6%80%A7-1"><span class="toc-number">5.3.4.</span> <span class="toc-text">逆序遍历的正确性</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AF%B9%E6%AF%94%E8%A1%A8%E6%A0%BC-2"><span class="toc-number">5.3.5.</span> <span class="toc-text">对比表格</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AF%A6%E7%BB%86%E5%8E%9F%E7%90%86%E8%AF%B4%E6%98%8E-2"><span class="toc-number">5.3.6.</span> <span class="toc-text">详细原理说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%A3%E7%A0%81%E5%AF%B9%E6%AF%94-2"><span class="toc-number">5.3.7.</span> <span class="toc-text">代码对比</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%86%E7%BB%84%E8%83%8C%E5%8C%85-vs-01%E8%83%8C%E5%8C%85%E7%9A%84%E9%81%8D%E5%8E%86%E9%A1%BA%E5%BA%8F%E5%AF%B9%E6%AF%94"><span class="toc-number">5.3.8.</span> <span class="toc-text">分组背包 vs 01背包的遍历顺序对比</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B-2"><span class="toc-number">5.4.</span> <span class="toc-text">4. 完整示例</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%97%B6%E9%97%B4%E5%A4%8D%E6%9D%82%E5%BA%A6%E5%88%86%E6%9E%90-2"><span class="toc-number">5.5.</span> <span class="toc-text">5. 时间复杂度分析</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E7%A7%8D%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">6.</span> <span class="toc-text">四种背包问题的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">7.</span> <span class="toc-text">总结</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#01%E8%83%8C%E5%8C%85%E5%92%8C%E5%AE%8C%E5%85%A8%E8%83%8C%E5%8C%85%E7%9A%84%E6%A0%B8%E5%BF%83%E5%8C%BA%E5%88%AB"><span class="toc-number">7.1.</span> <span class="toc-text">01背包和完全背包的核心区别</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Q-A"><span class="toc-number">8.</span> <span class="toc-text">Q&amp;A</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/CPP_Kuangbin_1/" title="Kuangbin算法专题1——搜索专题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/16/6919704d5ae8f.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kuangbin算法专题1——搜索专题"/></a><div class="content"><a class="title" href="/CPP_Kuangbin_1/" title="Kuangbin算法专题1——搜索专题">Kuangbin算法专题1——搜索专题</a><time datetime="2025-11-09T06:00:00.000Z" title="发表于 2025-11-09 14:00:00">2025-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Py_lesson/" title="从零开始的 Python 学习之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/03/69084c47a6e66.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从零开始的 Python 学习之旅"/></a><div class="content"><a class="title" href="/Py_lesson/" title="从零开始的 Python 学习之旅">从零开始的 Python 学习之旅</a><time datetime="2025-10-26T06:30:00.000Z" title="发表于 2025-10-26 14:30:00">2025-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Py_data_stru/" title="Python 数据结构 - 高效管理和组织数据"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/03/69084cb1de4d6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python 数据结构 - 高效管理和组织数据"/></a><div class="content"><a class="title" href="/Py_data_stru/" title="Python 数据结构 - 高效管理和组织数据">Python 数据结构 - 高效管理和组织数据</a><time datetime="2025-05-15T02:30:00.000Z" title="发表于 2025-05-15 10:30:00">2025-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Py_Loop/" title="Python 循环结构 - 让程序高效重复工作"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/03/69084bd62c60e.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python 循环结构 - 让程序高效重复工作"/></a><div class="content"><a class="title" href="/Py_Loop/" title="Python 循环结构 - 让程序高效重复工作">Python 循环结构 - 让程序高效重复工作</a><time datetime="2025-04-15T02:30:00.000Z" title="发表于 2025-04-15 10:30:00">2025-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Talent_Program/" title="呼和浩特中学英才计划招生政策"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://img.picgo.net/2024/08/31/imagee3def5038dcb5b53.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="呼和浩特中学英才计划招生政策"/></a><div class="content"><a class="title" href="/Talent_Program/" title="呼和浩特中学英才计划招生政策">呼和浩特中学英才计划招生政策</a><time datetime="2025-04-02T01:00:00.000Z" title="发表于 2025-04-02 09:00:00">2025-04-02</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:yi_coder@163.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="音乐馆" href="/music/">音乐馆</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/CDN-多吉云-3693F3.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2025 By <a class="footer-bar-link" href="/" title="小布老师" target="_blank">小布老师</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.1024code.top/" title="首页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="首页"/><span class="back-menu-item-text">首页</span></a><a class="back-menu-item" href="https://blog.1024code.top/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="http://oj.1024code.top/" title="刷题平台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="刷题平台"/><span class="back-menu-item-text">刷题平台</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 0.88rem;">C++<sup>2</sup></a><a href="/tags/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 0.88rem;">C++ 基础语法<sup>8</sup></a><a href="/tags/C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.88rem;">C++ 数据结构<sup>1</sup></a><a href="/tags/C-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.88rem;">C++ 算法与数据结构<sup>3</sup></a><a href="/tags/CPP-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.88rem;">CPP 算法与数据结构<sup>1</sup></a><a href="/tags/PyCharm-%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">PyCharm 教程<sup>1</sup></a><a href="/tags/Python-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 0.88rem;">Python 基础语法<sup>5</sup></a><a href="/tags/Python-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 0.88rem;">Python 环境配置<sup>1</sup></a><a href="/tags/Python-%E8%BF%9B%E9%98%B6%E5%BA%94%E7%94%A8/" style="font-size: 0.88rem;">Python 进阶应用<sup>1</sup></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 0.88rem;">动态规划<sup>2</sup></a><a href="/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" style="font-size: 0.88rem;">搜索算法<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.88rem;">算法<sup>2</sup></a><a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">背包问题<sup>1</sup></a><a href="/tags/%E8%8B%B1%E6%89%8D%E8%AE%A1%E5%88%92/" style="font-size: 0.88rem;">英才计划<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("06/01/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 小布老师 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.y-liberty.cn/',
+      region: 'ap-neimenggu',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.y-liberty.cn/',
+      region: 'ap-neimenggu',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.y-liberty.cn/',
+        region: 'ap-neimenggu',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "visitor@1024.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>

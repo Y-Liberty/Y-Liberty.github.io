@@ -1,0 +1,1044 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no"><title>C++ 动态规划算法基础 | 壹零贰肆</title><meta name="keywords" content="C++,算法,动态规划"><meta name="author" content="小布老师"><meta name="copyright" content="小布老师"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="#f7f9fe"><meta name="mobile-web-app-capable" content="yes"><meta name="apple-touch-fullscreen" content="yes"><meta name="apple-mobile-web-app-title" content="C++ 动态规划算法基础"><meta name="application-name" content="C++ 动态规划算法基础"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="#f7f9fe"><meta property="og:type" content="article"><meta property="og:title" content="C++ 动态规划算法基础"><meta property="og:url" content="https://blog.1024code.top/CPP_DP/index.html"><meta property="og:site_name" content="壹零贰肆"><meta property="og:description" content="C++ 动态规划算法基础前言动态规划（Dynamic Programming，简称DP）是算法设计中的一种重要方法，广泛应用于解决最优化问题。本文将介绍动态规划的基本概念、核心思想，以及两种常用的分析方法：常规分析方法和闫氏DP分析法。   本文导航：  📚 动态规划基础：定义、核心思想、基本要素"><meta property="og:locale" content="zh-CN"><meta property="og:image" content="https://blog.1024code.top/img/default_cover.jpg"><meta property="article:author" content="小布老师"><meta property="article:tag" content="壹零贰肆, 呼和浩特, 少儿编程"><meta name="twitter:card" content="summary"><meta name="twitter:image" content="https://blog.1024code.top/img/default_cover.jpg"><meta name="description" content="C++ 动态规划算法基础前言动态规划（Dynamic Programming，简称DP）是算法设计中的一种重要方法，广泛应用于解决最优化问题。本文将介绍动态规划的基本概念、核心思想，以及两种常用的分析方法：常规分析方法和闫氏DP分析法。   本文导航：  📚 动态规划基础：定义、核心思想、基本要素"><link rel="shortcut icon" href="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg"><link rel="canonical" href="https://blog.1024code.top/CPP_DP/"><link rel="preconnect" href="//cdn.cbd.int"/><link rel="preconnect" href="//busuanzi.ibruce.info"/><meta name="google-site-verification" content="xxx"/><meta name="baidu-site-verification" content="code-xxx"/><meta name="msvalidate.01" content="xxx"/><link rel="stylesheet" href="/css/index.css"><link rel="stylesheet" href="https://cdn.cbd.int/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.css" media="print" onload="this.media='all'"><link rel="stylesheet" href="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/swiper/swiper.min.css" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  linkPageTop: {"enable":true,"title":"与数百名博主无限进步","addFriendPlaceholder":"昵称（请勿包含博客等字样）：\n网站地址（要求博客地址，请勿提交个人主页）：\n头像图片url（请提供尽可能清晰的图片，我会上传到我自己的图床）：\n描述：\n站点截图（可选）：\n"},
+  peoplecanvas: undefined,
+  postHeadAiDescription: undefined,
+  diytitle: undefined,
+  LA51: undefined,
+  greetingBox: {"enable":true,"default":"晚上好👋","list":[{"greeting":"晚安😴","startTime":0,"endTime":5},{"greeting":"早上好鸭👋, 祝你一天好心情！","startTime":6,"endTime":9},{"greeting":"上午好👋, 状态很好，鼓励一下～","startTime":10,"endTime":10},{"greeting":"11点多啦, 在坚持一下就吃饭啦～","startTime":11,"endTime":11},{"greeting":"午安👋, 好好休息","startTime":12,"endTime":14},{"greeting":"🌈充实的一天辛苦啦！","startTime":14,"endTime":18},{"greeting":"19点喽, 奖励一顿丰盛的大餐吧🍔。","startTime":19,"endTime":19},{"greeting":"晚上好👋, 在属于自己的时间好好放松😌~","startTime":20,"endTime":24}]},
+  twikooEnvId: 'https://twikoo.y-liberty.cn/',
+  commentBarrageConfig:undefined,
+  root: '/',
+  preloader: {"source":3},
+  friends_vue_info: undefined,
+  navMusic: true,
+  mainTone: undefined,
+  authorStatus: {"skills":["🤖️ 数码科技爱好者","🔍 分享与热心帮助","🏠 智能家居小能手","🔨 设计开发一条龙","🤝 专修交互与设计","🏃 脚踏实地行动派","🧱 团队小组发动机","💢 壮汉人狠话不多"]},
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":true,"languages":{"hits_empty":"找不到您查询的内容：${query}"}},
+  translate: {"defaultEncoding":2,"translateDelay":0,"msgToTraditionalChinese":"繁","msgToSimplifiedChinese":"简","rightMenuMsgToTraditionalChinese":"转为繁体","rightMenuMsgToSimplifiedChinese":"转为简体"},
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"It has been","messageNext":"days since the last update, the content of the article may be outdated."},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":330},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: false,
+    simplehomepage: true,
+    post: false
+  },
+  runtime: '天',
+  date_suffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: {"copy":true,"copyrightEbable":true,"limitCount":80,"languages":{"author":"作者: 小布老师","link":"链接: ","source":"来源: 壹零贰肆","info":"著作权归作者所有。商业转载请联系作者获得授权，非商业转载请注明出处。","copySuccess":"复制成功，复制和转载请标注本文地址"}},
+  lightbox: 'fancybox',
+  Snackbar: {"chs_to_cht":"你已切换为繁体","cht_to_chs":"你已切换为简体","day_to_night":"你已切换为深色模式","night_to_day":"你已切换为浅色模式","bgLight":"#425AEF","bgDark":"#1f1f1f","position":"top-center"},
+  source: {
+    justifiedGallery: {
+      js: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.min.js',
+      css: 'https://cdn.cbd.int/flickr-justified-gallery@2.1.2/dist/fjGallery.css'
+    }
+  },
+  isPhotoFigcaption: false,
+  islazyload: true,
+  isAnchor: false,
+  shortcutKey: undefined,
+  autoDarkmode: true
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  configTitle: '壹零贰肆',
+  title: 'C++ 动态规划算法基础',
+  postAI: '',
+  pageFillDescription: 'C++ 动态规划算法基础, 前言, 一、什么是动态规划, 1. 动态规划的定义, 2. 动态规划与贪心、分治的区别, 3. 动态规划的基本要素, 最优子结构, 重叠子问题, 状态转移方程, 二、动态规划的解题步骤, 常规解题步骤, 三、动态规划分析方法, 方法一：常规分析方法, 1. 问题分析, 2. 状态定义, 3. 状态转移方程, 4. 初始状态, 5. 计算顺序, 6. 完整示例：斐波那契数列, 方法二：闫氏DP分析法, 闫氏DP分析法的核心思想, 闫氏DP分析法的步骤, 完整示例：01背包问题（闫氏DP分析法）, 闫氏DP分析法的优势, 四、两种方法的对比, 五、扩展与专题, 1. 背包问题, 2. 线性DP, 3. 区间DP, 4. 计数类DP, 5. 数位统计DP, 6. 状态压缩DP, 7. 树形DP, 8. 记忆化搜索, 六、动态规划的优化技巧, 1. 空间优化, 2. 状态优化, 3. 转移优化, 4. 记忆化搜索, 七、学习建议, 八、总结, 九、参考资料动态规划算法基础前言动态规划简称是算法设计中的一种重要方法广泛应用于解决最优化问题本文将介绍动态规划的基本概念核心思想以及两种常用的分析方法常规分析方法和闫氏分析法本文导航动态规划基础定义核心思想基本要素解题步骤五步法解决问题常规分析方法传统分析方法闫氏分析法集合角度的系统化方法两种方法对比选择适合的分析方法常见类型线性区间背包树形状态压缩优化技巧空间优化状态优化转移优化学习建议如何学好动态规划一什么是动态规划动态规划的定义动态规划是一种通过把原问题分解为相对简单的子问题的方式来解决复杂问题的方法它通常用于解决具有重叠子问题和最优子结构性质的问题动态规划的核心思想是记忆化避免重复计算已经求解过的子问题自底向上从最小的子问题开始逐步构建更大问题的解状态转移通过状态转移方程描述问题之间的关系动态规划与贪心分治的区别动态规划贪心算法和分治算法是三种重要的算法设计方法它们各有特点方法特点适用场景贪心算法每一步都做出当前最优选择不考虑全局局部最优能导致全局最优的问题分治算法将问题分解为独立的子问题递归求解子问题之间相互独立的问题动态规划将问题分解为重叠的子问题记忆化求解具有重叠子问题和最优子结构的问题动态规划的基本要素最优子结构问题的最优解包含子问题的最优解也就是说可以通过子问题的最优解来构造原问题的最优解示例在最短路径问题中如果从到的最短路径经过那么从到和从到的路径也分别是最短的重叠子问题在递归求解过程中同一个子问题会被多次计算示例在计算斐波那契数列时需要计算和而又需要计算和被重复计算了状态转移方程描述问题状态之间关系的数学表达式是动态规划的核心示例斐波那契数列的状态转移方程为二动态规划的解题步骤常规解题步骤确定状态定义问题的状态通常用或表示确定状态转移方程找出状态之间的关系确定初始状态设置边界条件确定计算顺序确定状态的计算顺序自底向上或自顶向下编写代码根据上述分析编写代码三动态规划分析方法方法一常规分析方法常规分析方法是最常用的动态规划分析方法通过以下步骤进行问题分析理解问题明确问题的目标和约束条件识别特征判断是否具有最优子结构和重叠子问题确定状态定义状态变量表示问题的子问题状态定义状态定义是动态规划的基础需要明确状态的含义或表示什么状态的维度一维二维还是多维状态的取值范围状态的取值范围示例在背包问题中可以定义表示前个物品在容量为的背包中能获得的最大价值状态转移方程状态转移方程描述了状态之间的关系通常有以下几种形式线性区间树形在树上进行状态转移背包初始状态初始状态是状态转移的起点需要明确边界条件最小子问题的解初始值或的值计算顺序确定状态的计算顺序确保在计算时所需的子问题已经计算完成示例在背包问题中通常从开始逐步计算到完整示例斐波那契数列问题描述计算第个斐波那契数分析过程状态定义表示第个斐波那契数状态转移方程初始状态计算顺序从开始依次计算到代码实现状态定义表示第个斐波那契数初始状态状态转移从开始计算状态转移方程空间优化版本只保留前两个状态第个斐波那契数优化版本代码说明基础版本使用一维数组存储所有状态空间复杂度为优化版本只保留前两个状态空间复杂度优化为两种方法的时间复杂度都是方法二闫氏分析法闫氏分析法是由算法竞赛教练闫学灿总结的一种系统化的动态规划分析方法这种方法通过集合的角度来理解动态规划使问题分析更加清晰和系统化闫氏分析法的核心思想闫氏分析法将动态规划问题看作集合划分问题状态表示用集合来表示状态或表示一个集合集合中存储的是所有满足某种条件的方案集合的属性最大值最小值数量等就是我们要计算的值状态计算通过集合划分来计算状态将当前集合划分为若干个子集每个子集对应一种情况通过子集的结果来计算当前集合的属性闫氏分析法的步骤闫氏分析法分为两个核心步骤第一步状态表示集合表示什么集合属性集合的属性是什么最大值最小值数量等第二步状态计算集合划分如何将当前集合划分为子集状态转移如何通过子集的结果计算当前集合的属性完整示例背包问题闫氏分析法问题描述有个物品和一个容量为的背包每个物品只能使用一次第个物品的体积是价值是求解将哪些物品装入背包可使这些物品的总体积不超过背包容量且总价值最大闫氏分析第一步状态表示集合表示所有只考虑前个物品且总体积不超过的选法集合属性集合中所有方案的最大价值第二步状态计算将集合划分为两个子集不选第个物品只考虑前个物品总体积不超过对应集合价值选第个物品只考虑前个物品总体积不超过然后加上第个物品对应集合价值状态转移方程边界条件没有物品价值为容量为价值为代码实现状态定义表示前个物品容量为时的最大价值状态转移不选第个物品选第个物品需要容量足够空间优化版本使用一维数组注意需要逆序遍历避免覆盖未使用的状态重量价值最大价值优化版本代码说明基础版本使用二维数组空间复杂度为优化版本使用一维数组空间复杂度优化为关键点一维优化时需要逆序遍历容量避免覆盖未使用的状态两种方法的时间复杂度都是闫氏分析法的优势系统化通过集合的角度统一理解各种问题清晰性集合划分使状态转移更加清晰通用性适用于各种类型的动态规划问题易于理解从集合的角度更容易理解状态的含义四两种方法的对比以下是常规分析方法和闫氏分析法的详细对比方面常规分析方法闫氏分析法核心思想通过状态转移方程描述问题通过集合划分理解问题分析角度状态之间的关系集合的属性和划分适用场景所有问题所有问题理解难度中等相对容易系统化优势直观易于上手系统化逻辑清晰建议初学者可以先掌握常规分析方法进阶学习时可以使用闫氏分析法使分析更加系统化两种方法可以结合使用互相验证五扩展与专题背包问题经典的背包问题及其变种是动态规划中最基础且重要的问题类型典型问题背包每种物品最多选次完全背包每种物品可以选无限次多重背包每种物品有数量限制分组背包物品分组每组最多选个引用站外地址背包问题专题线性状态转移是线性的通常是一维或二维状态按照线性顺序进行状态转移典型问题最长上升子序列最长公共子序列编辑距离数字三角形引用站外地址线性专题区间状态定义在区间上通过合并区间来求解通常用于处理区间相关的问题典型问题石子合并回文串相关矩阵链乘法括号匹配引用站外地址区间专题计数类用于统计满足某种条件的方案数量通常需要特别注意避免重复计数典型问题整数划分路径计数排列组合问题方案数统计引用站外地址计数类专题数位统计用于统计数字在某个范围内满足特定条件的个数通常与数位相关典型问题数字出现的次数不含某些数字的数的个数数字各位之和问题数字的特定性质统计引用站外地址数位统计专题状态压缩使用位运算压缩状态通常用于状态空间较小但需要枚举所有状态的问题典型问题旅行商问题棋盘覆盖状态压缩背包状态机问题引用站外地址状态压缩专题树形在树结构上进行状态转移通常需要从叶子节点向根节点或从根节点向叶子节点进行状态转移典型问题树的直径树的最大独立集有依赖的背包树上路径问题引用站外地址树形专题记忆化搜索使用递归记忆化的方式实现适用于状态转移关系复杂难以确定计算顺序的问题典型问题滑雪问题复杂状态转移的难以确定计算顺序的问题递归形式的引用站外地址记忆化搜索专题六动态规划的优化技巧空间优化通过滚动数组减少空间复杂度示例背包问题从二维优化到一维状态优化减少状态的维度或数量示例某些问题可以通过数学推导减少状态维度转移优化优化状态转移的过程示例使用单调队列斜率优化等技巧记忆化搜索使用递归记忆化的方式实现适用场景状态转移关系复杂难以确定计算顺序时七学习建议理解核心思想掌握最优子结构和重叠子问题的概念多练习通过大量练习熟悉各种类型的问题总结规律总结不同类型问题的状态定义和转移方程画图分析通过画状态转移图帮助理解对比学习对比不同解法的优缺点八总结动态规划是解决最优化问题的重要方法核心在于识别问题特征判断是否具有最优子结构和重叠子问题定义状态明确状态的含义和属性建立转移方程描述状态之间的关系优化实现通过空间优化状态优化等技巧提高效率无论是使用常规分析方法还是闫氏分析法关键都是要深入理解问题的本质找到合适的状态定义和转移方程九参考资料算法导论动态规划章节算法竞赛进阶指南动态规划部分',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-11-26 16:55:34',
+  postMainColor: '',
+}</script><noscript><style type="text/css">
+  #nav {
+    opacity: 1
+  }
+  .justified-gallery img {
+    opacity: 1
+  }
+
+  #recent-posts time,
+  #post-meta time {
+    display: inline !important
+  }
+</style></noscript><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#18171d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#f7f9fe')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+          const isDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches
+          const isLightMode = window.matchMedia('(prefers-color-scheme: light)').matches
+          const isNotSpecified = window.matchMedia('(prefers-color-scheme: no-preference)').matches
+          const hasNoSupport = !isDarkMode && !isLightMode && !isNotSpecified
+
+          if (t === undefined) {
+            if (isLightMode) activateLightMode()
+            else if (isDarkMode) activateDarkMode()
+            else if (isNotSpecified || hasNoSupport) {
+              const now = new Date()
+              const hour = now.getHours()
+              const isNight = hour <= 6 || hour >= 18
+              isNight ? activateDarkMode() : activateLightMode()
+            }
+            window.matchMedia('(prefers-color-scheme: dark)').addListener(e => {
+              if (saveToLocal.get('theme') === undefined) {
+                e.matches ? activateDarkMode() : activateLightMode()
+              }
+            })
+          } else if (t === 'light') activateLightMode()
+          else activateDarkMode()
+        
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><meta name="generator" content="Hexo 7.2.0"></head><body data-type="anzhiyu"><div id="web_bg"></div><div id="an_music_bg"></div><div id="loading-box" onclick="document.getElementById(&quot;loading-box&quot;).classList.add(&quot;loaded&quot;)"><div class="loading-bg"><img class="loading-img nolazyload" alt="加载头像" src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg"/><div class="loading-image-dot"></div></div></div><script>const preloader = {
+  endLoading: () => {
+    document.getElementById('loading-box').classList.add("loaded");
+  },
+  initLoading: () => {
+    document.getElementById('loading-box').classList.remove("loaded")
+  }
+}
+window.addEventListener('load',()=> { preloader.endLoading() })
+setTimeout(function(){preloader.endLoading();},10000)
+
+if (true) {
+  document.addEventListener('pjax:send', () => { preloader.initLoading() })
+  document.addEventListener('pjax:complete', () => { preloader.endLoading() })
+}</script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.10/progress_bar/progress_bar.css"/><script async="async" src="https://cdn.cbd.int/pace-js@1.2.4/pace.min.js" data-pace-options="{ &quot;restartOnRequestAfter&quot;:false,&quot;eventLag&quot;:false}"></script><div class="post" id="body-wrap"><header class="post-bg" id="page-header"><nav id="nav"><div id="nav-group"><span id="blog_name"><div class="back-home-button"><i class="anzhiyufont anzhiyu-icon-grip-vertical"></i><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.1024code.top/" title="首页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="首页"/><span class="back-menu-item-text">首页</span></a><a class="back-menu-item" href="https://blog.1024code.top/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="http://oj.1024code.top/" title="刷题平台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="刷题平台"/><span class="back-menu-item-text">刷题平台</span></a></div></div></div></div><a id="site-name" href="/" accesskey="h"><div class="title">壹零贰肆</div><i class="anzhiyufont anzhiyu-icon-house-chimney"></i></a><div id="he-plugin-simple"></div><script>var WIDGET = {
+  "CONFIG": {
+    "modules": "0124",
+    "background": "2",
+    "tmpColor": "FFFFFF",
+    "tmpSize": "16",
+    "cityColor": "FFFFFF",
+    "citySize": "16",
+    "aqiColor": "E8D87B",
+    "aqiSize": "16",
+    "weatherIconSize": "24",
+    "alertIconSize": "18",
+    "padding": "10px 10px 10px 10px",
+    "shadow": "0",
+    "language": "auto",
+    "borderRadius": "20",
+    "fixed": "true",
+    "vertical": "top",
+    "horizontal": "left",
+    "left": "20",
+    "top": "7.1",
+    "key": "df245676fb434a0691ead1c63341cd94"
+  }
+}
+</script><link rel="stylesheet" href="https://widget.qweather.net/simple/static/css/he-simple.css?v=1.4.0"/><script src="https://widget.qweather.net/simple/static/js/he-simple.js?v=1.4.0"></script></span><div class="mask-name-container"><div id="name-container"><a id="page-name" href="javascript:anzhiyu.scrollToDest(0, 500)">PAGE_NAME</a></div></div><div id="menus"><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div></div><div id="nav-right"><div class="nav-button" id="randomPost_button"><a class="site-page" onclick="toRandomPost()" title="随机前往一个文章" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-dice"></i></a></div><div class="nav-button" id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" title="搜索🔍" accesskey="s"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span> 搜索</span></a></div><input id="center-console" type="checkbox"/><label class="widget" for="center-console" title="中控台" onclick="anzhiyu.switchConsole();"><i class="left"></i><i class="widget center"></i><i class="widget right"></i></label><div id="console"><div class="console-card-group-reward"><ul class="reward-all console-card"><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png" target="_blank"><img class="post-qr-code-img" alt="微信" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png" target="_blank"><img class="post-qr-code-img" alt="支付宝" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png"/></a><div class="post-qr-code-desc">支付宝</div></li></ul></div><div class="console-card-group"><div class="console-card-group-left"><div class="console-card" id="card-newest-comments"><div class="card-content"><div class="author-content-item-tips">互动</div><span class="author-content-item-title"> 最新评论</span></div><div class="aside-list"><span>正在加载中...</span></div></div></div><div class="console-card-group-right"><div class="console-card tags"><div class="card-content"><div class="author-content-item-tips">兴趣点</div><span class="author-content-item-title">寻找你感兴趣的领域</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 1.05rem;">C++<sup>2</sup></a><a href="/tags/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 1.05rem;">C++ 基础语法<sup>8</sup></a><a href="/tags/C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.05rem;">C++ 数据结构<sup>1</sup></a><a href="/tags/C-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.05rem;">C++ 算法与数据结构<sup>3</sup></a><a href="/tags/CPP-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 1.05rem;">CPP 算法与数据结构<sup>1</sup></a><a href="/tags/PyCharm-%E6%95%99%E7%A8%8B/" style="font-size: 1.05rem;">PyCharm 教程<sup>1</sup></a><a href="/tags/Python-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 1.05rem;">Python 基础语法<sup>5</sup></a><a href="/tags/Python-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 1.05rem;">Python 环境配置<sup>1</sup></a><a href="/tags/Python-%E8%BF%9B%E9%98%B6%E5%BA%94%E7%94%A8/" style="font-size: 1.05rem;">Python 进阶应用<sup>1</sup></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 1.05rem;">动态规划<sup>2</sup></a><a href="/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" style="font-size: 1.05rem;">搜索算法<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 1.05rem;">算法<sup>2</sup></a><a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 1.05rem;">背包问题<sup>1</sup></a><a href="/tags/%E8%8B%B1%E6%89%8D%E8%AE%A1%E5%88%92/" style="font-size: 1.05rem;">英才计划<sup>1</sup></a></div></div><hr/></div></div><div class="console-card history"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-box-archiv"></i><span>文章</span></div><div class="card-archives"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="anzhiyufont anzhiyu-icon-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/11/"><span class="card-archive-list-date">十一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/10/"><span class="card-archive-list-date">十月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/05/"><span class="card-archive-list-date">五月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/04/"><span class="card-archive-list-date">四月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/03/"><span class="card-archive-list-date">三月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">2</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/02/"><span class="card-archive-list-date">二月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">3</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2025/01/"><span class="card-archive-list-date">一月 2025</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/12/"><span class="card-archive-list-date">十二月 2024</span><div class="card-archive-list-count-group"><span class="card-archive-list-count">1</span><span>篇</span></div></a></li></ul></div><hr/></div></div></div><div class="button-group"><div class="console-btn-item"><a class="darkmode_switchbutton" title="显示模式切换" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-moon"></i></a></div><div class="console-btn-item" id="consoleHideAside" onclick="anzhiyu.hideAsideBtn()" title="边栏显示控制"><a class="asideSwitch"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></a></div><div class="console-btn-item" id="consoleMusic" onclick="anzhiyu.musicToggle()" title="音乐开关"><a class="music-switch"><i class="anzhiyufont anzhiyu-icon-music"></i></a></div></div><div class="console-mask" onclick="anzhiyu.hideConsole()" href="javascript:void(0);"></div></div><div class="nav-button" id="nav-totop"><a class="totopbtn" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i><span id="percent" onclick="anzhiyu.scrollToDest(0,500)">0</span></a></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" title="切换"><i class="anzhiyufont anzhiyu-icon-bars"></i></a></div></div></div></nav><div id="post-info"><div id="post-firstinfo"><div class="meta-firstline"><a class="post-meta-original">原创</a><span class="post-meta-categories"><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-inbox post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url">算法学习</a></span><span class="article-meta tags"><a class="article-meta__tags" href="/tags/C/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>C++</span></a><a class="article-meta__tags" href="/tags/%E7%AE%97%E6%B3%95/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>算法</span></a><a class="article-meta__tags" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" tabindex="-1" itemprop="url"> <span> <i class="anzhiyufont anzhiyu-icon-hashtag"></i>动态规划</span></a></span></div></div><h1 class="post-title" itemprop="name headline">C++ 动态规划算法基础</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="anzhiyufont anzhiyu-icon-calendar-days post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" itemprop="dateCreated datePublished" datetime="2025-02-03T16:00:00.000Z" title="发表于 2025-02-04 00:00:00">2025-02-04</time><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-history post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" itemprop="dateCreated datePublished" datetime="2025-11-26T08:55:34.755Z" title="更新于 2025-11-26 16:55:34">2025-11-26</time></span></div><div class="meta-secondline"><span class="post-meta-separator"></span><span class="post-meta-wordcount"><i class="anzhiyufont anzhiyu-icon-file-word post-meta-icon" title="文章字数"></i><span class="post-meta-label" title="文章字数">字数总计:</span><span class="word-count" title="文章字数">4k</span><span class="post-meta-separator"></span><i class="anzhiyufont anzhiyu-icon-clock post-meta-icon" title="阅读时长"></i><span class="post-meta-label" title="阅读时长">阅读时长:</span><span>13分钟</span></span><span class="post-meta-separator"></span><span class="post-meta-pv-cv" id="" data-flag-title="C++ 动态规划算法基础"><i class="anzhiyufont anzhiyu-icon-fw-eye post-meta-icon"></i><span class="post-meta-label" title="阅读量">阅读量:</span><span id="busuanzi_value_page_pv"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-spin"></i></span></span><span class="post-meta-separator">       </span><span class="post-meta-position" title="作者IP属地为内蒙古呼和浩特"><i class="anzhiyufont anzhiyu-icon-location-dot"></i>内蒙古呼和浩特</span></div></div></div><section class="main-hero-waves-area waves-area"><svg class="waves-svg" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink" viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto"><defs><path id="gentle-wave" d="M -160 44 c 30 0 58 -18 88 -18 s 58 18 88 18 s 58 -18 88 -18 s 58 18 88 18 v 44 h -352 Z"></path></defs><g class="parallax"><use href="#gentle-wave" x="48" y="0"></use><use href="#gentle-wave" x="48" y="3"></use><use href="#gentle-wave" x="48" y="5"></use><use href="#gentle-wave" x="48" y="7"></use></g></svg></section><div id="post-top-cover"><img class="nolazyload" id="post-top-bg" src="/img/default_cover.jpg"></div></header><main id="blog-container"><div class="layout" id="content-inner"><div id="post"><article class="post-content" id="article-container" itemscope itemtype="https://blog.1024code.top/CPP_DP/"><header><a class="post-meta-categories" href="/categories/%E7%AE%97%E6%B3%95%E5%AD%A6%E4%B9%A0/" itemprop="url">算法学习</a><a href="/tags/C/" tabindex="-1" itemprop="url">C++</a><a href="/tags/%E7%AE%97%E6%B3%95/" tabindex="-1" itemprop="url">算法</a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" tabindex="-1" itemprop="url">动态规划</a><h1 id="CrawlerTitle" itemprop="name headline">C++ 动态规划算法基础</h1><span itemprop="author" itemscope itemtype="http://schema.org/Person">小布老师</span><time itemprop="dateCreated datePublished" datetime="2025-02-03T16:00:00.000Z" title="发表于 2025-02-04 00:00:00">2025-02-04</time><time itemprop="dateCreated datePublished" datetime="2025-11-26T08:55:34.755Z" title="更新于 2025-11-26 16:55:34">2025-11-26</time></header><h1 id="C-动态规划算法基础"><a href="#C-动态规划算法基础" class="headerlink" title="C++ 动态规划算法基础"></a>C++ 动态规划算法基础</h1><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><div class="note info no-icon flat"><p>动态规划（Dynamic Programming，简称DP）是算法设计中的一种重要方法，广泛应用于解决最优化问题。本文将介绍动态规划的基本概念、核心思想，以及两种常用的分析方法：<strong>常规分析方法</strong>和<strong>闫氏DP分析法</strong>。</p>
+</div>
+
+<div class="note success no-icon flat"><p><strong>本文导航：</strong></p>
+<ul>
+<li>📚 动态规划基础：定义、核心思想、基本要素</li>
+<li>🔄 解题步骤：五步法解决DP问题</li>
+<li>📖 常规分析方法：传统DP分析方法</li>
+<li>🎯 闫氏DP分析法：集合角度的系统化方法</li>
+<li>⚖️ 两种方法对比：选择适合的分析方法</li>
+<li>📦 常见DP类型：线性、区间、背包、树形、状态压缩</li>
+<li>🚀 优化技巧：空间优化、状态优化、转移优化</li>
+<li>💡 学习建议：如何学好动态规划</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="一、什么是动态规划"><a href="#一、什么是动态规划" class="headerlink" title="一、什么是动态规划"></a>一、什么是动态规划</h1><h2 id="1-动态规划的定义"><a href="#1-动态规划的定义" class="headerlink" title="1. 动态规划的定义"></a>1. 动态规划的定义</h2><div class="note success no-icon flat"><p><strong>动态规划</strong>是一种通过把原问题分解为相对简单的子问题的方式来解决复杂问题的方法。它通常用于解决具有<strong>重叠子问题</strong>和<strong>最优子结构</strong>性质的问题。</p>
+</div>
+
+<div class="note info no-icon flat"><p>动态规划的核心思想是：</p>
+<ul>
+<li><strong>记忆化</strong>：避免重复计算已经求解过的子问题</li>
+<li><strong>自底向上</strong>：从最小的子问题开始，逐步构建更大问题的解</li>
+<li><strong>状态转移</strong>：通过状态转移方程描述问题之间的关系</li>
+</ul>
+</div>
+
+<h2 id="2-动态规划与贪心、分治的区别"><a href="#2-动态规划与贪心、分治的区别" class="headerlink" title="2. 动态规划与贪心、分治的区别"></a>2. 动态规划与贪心、分治的区别</h2><div class="note info no-icon flat"><p>动态规划、贪心算法和分治算法是三种重要的算法设计方法，它们各有特点：</p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>方法</th>
+<th>特点</th>
+<th>适用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>贪心算法</strong></td>
+<td>每一步都做出当前最优选择，不考虑全局</td>
+<td>局部最优能导致全局最优的问题</td>
+</tr>
+<tr>
+<td><strong>分治算法</strong></td>
+<td>将问题分解为独立的子问题，递归求解</td>
+<td>子问题之间相互独立的问题</td>
+</tr>
+<tr>
+<td><strong>动态规划</strong></td>
+<td>将问题分解为重叠的子问题，记忆化求解</td>
+<td>具有重叠子问题和最优子结构的问题</td>
+</tr>
+</tbody></table>
+<h2 id="3-动态规划的基本要素"><a href="#3-动态规划的基本要素" class="headerlink" title="3. 动态规划的基本要素"></a>3. 动态规划的基本要素</h2><h3 id="最优子结构"><a href="#最优子结构" class="headerlink" title="最优子结构"></a>最优子结构</h3><div class="note success no-icon flat"><p>问题的最优解包含子问题的最优解。也就是说，可以通过子问题的最优解来构造原问题的最优解。</p>
+<p><strong>示例</strong>：在最短路径问题中，如果从A到C的最短路径经过B，那么从A到B和从B到C的路径也分别是最短的。</p>
+</div>
+
+<h3 id="重叠子问题"><a href="#重叠子问题" class="headerlink" title="重叠子问题"></a>重叠子问题</h3><div class="note warning no-icon flat"><p>在递归求解过程中，同一个子问题会被多次计算。</p>
+<p><strong>示例</strong>：在计算斐波那契数列时，<code>fib(5)</code> 需要计算 <code>fib(4)</code> 和 <code>fib(3)</code>，而 <code>fib(4)</code> 又需要计算 <code>fib(3)</code> 和 <code>fib(2)</code>，<code>fib(3)</code> 被重复计算了。</p>
+</div>
+
+<h3 id="状态转移方程"><a href="#状态转移方程" class="headerlink" title="状态转移方程"></a>状态转移方程</h3><div class="note info no-icon flat"><p>描述问题状态之间关系的数学表达式，是动态规划的核心。</p>
+<p><strong>示例</strong>：斐波那契数列的状态转移方程为：<code>f(n) = f(n-1) + f(n-2)</code></p>
+</div>
+
+<hr>
+<h1 id="二、动态规划的解题步骤"><a href="#二、动态规划的解题步骤" class="headerlink" title="二、动态规划的解题步骤"></a>二、动态规划的解题步骤</h1><h2 id="常规解题步骤"><a href="#常规解题步骤" class="headerlink" title="常规解题步骤"></a>常规解题步骤</h2><div class="note warning no-icon flat"><ol>
+<li><strong>确定状态</strong>：定义问题的状态，通常用 <code>dp[i]</code> 或 <code>dp[i][j]</code> 表示</li>
+<li><strong>确定状态转移方程</strong>：找出状态之间的关系</li>
+<li><strong>确定初始状态</strong>：设置边界条件</li>
+<li><strong>确定计算顺序</strong>：确定状态的计算顺序（自底向上或自顶向下）</li>
+<li><strong>编写代码</strong>：根据上述分析编写代码</li>
+</ol>
+</div>
+
+<hr>
+<h1 id="三、动态规划分析方法"><a href="#三、动态规划分析方法" class="headerlink" title="三、动态规划分析方法"></a>三、动态规划分析方法</h1><h2 id="方法一：常规分析方法"><a href="#方法一：常规分析方法" class="headerlink" title="方法一：常规分析方法"></a>方法一：常规分析方法</h2><div class="note info no-icon flat"><p>常规分析方法是最常用的动态规划分析方法，通过以下步骤进行：</p>
+</div>
+
+<h3 id="1-问题分析"><a href="#1-问题分析" class="headerlink" title="1. 问题分析"></a>1. 问题分析</h3><div class="note warning no-icon flat"><ul>
+<li>理解问题：明确问题的目标和约束条件</li>
+<li>识别特征：判断是否具有最优子结构和重叠子问题</li>
+<li>确定状态：定义状态变量，表示问题的子问题</li>
+</ul>
+</div>
+
+<h3 id="2-状态定义"><a href="#2-状态定义" class="headerlink" title="2. 状态定义"></a>2. 状态定义</h3><div class="note success no-icon flat"><p>状态定义是动态规划的基础，需要明确：</p>
+<ul>
+<li><strong>状态的含义</strong>：<code>dp[i]</code> 或 <code>dp[i][j]</code> 表示什么</li>
+<li><strong>状态的维度</strong>：一维、二维还是多维</li>
+<li><strong>状态的取值范围</strong>：状态的取值范围</li>
+</ul>
+<p><strong>示例</strong>：在01背包问题中，可以定义 <code>dp[i][j]</code> 表示前i个物品在容量为j的背包中能获得的最大价值。</p>
+</div>
+
+<h3 id="3-状态转移方程"><a href="#3-状态转移方程" class="headerlink" title="3. 状态转移方程"></a>3. 状态转移方程</h3><div class="note danger no-icon flat"><p>状态转移方程描述了状态之间的关系，通常有以下几种形式：</p>
+<ul>
+<li><strong>线性DP</strong>：<code>dp[i] = f(dp[i-1], dp[i-2], ...)</code></li>
+<li><strong>区间DP</strong>：<code>dp[i][j] = f(dp[i][k], dp[k+1][j])</code></li>
+<li><strong>树形DP</strong>：在树上进行状态转移</li>
+<li><strong>背包DP</strong>：<code>dp[i][j] = max(dp[i-1][j], dp[i-1][j-w[i]] + v[i])</code></li>
+</ul>
+</div>
+
+<h3 id="4-初始状态"><a href="#4-初始状态" class="headerlink" title="4. 初始状态"></a>4. 初始状态</h3><div class="note warning no-icon flat"><p>初始状态是状态转移的起点，需要明确：</p>
+<ul>
+<li><strong>边界条件</strong>：最小子问题的解</li>
+<li><strong>初始值</strong>：<code>dp[0]</code> 或 <code>dp[0][0]</code> 的值</li>
+</ul>
+</div>
+
+<h3 id="5-计算顺序"><a href="#5-计算顺序" class="headerlink" title="5. 计算顺序"></a>5. 计算顺序</h3><div class="note info no-icon flat"><p>确定状态的计算顺序，确保在计算 <code>dp[i]</code> 时，所需的子问题已经计算完成。</p>
+<p><strong>示例</strong>：在01背包问题中，通常从 <code>i=1, j=0</code> 开始，逐步计算到 <code>i=n, j=V</code>。</p>
+</div>
+
+<h3 id="6-完整示例：斐波那契数列"><a href="#6-完整示例：斐波那契数列" class="headerlink" title="6. 完整示例：斐波那契数列"></a>6. 完整示例：斐波那契数列</h3><div class="note warning no-icon flat"><p><strong>问题描述</strong>：计算第n个斐波那契数。</p>
+</div>
+
+<div class="note success no-icon flat"><p><strong>分析过程</strong>：</p>
+<ol>
+<li><strong>状态定义</strong>：<code>dp[i]</code> 表示第i个斐波那契数</li>
+<li><strong>状态转移方程</strong>：<code>dp[i] = dp[i-1] + dp[i-2]</code></li>
+<li><strong>初始状态</strong>：<code>dp[0] = 0, dp[1] = 1</code></li>
+<li><strong>计算顺序</strong>：从 <code>i=2</code> 开始，依次计算到 <code>i=n</code></li>
+</ol>
+</div>
+
+<div class="note info no-icon flat"><p><strong>代码实现</strong>：</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fibonacci</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 【状态定义】dp[i] 表示第i个斐波那契数</span></span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(n + <span class="number">1</span>)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 【初始状态】</span></span><br><span class="line">    dp[<span class="number">0</span>] = <span class="number">0</span>;</span><br><span class="line">    dp[<span class="number">1</span>] = <span class="number">1</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 【状态转移】从i=2开始计算</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        dp[i] = dp[i<span class="number">-1</span>] + dp[i<span class="number">-2</span>];  <span class="comment">// 状态转移方程</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[n];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 【空间优化版本】只保留前两个状态</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">fibonacci_optimized</span><span class="params">(<span class="type">int</span> n)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (n &lt;= <span class="number">1</span>) <span class="keyword">return</span> n;</span><br><span class="line">    </span><br><span class="line">    <span class="type">int</span> prev2 = <span class="number">0</span>;  <span class="comment">// dp[i-2]</span></span><br><span class="line">    <span class="type">int</span> prev1 = <span class="number">1</span>;  <span class="comment">// dp[i-1]</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">2</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="type">int</span> curr = prev1 + prev2;  <span class="comment">// dp[i] = dp[i-1] + dp[i-2]</span></span><br><span class="line">        prev2 = prev1;</span><br><span class="line">        prev1 = curr;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> prev1;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">10</span>;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;第&quot;</span> &lt;&lt; n &lt;&lt; <span class="string">&quot;个斐波那契数: &quot;</span> &lt;&lt; <span class="built_in">fibonacci</span>(n) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;优化版本: &quot;</span> &lt;&lt; <span class="built_in">fibonacci_optimized</span>(n) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note success no-icon flat"><p><strong>代码说明</strong>：</p>
+<ul>
+<li>基础版本使用一维数组存储所有状态，空间复杂度为 O(n)</li>
+<li>优化版本只保留前两个状态，空间复杂度优化为 O(1)</li>
+<li>两种方法的时间复杂度都是 O(n)</li>
+</ul>
+</div>
+
+<hr>
+<h2 id="方法二：闫氏DP分析法"><a href="#方法二：闫氏DP分析法" class="headerlink" title="方法二：闫氏DP分析法"></a>方法二：闫氏DP分析法</h2><div class="note info no-icon flat"><p><strong>闫氏DP分析法</strong>是由算法竞赛教练闫学灿（yxc）总结的一种系统化的动态规划分析方法。这种方法通过<strong>集合</strong>的角度来理解动态规划，使问题分析更加清晰和系统化。</p>
+</div>
+
+<h3 id="闫氏DP分析法的核心思想"><a href="#闫氏DP分析法的核心思想" class="headerlink" title="闫氏DP分析法的核心思想"></a>闫氏DP分析法的核心思想</h3><div class="note success no-icon flat"><p>闫氏DP分析法将动态规划问题看作<strong>集合划分</strong>问题：</p>
+<ol>
+<li><p><strong>状态表示</strong>：用集合来表示状态</p>
+<ul>
+<li><code>dp[i]</code> 或 <code>dp[i][j]</code> 表示一个集合</li>
+<li>集合中存储的是所有满足某种条件的方案</li>
+<li>集合的属性（最大值、最小值、数量等）就是我们要计算的值</li>
+</ul>
+</li>
+<li><p><strong>状态计算</strong>：通过集合划分来计算状态</p>
+<ul>
+<li>将当前集合划分为若干个子集</li>
+<li>每个子集对应一种情况</li>
+<li>通过子集的结果来计算当前集合的属性</li>
+</ul>
+</li>
+</ol>
+</div>
+
+<h3 id="闫氏DP分析法的步骤"><a href="#闫氏DP分析法的步骤" class="headerlink" title="闫氏DP分析法的步骤"></a>闫氏DP分析法的步骤</h3><div class="note info no-icon flat"><p>闫氏DP分析法分为两个核心步骤：</p>
+</div>
+
+<p><strong>第一步：状态表示</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><strong>集合</strong>：<code>dp[i][j]</code> 表示什么集合？</li>
+<li><strong>属性</strong>：集合的属性是什么？（最大值、最小值、数量等）</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态计算</strong></p>
+<div class="note warning no-icon flat"><ul>
+<li><strong>集合划分</strong>：如何将当前集合划分为子集？</li>
+<li><strong>状态转移</strong>：如何通过子集的结果计算当前集合的属性？</li>
+</ul>
+</div>
+
+<h3 id="完整示例：01背包问题（闫氏DP分析法）"><a href="#完整示例：01背包问题（闫氏DP分析法）" class="headerlink" title="完整示例：01背包问题（闫氏DP分析法）"></a>完整示例：01背包问题（闫氏DP分析法）</h3><div class="note warning no-icon flat"><p><strong>问题描述</strong>：有N个物品和一个容量为V的背包。每个物品只能使用一次。第i个物品的体积是 <code>w[i]</code>，价值是 <code>v[i]</code>。求解将哪些物品装入背包可使这些物品的总体积不超过背包容量，且总价值最大。</p>
+</div>
+
+<p><strong>闫氏DP分析</strong>：</p>
+<p><strong>第一步：状态表示</strong></p>
+<div class="note success no-icon flat"><ul>
+<li><strong>集合</strong>：<code>dp[i][j]</code> 表示所有只考虑前i个物品，且总体积不超过j的选法集合</li>
+<li><strong>属性</strong>：集合中所有方案的最大价值</li>
+</ul>
+</div>
+
+<p><strong>第二步：状态计算</strong></p>
+<div class="note warning no-icon flat"><p>将集合 <code>dp[i][j]</code> 划分为两个子集：</p>
+<ol>
+<li><p><strong>不选第i个物品</strong>：只考虑前i-1个物品，总体积不超过j</p>
+<ul>
+<li>对应集合：<code>dp[i-1][j]</code></li>
+<li>价值：<code>dp[i-1][j]</code></li>
+</ul>
+</li>
+<li><p><strong>选第i个物品</strong>：只考虑前i-1个物品，总体积不超过 <code>j-w[i]</code>，然后加上第i个物品</p>
+<ul>
+<li>对应集合：<code>dp[i-1][j-w[i]]</code></li>
+<li>价值：<code>dp[i-1][j-w[i]] + v[i]</code></li>
+</ul>
+</li>
+</ol>
+</div>
+
+<div class="note danger no-icon flat"><p><strong>状态转移方程</strong>：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dp[i][j] = max(dp[i-1][j], dp[i-1][j-w[i]] + v[i])</span><br></pre></td></tr></table></figure>
+</div>
+
+<div class="note info no-icon flat"><p><strong>边界条件</strong>：</p>
+<ul>
+<li><code>dp[0][j] = 0</code>（没有物品，价值为0）</li>
+<li><code>dp[i][0] = 0</code>（容量为0，价值为0）</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><p><strong>代码实现</strong>：</p>
+</div>
+
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="keyword">include</span> <span class="string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> std;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">knapsack01</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> V, vector&lt;<span class="type">int</span>&gt;&amp; w, vector&lt;<span class="type">int</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 【状态定义】dp[i][j] 表示前i个物品，容量为j时的最大价值</span></span><br><span class="line">    vector&lt;vector&lt;<span class="type">int</span>&gt;&gt; <span class="built_in">dp</span>(n + <span class="number">1</span>, <span class="built_in">vector</span>&lt;<span class="type">int</span>&gt;(V + <span class="number">1</span>, <span class="number">0</span>));</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 【状态转移】</span></span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">1</span>; i &lt;= n; i++) &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = <span class="number">0</span>; j &lt;= V; j++) &#123;</span><br><span class="line">            <span class="comment">// 不选第i个物品</span></span><br><span class="line">            dp[i][j] = dp[i<span class="number">-1</span>][j];</span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 选第i个物品（需要容量足够）</span></span><br><span class="line">            <span class="keyword">if</span> (j &gt;= w[i<span class="number">-1</span>]) &#123;</span><br><span class="line">                dp[i][j] = <span class="built_in">max</span>(dp[i][j], dp[i<span class="number">-1</span>][j-w[i<span class="number">-1</span>]] + v[i<span class="number">-1</span>]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[n][V];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 【空间优化版本】使用一维数组</span></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">knapsack01_optimized</span><span class="params">(<span class="type">int</span> n, <span class="type">int</span> V, vector&lt;<span class="type">int</span>&gt;&amp; w, vector&lt;<span class="type">int</span>&gt;&amp; v)</span> </span>&#123;</span><br><span class="line">    <span class="function">vector&lt;<span class="type">int</span>&gt; <span class="title">dp</span><span class="params">(V + <span class="number">1</span>, <span class="number">0</span>)</span></span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> (<span class="type">int</span> i = <span class="number">0</span>; i &lt; n; i++) &#123;</span><br><span class="line">        <span class="comment">// 【注意】需要逆序遍历，避免覆盖未使用的状态</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="type">int</span> j = V; j &gt;= w[i]; j--) &#123;</span><br><span class="line">            dp[j] = <span class="built_in">max</span>(dp[j], dp[j-w[i]] + v[i]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> dp[V];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="type">int</span> <span class="title">main</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="type">int</span> n = <span class="number">4</span>, V = <span class="number">5</span>;</span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; w = &#123;<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>, <span class="number">4</span>&#125;;  <span class="comment">// 重量</span></span><br><span class="line">    vector&lt;<span class="type">int</span>&gt; v = &#123;<span class="number">2</span>, <span class="number">4</span>, <span class="number">4</span>, <span class="number">5</span>&#125;;  <span class="comment">// 价值</span></span><br><span class="line">    </span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;最大价值: &quot;</span> &lt;&lt; <span class="built_in">knapsack01</span>(n, V, w, v) &lt;&lt; endl;</span><br><span class="line">    cout &lt;&lt; <span class="string">&quot;优化版本: &quot;</span> &lt;&lt; <span class="built_in">knapsack01_optimized</span>(n, V, w, v) &lt;&lt; endl;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<div class="note success no-icon flat"><p><strong>代码说明</strong>：</p>
+<ul>
+<li>基础版本使用二维数组，空间复杂度为 O(n×V)</li>
+<li>优化版本使用一维数组，空间复杂度优化为 O(V)</li>
+<li><strong>关键点</strong>：一维优化时需要逆序遍历容量，避免覆盖未使用的状态</li>
+<li>两种方法的时间复杂度都是 O(n×V)</li>
+</ul>
+</div>
+
+<h3 id="闫氏DP分析法的优势"><a href="#闫氏DP分析法的优势" class="headerlink" title="闫氏DP分析法的优势"></a>闫氏DP分析法的优势</h3><div class="note success no-icon flat"><ol>
+<li><strong>系统化</strong>：通过集合的角度统一理解各种DP问题</li>
+<li><strong>清晰性</strong>：集合划分使状态转移更加清晰</li>
+<li><strong>通用性</strong>：适用于各种类型的动态规划问题</li>
+<li><strong>易于理解</strong>：从集合的角度更容易理解状态的含义</li>
+</ol>
+</div>
+
+<hr>
+<h1 id="四、两种方法的对比"><a href="#四、两种方法的对比" class="headerlink" title="四、两种方法的对比"></a>四、两种方法的对比</h1><div class="note info no-icon flat"><p>以下是常规分析方法和闫氏DP分析法的详细对比：</p>
+</div>
+
+<table>
+<thead>
+<tr>
+<th>方面</th>
+<th>常规分析方法</th>
+<th>闫氏DP分析法</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>核心思想</strong></td>
+<td>通过状态转移方程描述问题</td>
+<td>通过集合划分理解问题</td>
+</tr>
+<tr>
+<td><strong>分析角度</strong></td>
+<td>状态之间的关系</td>
+<td>集合的属性和划分</td>
+</tr>
+<tr>
+<td><strong>适用场景</strong></td>
+<td>所有DP问题</td>
+<td>所有DP问题</td>
+</tr>
+<tr>
+<td><strong>理解难度</strong></td>
+<td>中等</td>
+<td>相对容易（系统化）</td>
+</tr>
+<tr>
+<td><strong>优势</strong></td>
+<td>直观，易于上手</td>
+<td>系统化，逻辑清晰</td>
+</tr>
+</tbody></table>
+<div class="note info no-icon flat"><p><strong>建议</strong>：</p>
+<ul>
+<li>初学者可以先掌握常规分析方法</li>
+<li>进阶学习时可以使用闫氏DP分析法，使分析更加系统化</li>
+<li>两种方法可以结合使用，互相验证</li>
+</ul>
+</div>
+
+<hr>
+<h1 id="五、扩展与专题"><a href="#五、扩展与专题" class="headerlink" title="五、扩展与专题"></a>五、扩展与专题</h1><h2 id="1-背包问题"><a href="#1-背包问题" class="headerlink" title="1. 背包问题"></a>1. 背包问题</h2><div class="note success no-icon flat"><p>经典的背包问题及其变种，是动态规划中最基础且重要的问题类型。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>01背包：每种物品最多选1次</li>
+<li>完全背包：每种物品可以选无限次</li>
+<li>多重背包：每种物品有数量限制</li>
+<li>分组背包：物品分组，每组最多选1个</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(包含01背包、完全背包、多重背包、分组背包等所有背包问题)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">背包问题专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_knapsack/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="2-线性DP"><a href="#2-线性DP" class="headerlink" title="2. 线性DP"></a>2. 线性DP</h2><div class="note info no-icon flat"><p>状态转移是线性的，通常是一维或二维状态，按照线性顺序进行状态转移。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>最长上升子序列（LIS）</li>
+<li>最长公共子序列（LCS）</li>
+<li>编辑距离</li>
+<li>数字三角形</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(最长上升子序列、最长公共子序列、编辑距离等)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">线性DP专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_linear/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="3-区间DP"><a href="#3-区间DP" class="headerlink" title="3. 区间DP"></a>3. 区间DP</h2><div class="note info no-icon flat"><p>状态定义在区间上，通过合并区间来求解，通常用于处理区间相关的问题。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>石子合并</li>
+<li>回文串相关</li>
+<li>矩阵链乘法</li>
+<li>括号匹配</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(石子合并、回文串、矩阵链乘法等)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">区间DP专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_interval/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="4-计数类DP"><a href="#4-计数类DP" class="headerlink" title="4. 计数类DP"></a>4. 计数类DP</h2><div class="note warning no-icon flat"><p>用于统计满足某种条件的方案数量，通常需要特别注意避免重复计数。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>整数划分</li>
+<li>路径计数</li>
+<li>排列组合问题</li>
+<li>方案数统计</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(整数划分、路径计数、排列组合等计数问题)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">计数类DP专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_counting/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="5-数位统计DP"><a href="#5-数位统计DP" class="headerlink" title="5. 数位统计DP"></a>5. 数位统计DP</h2><div class="note warning no-icon flat"><p>用于统计数字在某个范围内满足特定条件的个数，通常与数位相关。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>数字1出现的次数</li>
+<li>不含某些数字的数的个数</li>
+<li>数字各位之和问题</li>
+<li>数字的特定性质统计</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(数字统计、数位相关问题的动态规划解法)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">数位统计DP专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_digit/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="6-状态压缩DP"><a href="#6-状态压缩DP" class="headerlink" title="6. 状态压缩DP"></a>6. 状态压缩DP</h2><div class="note warning no-icon flat"><p>使用位运算压缩状态，通常用于状态空间较小但需要枚举所有状态的问题。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>旅行商问题（TSP）</li>
+<li>棋盘覆盖</li>
+<li>状态压缩背包</li>
+<li>状态机问题</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(旅行商问题、棋盘覆盖、状态压缩背包等)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">状态压缩DP专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_state_compression/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="7-树形DP"><a href="#7-树形DP" class="headerlink" title="7. 树形DP"></a>7. 树形DP</h2><div class="note info no-icon flat"><p>在树结构上进行状态转移，通常需要从叶子节点向根节点或从根节点向叶子节点进行状态转移。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>树的直径</li>
+<li>树的最大独立集</li>
+<li>有依赖的背包</li>
+<li>树上路径问题</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(树的直径、树的最大独立集、有依赖的背包等)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">树形DP专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_tree/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<h2 id="8-记忆化搜索"><a href="#8-记忆化搜索" class="headerlink" title="8. 记忆化搜索"></a>8. 记忆化搜索</h2><div class="note info no-icon flat"><p>使用递归+记忆化的方式实现DP，适用于状态转移关系复杂、难以确定计算顺序的问题。</p>
+<p><strong>典型问题</strong>：</p>
+<ul>
+<li>滑雪问题</li>
+<li>复杂状态转移的DP</li>
+<li>难以确定计算顺序的问题</li>
+<li>递归形式的DP</li>
+</ul>
+</div>
+
+<div class="note info no-icon flat"><div calss='anzhiyu-tag-link'><a class="tag-Link" target="_blank" href="/true">
+    <div class="tag-link-tips">引用站外地址</div>
+    <div class="tag-link-bottom">
+        <div class="tag-link-left" style="background-image: url(递归+记忆化的动态规划实现方法)">
+          <i class="anzhiyufont anzhiyu-icon-link" style="display: none"></i>
+        </div>
+        <div class="tag-link-right">
+            <div class="tag-link-title">记忆化搜索专题</div>
+            <div class="tag-link-sitename"> https://blog.1024code.top/CPP_DP_memoization/</div>
+        </div>
+        <i class="anzhiyufont anzhiyu-icon-angle-right"></i>
+    </div>
+    </a></div>
+</div>
+
+<hr>
+<h1 id="六、动态规划的优化技巧"><a href="#六、动态规划的优化技巧" class="headerlink" title="六、动态规划的优化技巧"></a>六、动态规划的优化技巧</h1><h2 id="1-空间优化"><a href="#1-空间优化" class="headerlink" title="1. 空间优化"></a>1. 空间优化</h2><div class="note success no-icon flat"><p>通过滚动数组减少空间复杂度。</p>
+<p><strong>示例</strong>：01背包问题从二维优化到一维。</p>
+</div>
+
+<h2 id="2-状态优化"><a href="#2-状态优化" class="headerlink" title="2. 状态优化"></a>2. 状态优化</h2><div class="note info no-icon flat"><p>减少状态的维度或数量。</p>
+<p><strong>示例</strong>：某些问题可以通过数学推导减少状态维度。</p>
+</div>
+
+<h2 id="3-转移优化"><a href="#3-转移优化" class="headerlink" title="3. 转移优化"></a>3. 转移优化</h2><div class="note warning no-icon flat"><p>优化状态转移的过程。</p>
+<p><strong>示例</strong>：使用单调队列、斜率优化等技巧。</p>
+</div>
+
+<h2 id="4-记忆化搜索"><a href="#4-记忆化搜索" class="headerlink" title="4. 记忆化搜索"></a>4. 记忆化搜索</h2><div class="note info no-icon flat"><p>使用递归+记忆化的方式实现DP。</p>
+<p><strong>适用场景</strong>：状态转移关系复杂，难以确定计算顺序时。</p>
+</div>
+
+<hr>
+<h1 id="七、学习建议"><a href="#七、学习建议" class="headerlink" title="七、学习建议"></a>七、学习建议</h1><div class="note warning no-icon flat"><ol>
+<li><strong>理解核心思想</strong>：掌握最优子结构和重叠子问题的概念</li>
+<li><strong>多练习</strong>：通过大量练习熟悉各种类型的DP问题</li>
+<li><strong>总结规律</strong>：总结不同类型问题的状态定义和转移方程</li>
+<li><strong>画图分析</strong>：通过画状态转移图帮助理解</li>
+<li><strong>对比学习</strong>：对比不同解法的优缺点</li>
+</ol>
+</div>
+
+<hr>
+<h1 id="八、总结"><a href="#八、总结" class="headerlink" title="八、总结"></a>八、总结</h1><div class="note success no-icon flat"><p>动态规划是解决最优化问题的重要方法，核心在于：</p>
+<ol>
+<li><strong>识别问题特征</strong>：判断是否具有最优子结构和重叠子问题</li>
+<li><strong>定义状态</strong>：明确状态的含义和属性</li>
+<li><strong>建立转移方程</strong>：描述状态之间的关系</li>
+<li><strong>优化实现</strong>：通过空间优化、状态优化等技巧提高效率</li>
+</ol>
+<p>无论是使用常规分析方法还是闫氏DP分析法，关键都是要深入理解问题的本质，找到合适的状态定义和转移方程。</p>
+</div>
+
+<hr>
+<h1 id="九、参考资料"><a href="#九、参考资料" class="headerlink" title="九、参考资料"></a>九、参考资料</h1><div class="note info no-icon flat"><ul>
+<li>《算法导论》- 动态规划章节</li>
+<li>《算法竞赛进阶指南》- 动态规划部分</li>
+</ul>
+</div>
+
+<hr>
+</article><div class="post-copyright"><div class="copyright-cc-box"><i class="anzhiyufont anzhiyu-icon-copyright"></i></div><div class="post-copyright__author_box"><a class="post-copyright__author_img" href="/" title="头像"><img class="post-copyright__author_img_back" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" title="头像" alt="头像"><img class="post-copyright__author_img_front" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" title="头像" alt="头像"></a><div class="post-copyright__author_name">小布老师</div><div class="post-copyright__author_desc">少儿编程中心</div></div><div class="post-copyright__post__info"><a class="post-copyright__original" title="该文章为原创文章，注意版权协议" href="https://blog.1024code.top/CPP_DP/">原创</a><a class="post-copyright-title"><span onclick="rm.copyPageUrl('https://blog.1024code.top/CPP_DP/')">C++ 动态规划算法基础</span></a></div><div class="post-tools" id="post-tools"><div class="post-tools-left"><div class="rewardLeftButton"><div class="post-reward" onclick="anzhiyu.addRewardMask()"><div class="reward-button button--animated" title="赞赏作者"><i class="anzhiyufont anzhiyu-icon-hand-heart-fill"></i>打赏作者</div><div class="reward-main"><div class="reward-all"><span class="reward-title">感谢你赐予我前进的力量</span><ul class="reward-group"><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/zmS9ecULF4aiyMA.png" alt="微信"/></a><div class="post-qr-code-desc">微信</div></li><li class="reward-item"><a href="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png" target="_blank"><img class="post-qr-code-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://s2.loli.net/2023/04/03/bXrew8tgQa4jWoP.png" alt="支付宝"/></a><div class="post-qr-code-desc">支付宝</div></li></ul><a class="reward-main-btn" href="/about/#about-reward" target="_blank"><div class="reward-text">赞赏者名单</div><div class="reward-dec">因为你们的支持让我意识到写文章的价值🙏</div></a></div></div></div><div id="quit-box" onclick="anzhiyu.removeRewardMask()" style="display: none"></div></div><div class="shareRight"><div class="share-link mobile"><div class="share-qrcode"><div class="share-button" title="使用手机访问这篇文章"><i class="anzhiyufont anzhiyu-icon-qrcode"></i></div><div class="share-main"><div class="share-main-all"><div id="qrcode" title="https://blog.1024code.top/CPP_DP/"></div><div class="reward-dec">使用手机访问这篇文章</div></div></div></div></div><div class="share-link weibo"><a class="share-button" target="_blank" href="https://service.weibo.com/share/share.php?title=C++ 动态规划算法基础&amp;url=https://blog.1024code.top/CPP_DP/&amp;pic=/img/default_cover.jpg" rel="external nofollow noreferrer noopener"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a></div><script>function copyCurrentPageUrl() {
+  var currentPageUrl = window.location.href;
+  var input = document.createElement("input");
+  input.setAttribute("value", currentPageUrl);
+  document.body.appendChild(input);
+  input.select();
+  input.setSelectionRange(0, 99999);
+  document.execCommand("copy");
+  document.body.removeChild(input);
+}</script><div class="share-link copyurl"><div class="share-button" id="post-share-url" title="复制链接" onclick="copyCurrentPageUrl()"><i class="anzhiyufont anzhiyu-icon-link"></i></div></div></div></div></div><div class="post-copyright__notice"><span class="post-copyright-info">本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">CC BY-NC-SA 4.0</a> 许可协议。转载请注明来自 <a href="https://blog.1024code.top" target="_blank">壹零贰肆</a>！</span></div></div><div class="post-tools-right"><div class="tag_share"><div class="post-meta__box"><div class="post-meta__box__tag-list"><a class="post-meta__box__tags" href="/tags/C/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>C++<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/%E7%AE%97%E6%B3%95/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>算法<span class="tagsPageCount">2</span></a><a class="post-meta__box__tags" href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/"><span class="tags-punctuation"> <i class="anzhiyufont anzhiyu-icon-tag"></i></span>动态规划<span class="tagsPageCount">2</span></a></div></div></div><div class="post_share"><div class="social-share" data-image="https://bu.dusays.com/2025/11/16/6919704d5ae8f.png" data-sites="facebook,twitter,wechat,weibo,qq"></div><link rel="stylesheet" href="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/css/share.min.css" media="print" onload="this.media='all'"/><script src="https://cdn.cbd.int/butterfly-extsrc@1.1.3/sharejs/dist/js/social-share.min.js" defer="defer"></script></div></div><div class="relatedPosts"><div class="headline"><i class="anzhiyufont anzhiyu-icon-thumbs-up fa-fw" style="font-size: 1.5rem; margin-right: 4px"></i><span>喜欢这篇文章的人也看了</span></div><div class="relatedPosts-list"><div><a href="/CPP_DP_knapsack/" title="C++ 动态规划 - 背包问题专题"><img class="cover" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="/img/default_cover.jpg" alt="cover"><div class="content is-center"><div class="date"><i class="anzhiyufont anzhiyu-icon-calendar-days fa-fw"></i> 2025-02-05</div><div class="title">C++ 动态规划 - 背包问题专题</div></div></a></div></div></div><hr/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="anzhiyufont anzhiyu-icon-comments"></i><span> 评论</span></div><div class="comment-randomInfo"><a onclick="anzhiyu.addRandomCommentInfo()" href="javascript:void(0)">匿名评论</a><a href="/privacy" style="margin-left: 4px">隐私政策</a></div><div class="comment-tips" id="comment-tips"><span>✅ 你无需删除空行，直接评论以获取最佳展示效果</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div><div class="comment-barrage"></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="card-content"><div class="author-info__sayhi" id="author-info__sayhi" onclick="anzhiyu.changeSayHelloText()"></div><div class="author-info-avatar"><img class="avatar-img" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/><div class="author-status"><img class="g-status" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2021/03/03/317b790a902ec.png" alt="status"/></div></div><div class="author-info__description"><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">这有关于<b style="color:#fff">少儿编程、信息学奥赛</b>相关的问题和看法，还有<b style="color:#fff">算法</b>和<b style="color:#fff">数据结构</b>相关的知识。</div><div style="line-height:1.38;margin:0.6rem 0;text-align:justify;color:rgba(255, 255, 255, 0.8);">相信你可以在这里找到对你有用的<b style="color:#fff">知识</b>和<b style="color:#fff">教程</b>。</div></div><div class="author-info__bottom-group"><a class="author-info__bottom-group-left" href="/"><h1 class="author-info__name">小布老师</h1><div class="author-info__desc">少儿编程中心</div></a><div class="card-info-social-icons is-center"><a class="social-icon faa-parent animated-hover" href="https://github.com/Y-Liberty" target="_blank" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="social-icon faa-parent animated-hover" href="https://space.bilibili.com/444222985" target="_blank" title="BiliBili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a></div></div></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bullhorn anzhiyu-shake"></i><span>公告</span></div><div class="announcement_content">这有关于少儿编程、信息学奥赛相关的问题和看法，还有算法和数据结构相关的知识。相信你可以在这里找到对你有用的知识和教程。</div></div><div class="card-widget anzhiyu-right-widget" id="card-wechat" onclick="null"><div id="flip-wrapper"><div id="flip-content"><div class="face" style="background: url(https://bu.dusays.com/2023/01/13/63c02edf44033.png) center center / 100% no-repeat"></div><div class="back face" style="background: url(https://bu.dusays.com/2025/10/02/68de44abb6934.png) center center / 100% no-repeat"></div></div></div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-bars"></i><span>文章目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#C-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%AE%97%E6%B3%95%E5%9F%BA%E7%A1%80"><span class="toc-number">1.</span> <span class="toc-text">C++ 动态规划算法基础</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%89%8D%E8%A8%80"><span class="toc-number">1.1.</span> <span class="toc-text">前言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%80%E3%80%81%E4%BB%80%E4%B9%88%E6%98%AF%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92"><span class="toc-number">2.</span> <span class="toc-text">一、什么是动态规划</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E5%AE%9A%E4%B9%89"><span class="toc-number">2.1.</span> <span class="toc-text">1. 动态规划的定义</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E4%B8%8E%E8%B4%AA%E5%BF%83%E3%80%81%E5%88%86%E6%B2%BB%E7%9A%84%E5%8C%BA%E5%88%AB"><span class="toc-number">2.2.</span> <span class="toc-text">2. 动态规划与贪心、分治的区别</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E5%9F%BA%E6%9C%AC%E8%A6%81%E7%B4%A0"><span class="toc-number">2.3.</span> <span class="toc-text">3. 动态规划的基本要素</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9C%80%E4%BC%98%E5%AD%90%E7%BB%93%E6%9E%84"><span class="toc-number">2.3.1.</span> <span class="toc-text">最优子结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%87%8D%E5%8F%A0%E5%AD%90%E9%97%AE%E9%A2%98"><span class="toc-number">2.3.2.</span> <span class="toc-text">重叠子问题</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="toc-number">2.3.3.</span> <span class="toc-text">状态转移方程</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%8C%E3%80%81%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.</span> <span class="toc-text">二、动态规划的解题步骤</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E8%A7%84%E8%A7%A3%E9%A2%98%E6%AD%A5%E9%AA%A4"><span class="toc-number">3.1.</span> <span class="toc-text">常规解题步骤</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%89%E3%80%81%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">4.</span> <span class="toc-text">三、动态规划分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%B8%80%EF%BC%9A%E5%B8%B8%E8%A7%84%E5%88%86%E6%9E%90%E6%96%B9%E6%B3%95"><span class="toc-number">4.1.</span> <span class="toc-text">方法一：常规分析方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90"><span class="toc-number">4.1.1.</span> <span class="toc-text">1. 问题分析</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-%E7%8A%B6%E6%80%81%E5%AE%9A%E4%B9%89"><span class="toc-number">4.1.2.</span> <span class="toc-text">2. 状态定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-%E7%8A%B6%E6%80%81%E8%BD%AC%E7%A7%BB%E6%96%B9%E7%A8%8B"><span class="toc-number">4.1.3.</span> <span class="toc-text">3. 状态转移方程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-%E5%88%9D%E5%A7%8B%E7%8A%B6%E6%80%81"><span class="toc-number">4.1.4.</span> <span class="toc-text">4. 初始状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-%E8%AE%A1%E7%AE%97%E9%A1%BA%E5%BA%8F"><span class="toc-number">4.1.5.</span> <span class="toc-text">5. 计算顺序</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B%EF%BC%9A%E6%96%90%E6%B3%A2%E9%82%A3%E5%A5%91%E6%95%B0%E5%88%97"><span class="toc-number">4.1.6.</span> <span class="toc-text">6. 完整示例：斐波那契数列</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%B9%E6%B3%95%E4%BA%8C%EF%BC%9A%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95"><span class="toc-number">4.2.</span> <span class="toc-text">方法二：闫氏DP分析法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95%E7%9A%84%E6%A0%B8%E5%BF%83%E6%80%9D%E6%83%B3"><span class="toc-number">4.2.1.</span> <span class="toc-text">闫氏DP分析法的核心思想</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95%E7%9A%84%E6%AD%A5%E9%AA%A4"><span class="toc-number">4.2.2.</span> <span class="toc-text">闫氏DP分析法的步骤</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%8C%E6%95%B4%E7%A4%BA%E4%BE%8B%EF%BC%9A01%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98%EF%BC%88%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95%EF%BC%89"><span class="toc-number">4.2.3.</span> <span class="toc-text">完整示例：01背包问题（闫氏DP分析法）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%97%AB%E6%B0%8FDP%E5%88%86%E6%9E%90%E6%B3%95%E7%9A%84%E4%BC%98%E5%8A%BF"><span class="toc-number">4.2.4.</span> <span class="toc-text">闫氏DP分析法的优势</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%9B%9B%E3%80%81%E4%B8%A4%E7%A7%8D%E6%96%B9%E6%B3%95%E7%9A%84%E5%AF%B9%E6%AF%94"><span class="toc-number">5.</span> <span class="toc-text">四、两种方法的对比</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%BA%94%E3%80%81%E6%89%A9%E5%B1%95%E4%B8%8E%E4%B8%93%E9%A2%98"><span class="toc-number">6.</span> <span class="toc-text">五、扩展与专题</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98"><span class="toc-number">6.1.</span> <span class="toc-text">1. 背包问题</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%BA%BF%E6%80%A7DP"><span class="toc-number">6.2.</span> <span class="toc-text">2. 线性DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E5%8C%BA%E9%97%B4DP"><span class="toc-number">6.3.</span> <span class="toc-text">3. 区间DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%A1%E6%95%B0%E7%B1%BBDP"><span class="toc-number">6.4.</span> <span class="toc-text">4. 计数类DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#5-%E6%95%B0%E4%BD%8D%E7%BB%9F%E8%AE%A1DP"><span class="toc-number">6.5.</span> <span class="toc-text">5. 数位统计DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#6-%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9DP"><span class="toc-number">6.6.</span> <span class="toc-text">6. 状态压缩DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#7-%E6%A0%91%E5%BD%A2DP"><span class="toc-number">6.7.</span> <span class="toc-text">7. 树形DP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#8-%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2"><span class="toc-number">6.8.</span> <span class="toc-text">8. 记忆化搜索</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AD%E3%80%81%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92%E7%9A%84%E4%BC%98%E5%8C%96%E6%8A%80%E5%B7%A7"><span class="toc-number">7.</span> <span class="toc-text">六、动态规划的优化技巧</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-%E7%A9%BA%E9%97%B4%E4%BC%98%E5%8C%96"><span class="toc-number">7.1.</span> <span class="toc-text">1. 空间优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-%E7%8A%B6%E6%80%81%E4%BC%98%E5%8C%96"><span class="toc-number">7.2.</span> <span class="toc-text">2. 状态优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3-%E8%BD%AC%E7%A7%BB%E4%BC%98%E5%8C%96"><span class="toc-number">7.3.</span> <span class="toc-text">3. 转移优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#4-%E8%AE%B0%E5%BF%86%E5%8C%96%E6%90%9C%E7%B4%A2"><span class="toc-number">7.4.</span> <span class="toc-text">4. 记忆化搜索</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B8%83%E3%80%81%E5%AD%A6%E4%B9%A0%E5%BB%BA%E8%AE%AE"><span class="toc-number">8.</span> <span class="toc-text">七、学习建议</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E5%85%AB%E3%80%81%E6%80%BB%E7%BB%93"><span class="toc-number">9.</span> <span class="toc-text">八、总结</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#%E4%B9%9D%E3%80%81%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="toc-number">10.</span> <span class="toc-text">九、参考资料</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="anzhiyufont anzhiyu-icon-history"></i><span>最近发布</span></div><div class="aside-list"><div class="aside-list-item"><a class="thumbnail" href="/CPP_Kuangbin_1/" title="Kuangbin算法专题1——搜索专题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/16/6919704d5ae8f.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Kuangbin算法专题1——搜索专题"/></a><div class="content"><a class="title" href="/CPP_Kuangbin_1/" title="Kuangbin算法专题1——搜索专题">Kuangbin算法专题1——搜索专题</a><time datetime="2025-11-09T06:00:00.000Z" title="发表于 2025-11-09 14:00:00">2025-11-09</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Py_lesson/" title="从零开始的 Python 学习之旅"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/03/69084c47a6e66.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="从零开始的 Python 学习之旅"/></a><div class="content"><a class="title" href="/Py_lesson/" title="从零开始的 Python 学习之旅">从零开始的 Python 学习之旅</a><time datetime="2025-10-26T06:30:00.000Z" title="发表于 2025-10-26 14:30:00">2025-10-26</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Py_data_stru/" title="Python 数据结构 - 高效管理和组织数据"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/03/69084cb1de4d6.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python 数据结构 - 高效管理和组织数据"/></a><div class="content"><a class="title" href="/Py_data_stru/" title="Python 数据结构 - 高效管理和组织数据">Python 数据结构 - 高效管理和组织数据</a><time datetime="2025-05-15T02:30:00.000Z" title="发表于 2025-05-15 10:30:00">2025-05-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Py_Loop/" title="Python 循环结构 - 让程序高效重复工作"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/11/03/69084bd62c60e.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Python 循环结构 - 让程序高效重复工作"/></a><div class="content"><a class="title" href="/Py_Loop/" title="Python 循环结构 - 让程序高效重复工作">Python 循环结构 - 让程序高效重复工作</a><time datetime="2025-04-15T02:30:00.000Z" title="发表于 2025-04-15 10:30:00">2025-04-15</time></div></div><div class="aside-list-item"><a class="thumbnail" href="/Talent_Program/" title="呼和浩特中学英才计划招生政策"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://img.picgo.net/2024/08/31/imagee3def5038dcb5b53.png" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="呼和浩特中学英才计划招生政策"/></a><div class="content"><a class="title" href="/Talent_Program/" title="呼和浩特中学英才计划招生政策">呼和浩特中学英才计划招生政策</a><time datetime="2025-04-02T01:00:00.000Z" title="发表于 2025-04-02 09:00:00">2025-04-02</time></div></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div id="footer_deal"><a class="deal_link" href="mailto:yi_coder@163.com" title="email"><i class="anzhiyufont anzhiyu-icon-envelope"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://weibo.com/" title="微博"><i class="anzhiyufont anzhiyu-icon-weibo"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://www.facebook.com/" title="facebook"><i class="anzhiyufont anzhiyu-icon-facebook1"></i></a><a class="deal_link" href="/atom.xml" title="RSS"><i class="anzhiyufont anzhiyu-icon-rss"></i></a><img class="footer_mini_logo" title="返回顶部" alt="返回顶部" onclick="anzhiyu.scrollToDest(0, 500)" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" size="50px"/><a class="deal_link" target="_blank" rel="noopener" href="https://github.com/" title="Github"><i class="anzhiyufont anzhiyu-icon-github"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://space.bilibili.com/" title="Bilibili"><i class="anzhiyufont anzhiyu-icon-bilibili"></i></a><a class="deal_link" target="_blank" rel="noopener" href="https://v.douyin.com/" title="抖音"><i class="anzhiyufont anzhiyu-icon-tiktok"></i></a><a class="deal_link" href="/copyright" title="CC"><i class="anzhiyufont anzhiyu-icon-copyright-line"></i></a></div><div id="anzhiyu-footer"><div class="footer-group"><div class="footer-title">服务</div><div class="footer-links"><a class="footer-item" title="51la统计" target="_blank" rel="noopener" href="https://v6.51.la/">51la统计</a><a class="footer-item" title="十年之约" target="_blank" rel="noopener" href="https://www.foreverblog.cn/">十年之约</a><a class="footer-item" title="开往" target="_blank" rel="noopener" href="https://github.com/travellings-link/travellings">开往</a></div></div><div class="footer-group"><div class="footer-title">主题</div><div class="footer-links"><a class="footer-item" title="文档" href="/docs/">文档</a><a class="footer-item" title="源码" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu">源码</a><a class="footer-item" title="更新日志" href="/update/">更新日志</a></div></div><div class="footer-group"><div class="footer-title">导航</div><div class="footer-links"><a class="footer-item" title="即刻短文" href="/essay/">即刻短文</a><a class="footer-item" title="音乐馆" href="/music/">音乐馆</a><a class="footer-item" title="留言板" href="/comments/">留言板</a></div></div><div class="footer-group"><div class="footer-title">协议</div><div class="footer-links"><a class="footer-item" title="隐私协议" href="/privacy/">隐私协议</a><a class="footer-item" title="Cookies" href="/cookies/">Cookies</a><a class="footer-item" title="版权协议" href="/copyright/">版权协议</a></div></div><div class="footer-group"><div class="footer-title-group"><div class="footer-title">友链</div><a class="random-friends-btn" id="footer-random-friends-btn" href="javascript:addFriendLinksInFooter();" title="换一批友情链接"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right"></i></a></div><div class="footer-links" id="friend-links-in-footer"></div></div></div><p id="ghbdages"><a class="github-badge" target="_blank" href="https://hexo.io/" style="margin-inline:5px" data-title="博客框架为Hexo_v5.4.0" title="博客框架为Hexo_v5.4.0"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg" alt="博客框架为Hexo_v5.4.0"/></a><a class="github-badge" target="_blank" href="https://blog.anheyu.com/" style="margin-inline:5px" data-title="本站使用AnZhiYu主题" title="本站使用AnZhiYu主题"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg" alt="本站使用AnZhiYu主题"/></a><a class="github-badge" target="_blank" href="https://www.dogecloud.com/" style="margin-inline:5px" data-title="本站使用多吉云为静态资源提供CDN加速" title="本站使用多吉云为静态资源提供CDN加速"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/CDN-多吉云-3693F3.svg" alt="本站使用多吉云为静态资源提供CDN加速"/></a><a class="github-badge" target="_blank" href="https://github.com/" style="margin-inline:5px" data-title="本站项目由Github托管" title="本站项目由Github托管"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg" alt="本站项目由Github托管"/></a><a class="github-badge" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" style="margin-inline:5px" data-title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可" title="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"><img src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/Copyright-BY-NC-SA.svg" alt="本站采用知识共享署名-非商业性使用-相同方式共享4.0国际许可协议进行许可"/></a></p></div><div id="footer-bar"><div class="footer-bar-links"><div class="footer-bar-left"><div id="footer-bar-tips"><div class="copyright">&copy;2024 - 2025 By <a class="footer-bar-link" href="/" title="小布老师" target="_blank">小布老师</a></div></div><div id="footer-type-tips"></div></div><div class="footer-bar-right"><a class="footer-bar-link" target="_blank" rel="noopener" href="https://github.com/anzhiyu-c/hexo-theme-anzhiyu" title="主题">主题</a></div></div></div></footer></div><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="sidebar-site-data site-data is-center"><a href="/archives/" title="archive"><div class="headline">文章</div><div class="length-num">21</div></a><a href="/tags/" title="tag"><div class="headline">标签</div><div class="length-num">14</div></a><a href="/categories/" title="category"><div class="headline">分类</div><div class="length-num">4</div></a></div><span class="sidebar-menu-item-title">功能</span><div class="sidebar-menu-item"><a class="darkmode_switchbutton menu-child" href="javascript:void(0);" title="显示模式"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span>显示模式</span></a></div><div class="back-menu-list-groups"><div class="back-menu-list-group"><div class="back-menu-list-title">网页</div><div class="back-menu-list"><a class="back-menu-item" target="_blank" rel="noopener" href="https://www.1024code.top/" title="首页"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="首页"/><span class="back-menu-item-text">首页</span></a><a class="back-menu-item" href="https://blog.1024code.top/" title="博客"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="博客"/><span class="back-menu-item-text">博客</span></a><a class="back-menu-item" target="_blank" rel="noopener" href="http://oj.1024code.top/" title="刷题平台"><img class="back-menu-item-icon" src= "data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" onerror="this.onerror=null,this.src=&quot;/img/404.jpg&quot;" data-lazy-src="https://bu.dusays.com/2025/10/02/68de356fc6902.jpg" alt="刷题平台"/><span class="back-menu-item-text">刷题平台</span></a></div></div></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 文章</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/archives/"><i class="anzhiyufont anzhiyu-icon-box-archive faa-tada" style="font-size: 0.9em;"></i><span> 隧道</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/categories/"><i class="anzhiyufont anzhiyu-icon-shapes faa-tada" style="font-size: 0.9em;"></i><span> 分类</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags faa-tada" style="font-size: 0.9em;"></i><span> 标签</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 友链</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/link/"><i class="anzhiyufont anzhiyu-icon-link faa-tada" style="font-size: 0.9em;"></i><span> 友人帐</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/comments/"><i class="anzhiyufont anzhiyu-icon-envelope faa-tada" style="font-size: 0.9em;"></i><span> 留言板</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 我的</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/music/"><i class="anzhiyufont anzhiyu-icon-music faa-tada" style="font-size: 0.9em;"></i><span> 音乐馆</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/bangumis/"><i class="anzhiyufont anzhiyu-icon-bilibili faa-tada" style="font-size: 0.9em;"></i><span> 追番页</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/air-conditioner/"><i class="anzhiyufont anzhiyu-icon-fan faa-tada" style="font-size: 0.9em;"></i><span> 小空调</span></a></li></ul></div><div class="menus_item"><a class="site-page" href="javascript:void(0);"><span> 关于</span></a><ul class="menus_item_child"><li><a class="site-page child faa-parent animated-hover" href="/about/"><i class="anzhiyufont anzhiyu-icon-paper-plane faa-tada" style="font-size: 0.9em;"></i><span> 关于本人</span></a></li><li><a class="site-page child faa-parent animated-hover" href="/essay/"><i class="anzhiyufont anzhiyu-icon-lightbulb faa-tada" style="font-size: 0.9em;"></i><span> 闲言碎语</span></a></li><li><a class="site-page child faa-parent animated-hover" href="javascript:toRandomPost()"><i class="anzhiyufont anzhiyu-icon-shoe-prints1 faa-tada" style="font-size: 0.9em;"></i><span> 随便逛逛</span></a></li></ul></div></div><span class="sidebar-menu-item-title">标签</span><div class="card-tags"><div class="item-headline"></div><div class="card-tag-cloud"><a href="/tags/C/" style="font-size: 0.88rem;">C++<sup>2</sup></a><a href="/tags/C-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 0.88rem;">C++ 基础语法<sup>8</sup></a><a href="/tags/C-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.88rem;">C++ 数据结构<sup>1</sup></a><a href="/tags/C-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.88rem;">C++ 算法与数据结构<sup>3</sup></a><a href="/tags/CPP-%E7%AE%97%E6%B3%95%E4%B8%8E%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" style="font-size: 0.88rem;">CPP 算法与数据结构<sup>1</sup></a><a href="/tags/PyCharm-%E6%95%99%E7%A8%8B/" style="font-size: 0.88rem;">PyCharm 教程<sup>1</sup></a><a href="/tags/Python-%E5%9F%BA%E7%A1%80%E8%AF%AD%E6%B3%95/" style="font-size: 0.88rem;">Python 基础语法<sup>5</sup></a><a href="/tags/Python-%E7%8E%AF%E5%A2%83%E9%85%8D%E7%BD%AE/" style="font-size: 0.88rem;">Python 环境配置<sup>1</sup></a><a href="/tags/Python-%E8%BF%9B%E9%98%B6%E5%BA%94%E7%94%A8/" style="font-size: 0.88rem;">Python 进阶应用<sup>1</sup></a><a href="/tags/%E5%8A%A8%E6%80%81%E8%A7%84%E5%88%92/" style="font-size: 0.88rem;">动态规划<sup>2</sup></a><a href="/tags/%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95/" style="font-size: 0.88rem;">搜索算法<sup>1</sup></a><a href="/tags/%E7%AE%97%E6%B3%95/" style="font-size: 0.88rem;">算法<sup>2</sup></a><a href="/tags/%E8%83%8C%E5%8C%85%E9%97%AE%E9%A2%98/" style="font-size: 0.88rem;">背包问题<sup>1</sup></a><a href="/tags/%E8%8B%B1%E6%89%8D%E8%AE%A1%E5%88%92/" style="font-size: 0.88rem;">英才计划<sup>1</sup></a></div></div><hr/></div></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="anzhiyufont anzhiyu-icon-book-open"></i></button><button id="translateLink" type="button" title="简繁转换">繁</button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="anzhiyufont anzhiyu-icon-arrows-left-right"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="anzhiyufont anzhiyu-icon-gear"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="anzhiyufont anzhiyu-icon-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="anzhiyufont anzhiyu-icon-comments"></i></a><button id="go-up" type="button" title="回到顶部"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></button></div></div><div id="nav-music"><a id="nav-music-hoverTips" onclick="anzhiyu.musicToggle()" accesskey="m">播放音乐</a><div id="console-music-bg"></div><meting-js id="8152976493" server="netease" type="playlist" mutex="true" preload="none" theme="var(--anzhiyu-main)" data-lrctype="0" order="random" volume="0.7"></meting-js></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="anzhiyufont anzhiyu-icon-xmark"></i></button></nav><div class="is-center" id="loading-database"><i class="anzhiyufont anzhiyu-icon-spinner anzhiyu-pulse-icon"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div></div></div><div id="search-mask"></div></div><div id="rightMenu"><div class="rightMenu-group rightMenu-small"><div class="rightMenu-item" id="menu-backward"><i class="anzhiyufont anzhiyu-icon-arrow-left"></i></div><div class="rightMenu-item" id="menu-forward"><i class="anzhiyufont anzhiyu-icon-arrow-right"></i></div><div class="rightMenu-item" id="menu-refresh"><i class="anzhiyufont anzhiyu-icon-arrow-rotate-right" style="font-size: 1rem;"></i></div><div class="rightMenu-item" id="menu-top"><i class="anzhiyufont anzhiyu-icon-arrow-up"></i></div></div><div class="rightMenu-group rightMenu-line rightMenuPlugin"><div class="rightMenu-item" id="menu-copytext"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制选中文本</span></div><div class="rightMenu-item" id="menu-pastetext"><i class="anzhiyufont anzhiyu-icon-paste"></i><span>粘贴文本</span></div><a class="rightMenu-item" id="menu-commenttext"><i class="anzhiyufont anzhiyu-icon-comment-medical"></i><span>引用到评论</span></a><div class="rightMenu-item" id="menu-newwindow"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开</span></div><div class="rightMenu-item" id="menu-copylink"><i class="anzhiyufont anzhiyu-icon-link"></i><span>复制链接地址</span></div><div class="rightMenu-item" id="menu-copyimg"><i class="anzhiyufont anzhiyu-icon-images"></i><span>复制此图片</span></div><div class="rightMenu-item" id="menu-downloadimg"><i class="anzhiyufont anzhiyu-icon-download"></i><span>下载此图片</span></div><div class="rightMenu-item" id="menu-newwindowimg"><i class="anzhiyufont anzhiyu-icon-window-restore"></i><span>新窗口打开图片</span></div><div class="rightMenu-item" id="menu-search"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>站内搜索</span></div><div class="rightMenu-item" id="menu-searchBaidu"><i class="anzhiyufont anzhiyu-icon-magnifying-glass"></i><span>百度搜索</span></div><div class="rightMenu-item" id="menu-music-toggle"><i class="anzhiyufont anzhiyu-icon-play"></i><span>播放音乐</span></div><div class="rightMenu-item" id="menu-music-back"><i class="anzhiyufont anzhiyu-icon-backward"></i><span>切换到上一首</span></div><div class="rightMenu-item" id="menu-music-forward"><i class="anzhiyufont anzhiyu-icon-forward"></i><span>切换到下一首</span></div><div class="rightMenu-item" id="menu-music-playlist" onclick="window.open(&quot;https://y.qq.com/n/ryqq/playlist/8802438608&quot;, &quot;_blank&quot;);" style="display: none;"><i class="anzhiyufont anzhiyu-icon-radio"></i><span>查看所有歌曲</span></div><div class="rightMenu-item" id="menu-music-copyMusicName"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制歌名</span></div></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item menu-link" id="menu-randomPost"><i class="anzhiyufont anzhiyu-icon-shuffle"></i><span>随便逛逛</span></a><a class="rightMenu-item menu-link" href="/categories/"><i class="anzhiyufont anzhiyu-icon-cube"></i><span>博客分类</span></a><a class="rightMenu-item menu-link" href="/tags/"><i class="anzhiyufont anzhiyu-icon-tags"></i><span>文章标签</span></a></div><div class="rightMenu-group rightMenu-line rightMenuOther"><a class="rightMenu-item" id="menu-copy" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-copy"></i><span>复制地址</span></a><a class="rightMenu-item" id="menu-commentBarrage" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-message"></i><span class="menu-commentBarrage-text">关闭热评</span></a><a class="rightMenu-item" id="menu-darkmode" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-circle-half-stroke"></i><span class="menu-darkmode-text">深色模式</span></a><a class="rightMenu-item" id="menu-translate" href="javascript:void(0);"><i class="anzhiyufont anzhiyu-icon-language"></i><span>轉為繁體</span></a></div></div><div id="rightmenu-mask"></div><div><script src="/js/utils.js"></script><script src="/js/main.js"></script><script src="/js/tw_cn.js"></script><script src="https://cdn.cbd.int/@fancyapps/ui@5.0.28/dist/fancybox/fancybox.umd.js"></script><script src="https://cdn.cbd.int/instant.page@5.2.0/instantpage.js" type="module"></script><script src="https://cdn.cbd.int/vanilla-lazyload@17.8.5/dist/lazyload.iife.min.js"></script><script src="https://cdn.cbd.int/node-snackbar@0.1.16/dist/snackbar.min.js"></script><canvas id="universe"></canvas><script async src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.0/dark/dark.js"></script><script>// 消除控制台打印
+var HoldLog = console.log;
+console.log = function () {};
+let now1 = new Date();
+queueMicrotask(() => {
+  const Log = function () {
+    HoldLog.apply(console, arguments);
+  }; //在恢复前输出日志
+  const grt = new Date("06/01/2024 00:00:00"); //此处修改你的建站时间或者网站上线时间
+  now1.setTime(now1.getTime() + 250);
+  const days = (now1 - grt) / 1000 / 60 / 60 / 24;
+  const dnum = Math.floor(days);
+  const ascll = [
+    `欢迎使用安知鱼!`,
+    `生活明朗, 万物可爱`,
+    `
+        
+       █████╗ ███╗   ██╗███████╗██╗  ██╗██╗██╗   ██╗██╗   ██╗
+      ██╔══██╗████╗  ██║╚══███╔╝██║  ██║██║╚██╗ ██╔╝██║   ██║
+      ███████║██╔██╗ ██║  ███╔╝ ███████║██║ ╚████╔╝ ██║   ██║
+      ██╔══██║██║╚██╗██║ ███╔╝  ██╔══██║██║  ╚██╔╝  ██║   ██║
+      ██║  ██║██║ ╚████║███████╗██║  ██║██║   ██║   ╚██████╔╝
+      ╚═╝  ╚═╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝   ╚═╝    ╚═════╝
+        
+        `,
+    "已上线",
+    dnum,
+    "天",
+    "©2024 By 安知鱼 V1.6.12",
+  ];
+  const ascll2 = [`NCC2-036`, `调用前置摄像头拍照成功，识别为【小笨蛋】.`, `Photo captured: `, `🤪`];
+
+  setTimeout(
+    Log.bind(
+      console,
+      `\n%c${ascll[0]} %c ${ascll[1]} %c ${ascll[2]} %c${ascll[3]}%c ${ascll[4]}%c ${ascll[5]}\n\n%c ${ascll[6]}\n`,
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      "color:#425AEF",
+      "",
+      "color:#425AEF",
+      ""
+    )
+  );
+  setTimeout(
+    Log.bind(
+      console,
+      `%c ${ascll2[0]} %c ${ascll2[1]} %c \n${ascll2[2]} %c\n${ascll2[3]}\n`,
+      "color:white; background-color:#4fd953",
+      "",
+      "",
+      'background:url("https://npm.elemecdn.com/anzhiyu-blog@1.1.6/img/post/common/tinggge.gif") no-repeat;font-size:450%'
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c WELCOME %c 你好，小笨蛋.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(
+      console,
+      "%c ⚡ Powered by 安知鱼 %c 你正在访问 小布老师 的博客.",
+      "color:white; background-color:#f0ad4e",
+      ""
+    )
+  );
+
+  setTimeout(Log.bind(console, "%c W23-12 %c 你已打开控制台.", "color:white; background-color:#4f90d9", ""));
+
+  setTimeout(
+    console.warn.bind(console, "%c S013-782 %c 你现在正处于监控中.", "color:white; background-color:#d9534f", "")
+  );
+});</script><script async src="/anzhiyu/random.js"></script><script src="/js/search/local-search.js"></script><div class="js-pjax"><script>(() => {
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.y-liberty.cn/',
+      region: 'ap-neimenggu',
+      onCommentLoaded: () => {
+        anzhiyu.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(runFn,0)
+    else getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runFn)
+  }
+
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.y-liberty.cn/',
+      region: 'ap-neimenggu',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const runFn = () => {
+    init();
+    
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) anzhiyu.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else {
+      loadTwikoo()
+    }
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script><input type="hidden" name="page-type" id="page-type" value="post"></div><script>window.addEventListener('load', () => {
+  const changeContent = (content) => {
+    if (content === '') return content
+
+    content = content.replace(/<img.*?src="(.*?)"?[^\>]+>/ig, '[图片]') // replace image link
+    content = content.replace(/<a[^>]+?href=["']?([^"']+)["']?[^>]*>([^<]+)<\/a>/gi, '[链接]') // replace url
+    content = content.replace(/<pre><code>.*?<\/pre>/gi, '[代码]') // replace code
+    content = content.replace(/<[^>]+>/g,"") // remove html tag
+
+    if (content.length > 150) {
+      content = content.substring(0,150) + '...'
+    }
+    return content
+  }
+
+  const getComment = () => {
+    const runTwikoo = () => {
+      twikoo.getRecentComments({
+        envId: 'https://twikoo.y-liberty.cn/',
+        region: 'ap-neimenggu',
+        pageSize: 6,
+        includeReply: true
+      }).then(function (res) {
+        const twikooArray = res.map(e => {
+          return {
+            'content': changeContent(e.comment),
+            'avatar': e.avatar,
+            'nick': e.nick,
+            'url': e.url + '#' + e.id,
+            'date': new Date(e.created).toISOString()
+          }
+        })
+
+        saveToLocal.set('twikoo-newest-comments', JSON.stringify(twikooArray), 10/(60*24))
+        generateHtml(twikooArray)
+      }).catch(function (err) {
+        const $dom = document.querySelector('#card-newest-comments .aside-list')
+        $dom.textContent= "无法获取评论，请确认相关配置是否正确"
+      })
+    }
+
+    if (typeof twikoo === 'object') {
+      runTwikoo()
+    } else {
+      getScript('https://cdn.cbd.int/twikoo@1.6.25/dist/twikoo.all.min.js').then(runTwikoo)
+    }
+  }
+
+  const generateHtml = array => {
+    let result = ''
+
+    if (array.length) {
+      for (let i = 0; i < array.length; i++) {
+        result += '<div class=\'aside-list-item\'>'
+
+        if (true) {
+          const name = 'data-lazy-src'
+          result += `<a href='${array[i].url}' class='thumbnail'><img ${name}='${array[i].avatar}' alt='${array[i].nick}'><div class='name'><span>${array[i].nick} </span></div></a>`
+        }
+        
+        result += `<div class='content'>
+        <a class='comment' href='${array[i].url}' title='${array[i].content}'>${array[i].content}</a>
+        <time datetime="${array[i].date}">${anzhiyu.diffDate(array[i].date, true)}</time></div>
+        </div>`
+      }
+    } else {
+      result += '没有评论'
+    }
+
+    let $dom = document.querySelector('#card-newest-comments .aside-list')
+    $dom && ($dom.innerHTML= result)
+    window.lazyLoadInstance && window.lazyLoadInstance.update()
+    window.pjax && window.pjax.refresh($dom)
+  }
+
+  const newestCommentInit = () => {
+    if (document.querySelector('#card-newest-comments .aside-list')) {
+      const data = saveToLocal.get('twikoo-newest-comments')
+      if (data) {
+        generateHtml(JSON.parse(data))
+      } else {
+        getComment()
+      }
+    }
+  }
+
+  newestCommentInit()
+  document.addEventListener('pjax:complete', newestCommentInit)
+})</script><script async data-pjax src="https://npm.elemecdn.com/anzhiyu-theme-static@1.0.1/bubble/bubble.js"></script><script>var visitorMail = "visitor@1024.com";
+</script><script async data-pjax src="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/waterfall/waterfall.js"></script><script src="https://lf3-cdn-tos.bytecdntp.com/cdn/expire-1-M/qrcodejs/1.0.0/qrcode.min.js"></script><script src="/js/anzhiyu/right_click_menu.js"></script><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.1.9/icon/ali_iconfont_css.css"><link rel="stylesheet" href="https://cdn.cbd.int/anzhiyu-theme-static@1.0.0/aplayer/APlayer.min.css" media="print" onload="this.media='all'"><script src="https://cdn.cbd.int/anzhiyu-blog-static@1.0.1/js/APlayer.min.js"></script><script src="https://cdn.cbd.int/hexo-anzhiyu-music@1.0.1/assets/js/Meting2.min.js"></script><script src="https://cdn.cbd.int/pjax@0.2.8/pjax.min.js"></script><script>let pjaxSelectors = ["meta[property=\"og:image\"]","meta[property=\"og:title\"]","meta[property=\"og:url\"]","meta[property=\"og:type\"]","meta[property=\"og:site_name\"]","meta[property=\"og:description\"]","head > title","#config-diff","#body-wrap","#rightside-config-hide","#rightside-config-show",".js-pjax"]
+var pjax = new Pjax({
+  elements: 'a:not([target="_blank"])',
+  selectors: pjaxSelectors,
+  cacheBust: false,
+  analytics: false,
+  scrollRestoration: false
+})
+
+document.addEventListener('pjax:send', function () {
+  // removeEventListener scroll 
+  anzhiyu.removeGlobalFnEvent('pjax')
+  anzhiyu.removeGlobalFnEvent('themeChange')
+
+  document.getElementById('rightside').classList.remove('rightside-show')
+  
+  if (window.aplayers) {
+    for (let i = 0; i < window.aplayers.length; i++) {
+      if (!window.aplayers[i].options.fixed) {
+        window.aplayers[i].destroy()
+      }
+    }
+  }
+
+  typeof typed === 'object' && typed.destroy()
+
+  //reset readmode
+  const $bodyClassList = document.body.classList
+  $bodyClassList.contains('read-mode') && $bodyClassList.remove('read-mode')
+})
+
+document.addEventListener('pjax:complete', function () {
+  window.refreshFn()
+
+  document.querySelectorAll('script[data-pjax]').forEach(item => {
+    const newScript = document.createElement('script')
+    const content = item.text || item.textContent || item.innerHTML || ""
+    Array.from(item.attributes).forEach(attr => newScript.setAttribute(attr.name, attr.value))
+    newScript.appendChild(document.createTextNode(content))
+    item.parentNode.replaceChild(newScript, item)
+  })
+
+  GLOBAL_CONFIG.islazyload && window.lazyLoadInstance.update()
+
+  typeof panguInit === 'function' && panguInit()
+
+  // google analytics
+  typeof gtag === 'function' && gtag('config', '', {'page_path': window.location.pathname});
+
+  // baidu analytics
+  typeof _hmt === 'object' && _hmt.push(['_trackPageview',window.location.pathname]);
+
+  typeof loadMeting === 'function' && document.getElementsByClassName('aplayer').length && loadMeting()
+
+  // prismjs
+  typeof Prism === 'object' && Prism.highlightAll()
+})
+
+document.addEventListener('pjax:error', e => {
+  if (e.request.status === 404) {
+    pjax.loadUrl('/404.html')
+  }
+})</script><script async data-pjax src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script><script charset="UTF-8" src="https://cdn.cbd.int/anzhiyu-theme-static@1.1.5/accesskey/accesskey.js"></script></div><div id="popup-window"><div class="popup-window-title">通知</div><div class="popup-window-divider"></div><div class="popup-window-content"><div class="popup-tip">你好呀</div><div class="popup-link"><i class="anzhiyufont anzhiyu-icon-arrow-circle-right"></i></div></div></div></body></html>
