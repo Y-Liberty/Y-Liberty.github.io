@@ -158,6 +158,20 @@ cinema: # 追剧设置
 ## Themes: https://hexo.io/themes/
 theme: anzhiyu
 
+# RSS / Feed
+## Docs: https://github.com/hexojs/hexo-generator-feed
+feed:
+  type: atom
+  path: atom.xml
+  limit: 20
+  content: true
+
+# Sitemap
+## Docs: https://github.com/hexojs/hexo-generator-sitemap
+sitemap:
+  path: sitemap.xml
+  rel: false
+
 # Deployment
 ## 本站已改为「GitHub 源码仓库 + Vercel 云端构建」：
 ##   push main -> Vercel 执行 npm run build (hexo generate) -> 发布 public/

@@ -326,8 +326,8 @@ comments:
 # valine
 # https://valine.js.org
 valine:
-  appId: xxxxx # leancloud application app id
-  appKey: xxxxx # leancloud application app key
+  appId: # leancloud application app id
+  appKey: # leancloud application app key
   pageSize: 10 # comment list page size
   avatar: mp # gravatar style https://valine.js.org/#/avatar
   lang: zh-CN # i18n: zh-CN/zh-TW/en/ja
@@ -350,7 +350,7 @@ valine:
 # waline - A simple comment system with backend support fork from Valine
 # https://waline.js.org/
 waline:
-  serverURL: https://hexolibertycomments-3ehzn0kpq-y-libertys-projects.vercel.app # Waline server address url
+  serverURL: # Waline server address url
   bg: # waline background
   pageview: false
   meta: false # 归属地, 操作系统 前是否显示图标
@@ -429,13 +429,13 @@ footer:
     list:
       - link: https://hexo.io/ #徽标指向网站链接
         shields: https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Frame-Hexo.svg #徽标API
-        message: 博客框架为Hexo_v5.4.0 #徽标提示语
+        message: 博客框架为Hexo_v7.2.0 #徽标提示语
       - link: https://blog.anheyu.com/
         shields: https://npm.elemecdn.com/anzhiyu-theme-static@1.0.9/img/Theme-AnZhiYu-2E67D3.svg
         message: 本站使用AnZhiYu主题
-      - link: https://www.dogecloud.com/
-        shields: https://npm.elemecdn.com/anzhiyu-blog@2.2.0/img/badge/CDN-多吉云-3693F3.svg
-        message: 本站使用多吉云为静态资源提供CDN加速
+      - link: https://github.com/Y-Liberty/Y-Liberty.github.io
+        shields: https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg
+        message: 本站源码托管在 GitHub
       - link: https://github.com/
         shields: https://npm.elemecdn.com/anzhiyu-blog@2.1.5/img/badge/Source-Github.svg
         message: 本站项目由Github托管
@@ -449,25 +449,16 @@ footer:
       - title: email
         link: mailto:yi_coder@163.com
         icon: anzhiyu-icon-envelope
-      - title: 微博
-        link: https://weibo.com/
-        icon: anzhiyu-icon-weibo
-      - title: facebook
-        link: https://www.facebook.com/
-        icon: anzhiyu-icon-facebook1
       - title: RSS
-        link: atom.xml
+        link: /atom.xml
         icon: anzhiyu-icon-rss
     right:
       - title: Github
-        link: https://github.com/
+        link: https://github.com/Y-Liberty
         icon: anzhiyu-icon-github
       - title: Bilibili
-        link: https://space.bilibili.com/
+        link: https://space.bilibili.com/444222985
         icon: anzhiyu-icon-bilibili
-      - title: 抖音
-        link: https://v.douyin.com/
-        icon: anzhiyu-icon-tiktok
       - title: CC
         link: /copyright
         icon: anzhiyu-icon-copyright-line
@@ -486,11 +477,11 @@ footer:
       - title: 主题
         links:
           - title: 文档
-            link: /docs/
+            link: https://blog.anheyu.com/docs/
           - title: 源码
             link: https://github.com/anzhiyu-c/hexo-theme-anzhiyu
           - title: 更新日志
-            link: /update/
+            link: https://blog.anheyu.com/update/
       - title: 导航
         links:
           - title: 即刻短文
@@ -1063,11 +1054,6 @@ home_top:
   subTitle: 
   siteText: 1024
   category:
-    - name: Scratch
-      path: /categories/Scratch/
-      shadow: var(--anzhiyu-shadow-blue)
-      class: blue
-      icon: anzhiyu-icon-dove
     - name: Python
       path: /categories/Python/
       shadow: var(--anzhiyu-shadow-red)
@@ -1078,6 +1064,16 @@ home_top:
       shadow: var(--anzhiyu-shadow-green)
       class: green
       icon: anzhiyu-icon-book
+    - name: 算法学习
+      path: /categories/算法学习/
+      shadow: var(--anzhiyu-shadow-blue)
+      class: blue
+      icon: anzhiyu-icon-shapes
+    - name: 英才计划
+      path: /categories/英才计划/
+      shadow: var(--anzhiyu-shadow-yellow)
+      class: green
+      icon: anzhiyu-icon-lightbulb
   default_descr: 再怎么看我也不知道怎么描述它的啦！
   swiper:
     enable: false
