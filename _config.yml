@@ -80,7 +80,9 @@ meta_generator: true
 date_format: YYYY-MM-DD
 time_format: HH:mm:ss
 ## updated_option supports 'mtime', 'date', 'empty'
-updated_option: 'mtime'
+## 本项目用 'date'：Vercel 每次 clone 都会刷新文件 mtime，用 mtime 会把所有文章标成构建当天。
+## 需要单独标注真实更新时间时，在文章 front-matter 写 updated: 2025-11-26 10:00:00
+updated_option: 'date'
 
 # Pagination
 ## Set per_page to 0 to disable pagination
