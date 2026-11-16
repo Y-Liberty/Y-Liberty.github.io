@@ -2,8 +2,6 @@
 title: C++ 动态规划算法基础
 date: 2025-02-04
 tags:
-  - C++
-  - 算法
   - 动态规划
 categories:
   - 算法学习

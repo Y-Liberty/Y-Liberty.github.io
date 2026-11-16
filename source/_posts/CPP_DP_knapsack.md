@@ -2,8 +2,6 @@
 title: C++ 动态规划 - 背包问题专题
 date: 2025-02-05
 tags:
-  - C++
-  - 算法
   - 动态规划
   - 背包问题
 categories:

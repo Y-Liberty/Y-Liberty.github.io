@@ -2,8 +2,7 @@
 title: Python 环境安装与 PyCharm 安装使用教程
 date: 2025-02-08 10:30:00
 tags:
-  - Python 环境配置
-  - PyCharm 教程
+  - 环境配置
 categories:
   - Python
 cover: https://bu.dusays.com/2025/11/05/690abc7d260ae.png

@@ -2,10 +2,10 @@
 title: Kuangbin算法专题1——搜索专题
 date: 2025-11-09 14:00:00
 tags:
-  - CPP 算法与数据结构
+  - C++ 算法与数据结构
   - 搜索算法
 categories:
-  - CPP 
+  - CPP
 cover: https://bu.dusays.com/2025/11/16/6919704d5ae8f.png
 ---
 
