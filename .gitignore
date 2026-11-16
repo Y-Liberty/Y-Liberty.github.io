@@ -1,0 +1,18 @@
+.DS_Store
+Thumbs.db
+db.json
+*.log
+node_modules/
+public/
+.deploy*/
+_multiconfig.yml
+
+# 编辑器 / IDE
+.idea/
+.vscode/
+
+# 本地工具产物（tree.md 是 UTF-16 的临时梳理稿）
+tree.md
+
+# Vercel CLI 本地绑定信息
+.vercel/

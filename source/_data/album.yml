@@ -1,0 +1,73 @@
+- class_name: 世界各地夕阳与风景
+  path_name: /wordScenery
+  type: 2
+  description: 因为到不了世界各地，所以请网友们发来了各地的夕阳与风景🌇。
+  cover: https://bu.dusays.com/2023/04/09/64329399d1175.jpg
+  top_background: https://bu.dusays.com/2023/06/30/649e546ada7dd.webp
+  rowHeight: 220
+  limit: 10
+  lazyload: true
+  btnLazyload: false
+  url: false
+  top_link: /album
+  top_btn_text: 返回
+  album_list:
+    - date: 2022/10/26 01:00:00
+      content: 湘潭的一角。
+      address: 湖南湘潭
+      from: 再吃一口就减肥
+      image:
+        - https://bu.dusays.com/2023/04/09/64329399db122.webp
+    - date: 2022-10-25
+      content: 洛阳暴雨后的天空。
+      address: 河南洛阳
+      from: 紫菜卷
+      image:
+        - https://bu.dusays.com/2023/04/09/64329399db122.webp
+        - https://bu.dusays.com/2023/04/09/64329399db2e1.webp
+
+- class_name: 获奖记录
+  path_name: /dailyPhoto
+  type: 1
+  description: 这里存放的是有关我自己的曾经一些比赛的获奖证书，作为纪念。
+  top_link: /album
+  top_btn_text: 返回
+  top_background: https://img.picgo.net/2024/08/31/CCF75e9db912651954e.png
+  cover: https://img.picgo.net/2024/08/31/CCF75e9db912651954e.png
+  album_list:
+    - date: 2020-10-17
+      content: 第十一届蓝桥杯大赛省赛
+      image:
+        - https://img.picgo.net/2024/08/31/11d37df79b88d025b6.jpg
+    - date: 2021-05-31
+      content: 第十二届蓝桥杯大赛省赛
+      image:
+        - https://img.picgo.net/2024/08/31/120f88571c3a40cee3.jpg
+    - date: 2022-05-27
+      content: 第十三届蓝桥杯大赛省赛
+      image:
+        - https://img.picgo.net/2024/08/31/138d4c49b8a488edc9.jpg
+    - date: 2021-10-16
+      content: CCF国赛
+      image:
+        - https://img.picgo.net/2024/08/31/CCF75e9db912651954e.png
+    - date: 2021-06-24
+      content: CCPC内蒙古省赛
+      image:
+        - https://img.picgo.net/2024/08/31/____46a36e53bb725dd7.jpg
+    - date: 2021-06-24
+      content: 计算机设计大赛省赛
+      image:
+        - https://img.picgo.net/2024/08/31/17233c52a56d35ab74d881d45794bcfd50bf0c0f296050e3.jpg
+    - date: 2021-08-27
+      content: 计算机设计大赛国赛
+      image:
+        - https://img.picgo.net/2024/08/31/cfecafe5593f8a52d7e4ac3c223eea2f66a478dd681d06ef.jpg
+    - date: 2020-12-10
+      content: CCCC2020天梯赛
+      image:
+        - https://img.picgo.net/2024/08/31/2020CCCC9b79e8b2c03c2792.png
+    - date: 2021-05-06
+      content: CCCC2021天梯赛
+      image:
+        - https://img.picgo.net/2024/08/31/2021CCCC57e8f1e8b578cfe4.png
